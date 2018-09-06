@@ -11,6 +11,13 @@
 |
 */
 
+/**-----------------------------------
+--------------------
+--------------------   weilogg.com   ------------------
+--------------------
+--------------------
+-------------------------------------**/
+
 /**----------- weilogg.com homepage ----------------**/
 Route::get('/', function () {
     return view('home');
@@ -19,6 +26,13 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+/**-----------------------------------
+--------------------
+--------------------   dishmotion.com   ------------------
+--------------------
+--------------------
+-------------------------------------**/
 
 
 /**----------- dishmotion.com homepage ----------------**/
@@ -47,3 +61,41 @@ Route::get('/dishmotion/login-admin','Auth\LoginController@show_dishmotion_admin
 Route::post('/dishmotion/login-admin','Auth\LoginController@post_dishmotion_admin_login');
 
 Route::get('/dishmotion/logout','Auth\LoginController@dishmotion_logout');
+
+
+/**-----------------------------------
+--------------------
+--------------------   gateready.com   ------------------
+--------------------
+--------------------
+-------------------------------------**/
+
+/**----------- gateready.com homepage ----------------**/
+Route::get('/gateready', function () {
+    return view('/gateready/gateready-home');
+});
+
+/**----------- gateready.com about page ----------------**/
+Route::get('/gateready/about', function () {
+    return view('/gateready/about');
+});
+
+/**----------- gateready.com pricing page ----------------**/
+Route::get('/gateready/pricing', function () {
+    return view('/gateready/pricing');
+});
+
+/**----------- gateready.com faq page ----------------**/
+Route::get('/gateready/faq', function () {
+    return view('/gateready/faq');
+});
+
+/**----------- gateready.com login page ----------------**/
+Route::get('/gateready/login', 'gateready\GatereadyLoginController@index');
+
+/**----------- gateready.com register page ----------------**/
+Route::get('/gateready/register', 'gateready\GatereadyRegisterController@index');
+
+
+
+
