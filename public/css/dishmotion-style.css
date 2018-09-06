@@ -1,0 +1,66 @@
+/**************************  home.blade.php  *********************/
+
+body{
+	margin:0% 5%;
+	background: rgba(236,236,236,1);
+}
+
+div.header{
+	border-bottom:10px;
+	border-color: black;
+	background: rgba(123,123,123);
+}
+
+h1#logo{
+	color: purple;
+	font:serif;
+	font-size: 60px;
+	padding-top: 2%;
+}
+
+p.header{
+	text-align: right;
+	padding-top:5%;
+
+}
+
+p {
+	color:blue;
+}
+
+div.form{
+	padding:1% 20% 1% 20%;
+	background:orange;
+}
+
+input, select{
+	margin: 1% auto;
+}
+
+div.footer{
+	background: yellow;
+}
+
+div.footer > p{
+	padding:1% 50% 1% 50%;
+}
+
+/**************************  products.blade.php  *********************/
+
+img{
+	height:300px;
+	width:300px;
+	border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    margin:1% auto 1% auto;
+    display:block;
+}
+
+h1.products{
+	font-size: 1.5em;
+	color:purple;
+	margin-bottom:3%;
+	
+}
+
