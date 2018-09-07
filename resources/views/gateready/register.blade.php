@@ -12,7 +12,7 @@ Register
                 <div class="card-header">Register</div>
 
                 <div class="card-body">
-                    <form method="POST" action="#">
+                    <form method="POST" action="/gateready/register">
                         @csrf
 
                         <div class="form-group row">
@@ -68,7 +68,13 @@ Register
                         <div class="form-group row">
                             <div class="col-md-12">
                                 <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input" value=""> I have read and accepted <a href="gateready/term">Terms and Condition</a> and <a href="gateready/privacy-policy">Privacy Policy</a>
+                                    <input type="checkbox" class="form-check-input" value="yes" name="agree" required> I have read and accepted <a href="gateready/term">Terms and Condition</a> and <a href="gateready/privacy-policy">Privacy Policy</a>
+
+                                    @if ($errors->has('agree'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('agree') }}</strong>
+                                        </span>
+                                    @endif
                                 </label>
                             </div>
                             

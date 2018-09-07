@@ -12,7 +12,7 @@ Login
                 <div class="card-header">Login</div>
 
                 <div class="card-body">
-                    <form method="POST" action="#">
+                    <form method="POST" action="/gateready/login">
                         @csrf
 
                         <div class="form-group row">
