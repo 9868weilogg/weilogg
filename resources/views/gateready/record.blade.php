@@ -21,16 +21,20 @@ Delivery Records
 		<thead class="thead-dark">
 			<tr>
 				<th>Reference Number</th>
-				<th>Order Date</th>
+				<th>Scheduled Date</th>
+				<th>Scheduled Time</th>
 				<th>Status</th>
 			</tr>
 		</thead>
 		<tbody>
+			@foreach($records as $record)
 			<tr>
-				<td>1234</td>
-				<td>2018-09-09</td>
-				<td>Null</td>
+				<td>{{ $record->reference_number }}</td>
+				<td>{{ $record->schedule_date }}</td>
+				<td>{{ $time_range[$record->reference_number]->name }}</td>
+				<td>{{ $status[$record->reference_number]->name }}</td>
 			</tr>
+			@endforeach
 		</tbody>
 	</table>
 

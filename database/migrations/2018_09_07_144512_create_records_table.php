@@ -19,7 +19,6 @@ class CreateRecordsTable extends Migration
             $table->string('tracking_number',50);
             $table->integer('courier_id')->unsigned()->index();
             $table->integer('package_id')->unsigned()->index();
-            $table->text('order_date');
             $table->text('schedule_date');
             $table->integer('time_range_id')->unsigned()->index();
             $table->integer('status_id')->unsigned()->index();
