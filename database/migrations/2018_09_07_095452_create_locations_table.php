@@ -15,7 +15,12 @@ class CreateLocationsTable extends Migration
     {
         Schema::create('locations', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name',40)->unique();
+            $table->integer('postcode')->unsigned();
+            // $table->integer('location_many_profiles')->unsigned();
+            // $table->foreign('profile_id')->references('id')->on('profiles');
             $table->timestamps();
+            
         });
     }
 

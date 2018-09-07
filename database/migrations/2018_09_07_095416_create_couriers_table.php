@@ -15,6 +15,7 @@ class CreateCouriersTable extends Migration
     {
         Schema::create('couriers', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name',30)->unique();
             $table->timestamps();
         });
     }

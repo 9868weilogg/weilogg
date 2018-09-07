@@ -15,6 +15,10 @@ class CreateReceiptsTable extends Migration
     {
         Schema::create('receipts', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('reference_number',12)->unique();
+            $table->string('file_name');
+            $table->string('original_file_name');
+            $table->string('mime');
             $table->timestamps();
         });
     }

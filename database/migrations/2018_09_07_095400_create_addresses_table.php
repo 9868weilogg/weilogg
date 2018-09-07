@@ -14,7 +14,10 @@ class CreateAddressesTable extends Migration
     public function up()
     {
         Schema::create('addresses', function (Blueprint $table) {
-            $table->increments('id');
+            $table->string('gateready_user_id',6)->unique();
+            $table->text('address_line_1',50);
+            $table->text('address_line_2',150);
+            $table->integer('location_id')->unsigned()->index();
             $table->timestamps();
         });
     }
