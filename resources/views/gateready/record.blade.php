@@ -15,7 +15,7 @@ Delivery Records
 	</div>
 	<div class="col-md-12">
 		<p>Checkout your online purchases with the address above, as shipment address. </p>
-		<p>Then inform GateReady <a href="/gateready/schedule-delivery" title="Schedule Delivery">here</a>.</p>
+		<p>Then inform GateReady <a href="/gateready/record/schedule-delivery" title="Schedule Delivery">here</a>.</p>
 	</div>
 	<table class="table table-striped">
 		<thead class="thead-dark">
@@ -27,14 +27,35 @@ Delivery Records
 			</tr>
 		</thead>
 		<tbody>
+			@if($records->isEmpty())
+
+			<tr>
+				<td>-</td>
+				<td>-</td>
+				<td>-</td>
+				<td>-</td>
+			</tr>
+			
+			@else
 			@foreach($records as $record)
+			
 			<tr>
 				<td>{{ $record->reference_number }}</td>
 				<td>{{ $record->schedule_date }}</td>
 				<td>{{ $time_range[$record->reference_number]->name }}</td>
+				@if($status[$record->reference_number]->name == 'reschedule')
+				<td><a href="/gateready/record/reschedule-delivery/{{$record->reference_number}}" title="Reschedule Delivery">{{ $status[$record->reference_number]->name }}</a></td>
+				@elseif($status[$record->reference_number]->name == 'pending')
 				<td>{{ $status[$record->reference_number]->name }}</td>
+				@elseif($status[$record->reference_number]->name == 'verified')
+				<td>{{ $status[$record->reference_number]->name }}</td>
+				@elseif($status[$record->reference_number]->name == 'sent')
+				<td><a href="/gateready/record/feedback" title="Rate Our Service">{{ $status[$record->reference_number]->name }}</a></td>
+				@endif
 			</tr>
+			
 			@endforeach
+			@endif
 		</tbody>
 	</table>
 

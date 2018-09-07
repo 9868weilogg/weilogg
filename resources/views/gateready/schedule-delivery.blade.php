@@ -15,7 +15,7 @@ Schedule A Delivery
 			{{ $error }}
 			@endforeach
 		</div>
-		<form method="post" action="/gateready/schedule-delivery">
+		<form method="post" action="/gateready/record/schedule-delivery">
 			@csrf
 			<div class="form-group">
 				<label for="user_id">User ID</label>

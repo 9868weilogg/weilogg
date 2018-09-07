@@ -69,7 +69,7 @@
                             </li>
                         @else
                             <li class="nav-item">
-                                <a class="nav-link" href="/gateready/schedule-delivery">Experience It</a>
+                                <a class="nav-link" href="/gateready/record/schedule-delivery">Experience It</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/gateready/record">Record</a>
