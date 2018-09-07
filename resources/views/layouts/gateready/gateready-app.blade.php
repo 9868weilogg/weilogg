@@ -39,9 +39,11 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
+                
                 <a class="navbar-brand" href="{{ url('/gateready') }}">
                     gateready.com
                 </a>
+                
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -66,6 +68,12 @@
                                 <a class="nav-link" href="/gateready/faq">FAQ</a>
                             </li>
                         @else
+                            <li class="nav-item">
+                                <a class="nav-link" href="/gateready/schedule-delivery">Experience It</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/gateready/record">Record</a>
+                            </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -82,6 +90,9 @@
                                         @csrf
                                     </form>
                                 </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/gateready/logout">Log Out</a>
                             </li>
                         @endguest
                     </ul>
