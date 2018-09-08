@@ -43,12 +43,23 @@ Delivery Records
 				<td>{{ $record->reference_number }}</td>
 				<td>{{ $record->schedule_date }}</td>
 				<td>{{ $time_range[$record->reference_number]->name }}</td>
+				<!-- to allow customer to reschedule and give feedback -->
+				<!-- reschedule link -->
 				@if($status[$record->reference_number]->name == 'reschedule')
 				<td><a href="/gateready/record/reschedule-delivery/{{$record->reference_number}}" title="Reschedule Delivery">{{ $status[$record->reference_number]->name }}</a></td>
+				<!-- "departed status" -->
+				@elseif($status[$record->reference_number]->name == 'departed')
+				<td>{{ $status[$record->reference_number]->name }}</td>
+				<!-- "schedule status" -->
+				@elseif($status[$record->reference_number]->name == 'schedule')
+				<td>{{ $status[$record->reference_number]->name }}</td>
+				<!-- "pending status" -->
 				@elseif($status[$record->reference_number]->name == 'pending')
 				<td>{{ $status[$record->reference_number]->name }}</td>
+				<!-- "verefied status" -->
 				@elseif($status[$record->reference_number]->name == 'verified')
 				<td>{{ $status[$record->reference_number]->name }}</td>
+				<!-- give feedback link -->
 				@elseif($status[$record->reference_number]->name == 'sent')
 				<td><a href="/gateready/record/feedback" title="Rate Our Service">{{ $status[$record->reference_number]->name }}</a></td>
 				@endif

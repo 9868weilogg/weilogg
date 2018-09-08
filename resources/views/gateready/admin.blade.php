@@ -128,7 +128,25 @@ Admin
                 		{{ $location[$record->gateready_user_id]->name }}
                 	</td>
                 	@endif
-                	<td>{{ $status[$record->reference_number]->name }}</td>
+                	<!-- form to edit customer's delivery status -->
+                	<td>
+                		{{ $status[$record->reference_number]->name }}
+	                	<form method="post" action="/gateready/admin/edit-status/{{ $record->reference_number }}">
+	                		@csrf
+	                		
+	                		<select name="status_id">
+	                			<option selected>Choose Status</option>
+	                			@foreach($statuses as $status)
+	                			
+	                			
+	                			<option value="{{ $status->id }}">{{ $status->name }}</option>
+	                			@endforeach
+	                			
+	                		</select>
+	                		
+	                		<input class="btn btn-outline-secondary" role="button" type="submit" value="Edit">
+	                	</form>
+                	</td>
                 </tr>
                 @endif
                 @endforeach

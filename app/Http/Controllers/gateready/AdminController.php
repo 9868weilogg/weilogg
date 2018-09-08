@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\gateready\Record;
 use App\gateready\GatereadyUser;
+use App\gateready\Status;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Input;
 
 class AdminController extends Controller
 {
@@ -13,6 +16,8 @@ class AdminController extends Controller
     public function show_admin()
     {
     	$records = Record::all();
+    	//  parse all status for <select> in change status feature
+    	$statuses = Status::all();
 
     	if($records->isEmpty())
     	{
@@ -37,8 +42,27 @@ class AdminController extends Controller
 	    		'location' => $location,
 	    		'address' => $address,
 	    		'customer' => $customer,
+	    		'statuses' => $statuses,
 	    	]);
     	}
     	
     }
+
+
+    /*****
+    ***
+    ***   edit customer's status feature
+	***
+	*******/
+	public function edit_status(Request $request,$record_reference_number)
+	{
+		// echo "$record_reference_number";
+
+		//   update status of the particular record
+		Record::where('reference_number',$record_reference_number)->update([
+			'status_id' => Input::get('status_id'),
+		]);
+
+		return Redirect::to('/gateready/admin/Logg5843');
+	}
 }
