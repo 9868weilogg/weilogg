@@ -3,6 +3,7 @@
 namespace App\gateready;
 
 use Illuminate\Database\Eloquent\Model;
+use App\gateready\GatereadyUser;
 
 class Address extends Model
 {
@@ -14,4 +15,10 @@ class Address extends Model
     protected $fillable = [
         'user_id', 'address_line_1', 'address_line_2', 'location_id',
     ];
+
+    //  this address belongs to a user
+    public function user()
+    {
+    	$this->belongsTo('App\gateready\GatereadyUser');
+    }
 }

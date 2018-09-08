@@ -5,6 +5,7 @@ namespace App\gateready;
 use Illuminate\Database\Eloquent\Model;
 use App\gateready\Gender;
 use App\gateready\Location;
+use App\gateready\Address;
 
 class GatereadyUser extends Model
 {
@@ -47,5 +48,12 @@ class GatereadyUser extends Model
      */
     public function records(){
         return $this->hasMany('App\gateready\Record');
+    }
+
+    /**
+     * *******   get address for a user  ****
+     */
+    public function address(){
+        return $this->hasOne('App\gateready\Address');
     }
 }

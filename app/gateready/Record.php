@@ -20,7 +20,7 @@ class Record extends Model
      * @var array
      */
     protected $fillable = [
-        'reference_number', 'user_id', 'tracking_number', 'courier_id', 'package_id',
+        'reference_number', 'gateready_user_id', 'tracking_number', 'courier_id', 'package_id',
         'order_date', 'schedule_date','schedule_time_id','status_id',
     ];
 
