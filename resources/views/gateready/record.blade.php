@@ -46,7 +46,7 @@ Delivery Records
 				<!-- to allow customer to reschedule and give feedback -->
 				<!-- reschedule link -->
 				@if($status[$record->reference_number]->name == 'reschedule')
-				<td><a href="/gateready/record/{{ Auth::user()->id }}/reschedule-delivery/{{$record->reference_number}}" title="Reschedule Delivery">{{ $status[$record->reference_number]->name }}</a></td>
+				<td><a href="/gateready/record/{{ Auth::user()->id }}/reschedule-delivery/{{$record->reference_number}}" title="Reschedule Delivery">{{ $status[$record->reference_number]->name }}</a> pay RM {{$payment}}</td>
 				<!-- "departed status" -->
 				@elseif($status[$record->reference_number]->name == 'departed')
 				<td>{{ $status[$record->reference_number]->name }}</td>

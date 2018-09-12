@@ -89,12 +89,14 @@ class RegisterController extends Controller
             
             'facebook_id' => '1234',
             'first_time' => '1',
-            'transaction_quantity' => '1234',
-            
-            'location_id' => '1234',
-            'contact_number' => '1234',
-            'gender_id' => '1234',
+            'transaction_quantity' => '0',
+            'credit' => '2.00',
+            'location_id' => '1',
+            'contact_number' => '010-1234567',
+            'gender_id' => '1',
         ]);
+        // echo $this->generate_code('user_id');
+        // exit();
     }
 
 

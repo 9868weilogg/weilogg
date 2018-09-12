@@ -5,6 +5,7 @@ namespace App\Http\Controllers\gateready;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\gateready\Record;
+use App\gateready\Package;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Input;
@@ -36,13 +37,18 @@ class RecordController extends Controller
 		    {
 		    	$status[$record->reference_number] = Record::find($record->reference_number)->status;
 		    	$time_range[$record->reference_number] = Record::find($record->reference_number)->time_range;
-				
+				$package[$record->package_id] = Package::find($record->package_id);
+				$user[$record->gateready_user_id] = User::find($record->gateready_user_id);
+				$payment = $user[$record->gateready_user_id]->credit - $package[$record->package_id]->price ;
 		    }
 
 		    return view('gateready/record',[
 				'records' => $records,
 			  	'status' => $status,
 		    	'time_range' => $time_range,
+		    	'package' => $package,
+		    	'user' => $user,
+		    	'payment' => $payment,
 		   ]);
     	}
     	
@@ -95,7 +101,9 @@ class RecordController extends Controller
     		
 
 
-    		return Redirect::to('/gateready/record/'. $user_id );
+    		return Redirect::to('/gateready/record/'. $user_id ,[
+
+    		]);
     	}
     }
 
