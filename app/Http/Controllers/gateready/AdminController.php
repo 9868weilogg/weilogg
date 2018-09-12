@@ -66,9 +66,26 @@ class AdminController extends Controller
 		// echo "$record_reference_number";
 
 		//   update status of the particular record
-		Record::where('reference_number',$record_reference_number)->update([
-			'status_id' => Input::get('status_id'),
-		]);
+        if(Input::get('status_id') == 6)
+        {
+            Record::where('reference_number',$record_reference_number)->update([
+                'status_id' => Input::get('status_id'),
+            ]);
+            //  transaction quantity increment
+            $user_id = Input::get('user_id');
+            $user = User::select('transaction_quantity')->where('id',$user_id)->first();
+            $new_transaction_quantity = $user->transaction_quantity + 1;
+            User::where('id',$user_id)->update([
+                'transaction_quantity' =>  $new_transaction_quantity,
+            ]);
+        }
+        else
+        {
+            Record::where('reference_number',$record_reference_number)->update([
+                'status_id' => Input::get('status_id'),
+            ]);
+        }
+		
 
 		return Redirect::to('/gateready/admin/Logg5843');
 	}

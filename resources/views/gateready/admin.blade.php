@@ -117,10 +117,11 @@ Admin
 	                			
 	                			
 	                			<option value="{{ $status_a->id }}">{{ $status_a->name }}</option>
+                                
 	                			@endforeach
 	                			
 	                		</select>
-	                		
+	                		<input type="hidden" name="user_id" value="{{$record->gateready_user_id}}">
 	                		<input class="btn btn-outline-secondary" role="button" type="submit" value="Edit">
 	                	</form>
                 	</td>
