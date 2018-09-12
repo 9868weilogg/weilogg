@@ -9,7 +9,11 @@ Home
     <h1>
         Schedule Package Delivery in UPM
     </h1>
-    <a class="btn btn-outline-primary" role="button" href="/gateready/register">Experience GateReady now</a>
+    @guest
+    <a class="btn btn-outline-primary" role="button" href="/register">Experience GateReady now</a>
+    @else
+    <a class="btn btn-outline-primary" role="button" href="/gateready/record/{{ Auth::user()->id }}/schedule-delivery">Experience GateReady now</a>
+    @endguest
 </div>
 <div class="what-is-gateready">
     <h1>
@@ -97,7 +101,11 @@ Home
             Let GateReady helps you and do not worry about missing your online purchases delivery.
         </p>
     </div>
-    <a class="btn btn-outline-primary" role="button" href="/gateready/register">Experience GateReady Now</a>
+    @guest
+    <a class="btn btn-outline-primary" role="button" href="/register">Experience GateReady now</a>
+    @else
+    <a class="btn btn-outline-primary" role="button" href="/gateready/record/{{ Auth::user()->id }}/schedule-delivery">Experience GateReady now</a>
+    @endguest
 </div>
 <div class="pricing-and-rewards row">
     <div class="col-md-12">

@@ -8,16 +8,22 @@ use App\gateready\Record;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Input;
+use App\Http\Traits\CodeGenerator;
+use App\User;
 
 
 
 class RecordController extends Controller
 {
+    //  insert traits code that reusable (Code Generator)
+    use CodeGenerator;
+
     //  show record page
-    public function show_record()
+    public function show_record($user_id)
     {
+
     	//retrieve record data
-    	$records = Record::all();
+    	$records = Record::all()->where('gateready_user_id',$user_id);
     	
     	if($records->isEmpty())
     	{
@@ -45,17 +51,19 @@ class RecordController extends Controller
     }
 
     //  show schedule delivery page
-    public function show_schedule_delivery()
+    public function show_schedule_delivery($user_id)
     {
-    	return view('gateready/schedule-delivery');
+    	return view('gateready/schedule-delivery',[
+    		'user_id' => $user_id,
+    	]);
     }
 
     //  post schedule delivery 
-    public function post_schedule_delivery(Request $request)
+    public function post_schedule_delivery(Request $request,$user_id)
     {
     	// validate input
     	$validator = Validator::make($request->all(),[
-    		'user_id' => 'required|numeric',
+    		'user_id' => 'required',
     		'schedule_date' => 'required',
     		'package_id' => 'required',
     		'tracking_number' => 'required',
@@ -66,7 +74,7 @@ class RecordController extends Controller
     	//  if validation fail
     	if($validator->fails())
     	{
-    		return Redirect::to('gateready/record/schedule-delivery')->withErrors($validator)->withInput();
+    		return Redirect::to('gateready/record/'. $user_id . '/schedule-delivery')->withErrors($validator)->withInput();
     	}
     	else
     	{
@@ -77,19 +85,22 @@ class RecordController extends Controller
     		$record->package_id = Input::get('package_id');
     		$record->schedule_date = Input::get('schedule_date');
     		$record->time_range_id = Input::get('time_range_id');
-
+    		$record->reference_number = $this->generate_code('reference_number');
     		// hard code for testing - database set to be not null
-    		$record->reference_number = '1234';
+    		
     		$record->status_id = 2;
     		$record->message = 'nil';
     		$record->save();
 
-    		return Redirect::to('/gateready/record');
+    		
+
+
+    		return Redirect::to('/gateready/record/'. $user_id );
     	}
     }
 
     //  show schedule delivery page
-    public function show_reschedule_delivery(Request $request, $record_reference_number)
+    public function show_reschedule_delivery(Request $request, $user_id, $record_reference_number)
     {
     	return view('gateready/reschedule-delivery',[
     		'record_reference_number' => $record_reference_number,
@@ -97,7 +108,7 @@ class RecordController extends Controller
     }
 
     //  reschedule the date and time of delivery
-    public function post_reschedule_delivery(Request $request, $record_reference_number)
+    public function post_reschedule_delivery(Request $request, $user_id, $record_reference_number)
     {
     	// echo "$record_reference_number";
     	//  validate
@@ -109,17 +120,73 @@ class RecordController extends Controller
     	//  if validation fail
     	if($validator->fails())
     	{
-    		return Redirect::to('/gateready/record/reschedule-delivery/',['record_reference_number' => $record_reference_number,])->withErrors($validator)->withInput();
+    		return Redirect::to('/gateready/record/'. $user_id .'/reschedule-delivery/'.$record_reference_number)->withErrors($validator)->withInput();
     	}
     	else
     	{
-    		
-    		Record::where('reference_number',$record_reference_number)->update([
+    		// echo Input::get('schedule_date');
+    		// echo $record_reference_number;
+    		// echo $user_id;
+    		Record::where([
+    			'reference_number' => $record_reference_number,
+    			'gateready_user_id' => $user_id,
+    		])->update([
     			'schedule_date' => Input::get('schedule_date'),
     			'time_range_id' => Input::get('time_range_id'),
     		]);
 
-    		return Redirect::to('gateready/record');
+    		return Redirect::to('gateready/record/'.$user_id);
     	}
+    }
+
+    //  show feedback page
+    public function show_feedback(Request $request, $user_id, $record_reference_number)
+    {
+    	return view('gateready/feedback',[
+    		'user_id' => $user_id,
+    		'record_reference_number' => $record_reference_number,
+
+    	]);
+    	// echo "$record_reference_number";
+    }
+
+    //  post feedback
+    public function post_feedback(Request $request, $user_id, $record_reference_number)
+    {
+    	// echo "$record_reference_number";
+    	//  validate the input
+    	$validator = Validator::make(Input::all(),[
+    		'msg' => 'required',
+    	]);
+
+    	//  if validator fail
+    	if($validator->fails())
+    	{
+    		return Redirect::to('gateready/record/' .$user_id .'/feedback/'. $record_reference_number)->withErrors($validator);
+    		// echo "$record_reference_number";
+
+    	}
+    	else
+    	{
+    		Record::where([
+    			'gateready_user_id' => $user_id,
+    			'reference_number' => $record_reference_number,
+    		])->update([
+    			
+    			'message' => Input::get('msg'),
+    		]);
+    		return Redirect::to('gateready/record/'.$user_id);
+    	}
+    }
+
+    /****
+    ***
+    ***   generate random code
+    ***
+    ***/
+    public function insert_gateready_user_id()
+    {
+    	// $code = $this->generate_code('');
+    	// echo $code;
     }
 }

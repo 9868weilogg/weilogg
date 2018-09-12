@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Foundation\Auth\RegistersGatereadyUsers;
+use App\Http\Traits\CodeGenerator;
 
 class RegisterController extends Controller
 {
@@ -25,6 +26,9 @@ class RegisterController extends Controller
 
     //  original register user trait
     use RegistersUsers;
+
+    //  use CodeGenerator trait
+    use CodeGenerator;
     
 
     /**
@@ -61,8 +65,9 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'email' => 'required|string|email|max:255|unique:users,email',
             'password' => 'required|string|min:6|confirmed',
+            'agree' => 'accepted'
         ]);
     }
 
@@ -78,6 +83,17 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'id' => $this->generate_code('user_id'),
+            'invite_code' => $this->generate_code('invitation_code'),
+            //  hardcode for testing input database, because database set these as not null
+            
+            'facebook_id' => '1234',
+            'first_time' => '1',
+            'transaction_quantity' => '1234',
+            
+            'location_id' => '1234',
+            'contact_number' => '1234',
+            'gender_id' => '1234',
         ]);
     }
 
@@ -98,7 +114,7 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255',
+            'email' => 'required|string|email|max:255|unique:gateready_users,email',
             'password' => 'required|string|min:6|confirmed',
             'agree' => 'accepted'
         ]);
@@ -108,7 +124,7 @@ class RegisterController extends Controller
      * Create a new gateready user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \App\User
+     * @return \App\gateready\GatereadyUser
      */
     protected function gateready_create(array $data)
     {
@@ -117,11 +133,11 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             //  hardcode for testing input database, because database set these as not null
-            'id' => '1234',
+            'id' => $this->generate_code('user_id'),
             'facebook_id' => '1234',
             'first_time' => '1',
             'transaction_quantity' => '1234',
-            'invite_code' => '1234',
+            'invite_code' => $this->generate_code('invitation_code'),
             'location_id' => '1234',
             'contact_number' => '1234',
             'gender_id' => '1234',

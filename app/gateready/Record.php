@@ -3,7 +3,7 @@
 namespace App\gateready;
 
 use Illuminate\Database\Eloquent\Model;
-use App\gateready\GatereadyUser;
+use App\User;
 use App\gateready\Status;
 use App\gateready\Courier;
 use App\gateready\TimeRange;
@@ -28,7 +28,7 @@ class Record extends Model
      * ***  this record belongs to a user
      */
     public function user(){
-    	return $this->belongsTo('App\gateready\GatereadyUser');
+    	return $this->belongsTo('App\User');
     }
 
     /**

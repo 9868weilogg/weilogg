@@ -15,11 +15,11 @@ Schedule A Delivery
 			{{ $error }}
 			@endforeach
 		</div>
-		<form method="post" action="/gateready/record/schedule-delivery">
+		<form method="post" action="/gateready/record/{{ Auth::user()->id }}/schedule-delivery">
 			@csrf
 			<div class="form-group">
 				<label for="user_id">User ID</label>
-				<input name="user_id" type="text" class="form-control" value="1234" required>
+				<input name="user_id" type="text" class="form-control" value="{{ Auth::user()->id }}" readonly>
 				@if($errors->has('user_id'))
 				<span class="invalid-feedback" role="alert">
 					{{ $errors->first('user_id') }}

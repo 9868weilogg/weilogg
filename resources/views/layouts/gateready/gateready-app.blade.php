@@ -59,20 +59,20 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="/gateready/login">Login</a>
+                                <a class="nav-link" href="/login">Login</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/gateready/register">Register</a>
+                                <a class="nav-link" href="/register">Register</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/gateready/faq">FAQ</a>
                             </li>
                         @else
                             <li class="nav-item">
-                                <a class="nav-link" href="/gateready/record/schedule-delivery">Experience It</a>
+                                <a class="nav-link" href="/gateready/record/{{ Auth::user()->id }}/schedule-delivery">Experience It</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/gateready/record">Record</a>
+                                <a class="nav-link" href="/gateready/record/{{ Auth::user()->id }}">Record</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -92,7 +92,7 @@
                                 </div>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/gateready/logout">Log Out</a>
+                                <a class="nav-link" href="/logout">Log Out</a>
                             </li>
                         @endguest
                     </ul>

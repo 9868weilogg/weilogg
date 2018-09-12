@@ -16,7 +16,7 @@ Reschedule Delivery
 			{{ $error }}
 			@endforeach
 		</div>
-		<form method="post" action="/gateready/record/reschedule-delivery/{{$record_reference_number}}">
+		<form method="post" action="/gateready/record/{{ Auth::user()->id }}/reschedule-delivery/{{$record_reference_number}}">
 			@csrf
 			
 			<div class="form-group">

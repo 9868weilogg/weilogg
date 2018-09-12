@@ -3,7 +3,7 @@
 namespace App\gateready;
 
 use Illuminate\Database\Eloquent\Model;
-use App\gateready\GatereadyUser;
+use App\User;
 
 class Address extends Model
 {
@@ -16,9 +16,10 @@ class Address extends Model
         'user_id', 'address_line_1', 'address_line_2', 'location_id',
     ];
 
+
     //  this address belongs to a user
     public function user()
     {
-    	$this->belongsTo('App\gateready\GatereadyUser');
+    	$this->belongsTo('App\User');
     }
 }

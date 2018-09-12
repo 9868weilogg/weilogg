@@ -6,8 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 use App\gateready\Gender;
 use App\gateready\Location;
 use App\gateready\Address;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class GatereadyUser extends Model
+class GatereadyUser extends Model 
 {
     public $incrementing = false;
     /**

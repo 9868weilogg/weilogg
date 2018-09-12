@@ -5,80 +5,57 @@ Admin
 @endsection
 
 @section('content')
+
+<!-- if signed in user is weilogg mean he is admin, show the content -->
+@if(Auth::user()->id == 'UN6W')
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 container-fluid top">
     
-    <!-- add client record button -->
-    <div class="filter_btn">
-        <button class="btn btn-default">
-            <a href="#">
-                Add Client's record.
-            </a>
-        </button>
-    </div>
+    
     <!-- all record button -->
     <div class="filter_btn">
-        <button class="btn btn-default">
-            <a href="#">
+        
+        <a href="/gateready/admin/Logg5843/show-all-records">
+            <button class="btn btn-default">
                 All records
-            </a>
-        </button>
+            </button>
+        </a>
+        
     </div>
     <!-- created today fitler client record button -->
     <div class="filter_btn">
-        <button class="btn btn-default">
-            <a href="#">
+        
+        <a href="/gateready/admin/Logg5843/show-today-records">
+            <button class="btn btn-default">
                 Created today records
-            </a>
-        </button>
+            </button>
+        </a>
+        
     </div>
     <!-- today delivery record button -->
     <div class="filter_btn">
-        <button class="btn btn-default">
-            <a href="#">
+        
+        <a href="/gateready/admin/Logg5843/show-today-delivery">
+            <button class="btn btn-default">
                 Today delivery
-            </a>
-        </button>
+            </button>
+        </a>
+        
     </div>
     <!-- today remaining delivery record button -->
     <div class="filter_btn">
-        <button class="btn btn-default">
-            <a href="#">
+        
+        <a href="/gateready/admin/Logg5843/show-today-remaining-delivery">
+            <button class="btn btn-default">
                 Today remaining delivery
-            </a>
-        </button>
+            </button>
+        </a>
+        
     </div>
-    <!-- location fitler client record button -->
-    <form class="filter_loc_form" method="post" action="#">
-        @csrf
-        <select name="location_id">
-            <option selected>Select a location</option>
-            
-        </select>
-        <button name="filter_loc" class="btn btn-default" type="submit">Filter Location
-
-            <!-- <a href="{{ url('/gateready/TUFY/administrator/admin/location_filter_client_record') }}">
-                Filter Client's record (Location).
-            </a> -->
-        </button>
-    </form>
-    <!-- today location fitler client record button -->
-    <form class="filter_today_loc_form" method="post" action="@">
-        @csrf
-        <select name="location_id">
-            <option selected>Select a location</option>
-            
-        </select>
-        <button name="filter_loc" class="btn btn-default" type="submit">Filter Today Location
-
-            <!-- <a href="{{ url('/gateready/TUFY/administrator/admin/location_filter_client_record') }}">
-                Filter Client's record (Location).
-            </a> -->
-        </button>
-    </form>
+    
     <!-- search client record using tracking_number -->
-    <form class="search_tracking_number_form" method="post" action="#">
+    <form class="search_tracking_number_form" method="get" action="/gateready/admin/Logg5843/filter-tracking-number">
         @csrf
-        <input type="text" name="tracking_number" placeholder="Tracking Number">
+        <input type="text" name="tracking_number" placeholder="Tracking Number" required>
         <button name="filter_loc" class="btn btn-default" type="submit">Search Tracking Number
 
             <!-- <a href="{{ url('/gateready/TUFY/administrator/admin/location_filter_client_record') }}">
@@ -130,16 +107,16 @@ Admin
                 	@endif
                 	<!-- form to edit customer's delivery status -->
                 	<td>
-                		{{ $status[$record->reference_number]->name }}
+                		{{$status[$record->reference_number]->name}}
 	                	<form method="post" action="/gateready/admin/edit-status/{{ $record->reference_number }}">
 	                		@csrf
 	                		
 	                		<select name="status_id">
 	                			<option selected>Choose Status</option>
-	                			@foreach($statuses as $status)
+	                			@foreach($status_all as $status_a)
 	                			
 	                			
-	                			<option value="{{ $status->id }}">{{ $status->name }}</option>
+	                			<option value="{{ $status_a->id }}">{{ $status_a->name }}</option>
 	                			@endforeach
 	                			
 	                		</select>
@@ -155,11 +132,9 @@ Admin
     </div>
 
 
-
-<span>{{ $records }}</span>
     
 </div>
-
+@endif
 
 @endsection
 

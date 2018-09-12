@@ -57,10 +57,10 @@ Login
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary" >
                                     Login
                                 </button>
-                                <button type="submit" class="btn btn-primary">
+                                <button type="#" class="btn btn-primary" id="login-button">
                                     Continue with Facebook
                                 </button>
 
@@ -75,4 +75,6 @@ Login
         </div>
     </div>
 </div>
+
+<script src="{{ asset('js/login-view.js') }}"></script>
 @endsection

@@ -33,7 +33,16 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/dishmotion';
+    protected $redirectTo = '/';
+
+    /**
+       logout weilogg.com
+    **/
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        return Redirect::to('/');
+    }
 
 
     /**-----------------------------------

@@ -15,7 +15,7 @@ Delivery Records
 	</div>
 	<div class="col-md-12">
 		<p>Checkout your online purchases with the address above, as shipment address. </p>
-		<p>Then inform GateReady <a href="/gateready/record/schedule-delivery" title="Schedule Delivery">here</a>.</p>
+		<p>Then inform GateReady <a href="/gateready/record/{{ Auth::user()->id }}/schedule-delivery" title="Schedule Delivery">here</a>.</p>
 	</div>
 	<table class="table table-striped">
 		<thead class="thead-dark">
@@ -46,7 +46,7 @@ Delivery Records
 				<!-- to allow customer to reschedule and give feedback -->
 				<!-- reschedule link -->
 				@if($status[$record->reference_number]->name == 'reschedule')
-				<td><a href="/gateready/record/reschedule-delivery/{{$record->reference_number}}" title="Reschedule Delivery">{{ $status[$record->reference_number]->name }}</a></td>
+				<td><a href="/gateready/record/{{ Auth::user()->id }}/reschedule-delivery/{{$record->reference_number}}" title="Reschedule Delivery">{{ $status[$record->reference_number]->name }}</a></td>
 				<!-- "departed status" -->
 				@elseif($status[$record->reference_number]->name == 'departed')
 				<td>{{ $status[$record->reference_number]->name }}</td>
@@ -61,7 +61,13 @@ Delivery Records
 				<td>{{ $status[$record->reference_number]->name }}</td>
 				<!-- give feedback link -->
 				@elseif($status[$record->reference_number]->name == 'sent')
-				<td><a href="/gateready/record/feedback" title="Rate Our Service">{{ $status[$record->reference_number]->name }}</a></td>
+				<td>
+					<select name="forma" onchange="location = this.value;">
+						<option selected>{{ $status[$record->reference_number]->name }}</option>
+						<option value="/gateready/record/{{ Auth::user()->id }}/feedback/{{$record->reference_number}}">Rate Our Service</option>
+						<option value="/gateready">Print Your Receipt</option>
+					</select>
+				</td>
 				@endif
 			</tr>
 			
