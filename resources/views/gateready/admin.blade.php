@@ -7,7 +7,7 @@ Admin
 @section('content')
 
 <!-- if signed in user is weilogg mean he is admin, show the content -->
-@if(Auth::user()->id == 'DQ0D')
+@if(Auth::user()->id == '1234')
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 container-fluid top">
     
     
