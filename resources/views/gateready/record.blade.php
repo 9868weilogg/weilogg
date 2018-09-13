@@ -46,26 +46,26 @@ Delivery Records
 				<!-- to allow customer to reschedule and give feedback -->
 				<!-- reschedule link -->
 				@if($status[$record->reference_number]->name == 'reschedule')
-				<td><a href="/gateready/record/{{ Auth::user()->id }}/reschedule-delivery/{{$record->reference_number}}" title="Reschedule Delivery">{{ $status[$record->reference_number]->name }}</a> pay RM {{$payment}}</td>
+				<td><a href="/gateready/record/{{ Auth::user()->id }}/reschedule-delivery/{{$record->reference_number}}" title="Reschedule Delivery">{{ $status[$record->reference_number]->name }}</a> | <a href="/gateready/record/{{ Auth::user()->id }}/invoice/{{$record->reference_number}}" title="Print Delivery Invoice">Print Invoice</a></td>
 				<!-- "departed status" -->
 				@elseif($status[$record->reference_number]->name == 'departed')
-				<td>{{ $status[$record->reference_number]->name }}</td>
+				<td>{{ $status[$record->reference_number]->name }} | <a href="/gateready/record/{{ Auth::user()->id }}/invoice/{{$record->reference_number}}" title="Print Delivery Invoice">Print Invoice</a></td>
 				<!-- "schedule status" -->
 				@elseif($status[$record->reference_number]->name == 'schedule')
-				<td>{{ $status[$record->reference_number]->name }}</td>
+				<td>{{ $status[$record->reference_number]->name }} | <a href="/gateready/record/{{ Auth::user()->id }}/invoice/{{$record->reference_number}}" title="Print Delivery Invoice">Print Invoice</a></td>
 				<!-- "pending status" -->
 				@elseif($status[$record->reference_number]->name == 'pending')
-				<td>{{ $status[$record->reference_number]->name }}</td>
+				<td>{{ $status[$record->reference_number]->name }} | <a href="/gateready/record/{{ Auth::user()->id }}/invoice/{{$record->reference_number}}" title="Print Delivery Invoice">Print Invoice</a></td>
 				<!-- "verefied status" -->
 				@elseif($status[$record->reference_number]->name == 'verified')
-				<td>{{ $status[$record->reference_number]->name }}</td>
+				<td>{{ $status[$record->reference_number]->name }} | <a href="/gateready/record/{{ Auth::user()->id }}/invoice/{{$record->reference_number}}" title="Print Delivery Invoice">Print Invoice</a></td>
 				<!-- give feedback link -->
 				@elseif($status[$record->reference_number]->name == 'sent')
 				<td>
 					<select name="forma" onchange="location = this.value;">
 						<option selected>{{ $status[$record->reference_number]->name }}</option>
 						<option value="/gateready/record/{{ Auth::user()->id }}/feedback/{{$record->reference_number}}">Rate Our Service</option>
-						<option value="/gateready">Print Your Receipt</option>
+						<option value="/gateready/record/{{ Auth::user()->id }}/receipt/{{$record->reference_number}}">Print Your Receipt</option>
 					</select>
 				</td>
 				@endif

@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Input;
 use App\Http\Traits\CodeGenerator;
 use App\User;
+use PDF;
 
 
 
@@ -196,5 +197,36 @@ class RecordController extends Controller
     {
     	// $code = $this->generate_code('');
     	// echo $code;
+    }
+
+    /****
+    ***
+    ***   print invoice
+    ***   Display a listing of resource.
+    ***   @return \Illuminate\Http\Response
+    ***
+    ***/
+    public function print_invoice($user_id,$record_reference_number)
+    {
+    	$data = ['title' => 'Invoice'];
+    	$pdf = PDF::loadView('/gateready/invoice',$data);
+    	
+
+    	return $pdf->download('invoice.pdf');
+    }
+
+    /****
+    ***
+    ***   print receipt
+    ***   Display a listing of resource.
+    ***   @return \Illuminate\Http\Response
+    ***
+    ***/
+    public function print_receipt($user_id,$record_reference_number)
+    {
+    	$data = ['title' => 'Receipt'];
+    	$pdf = PDF::loadView('/gateready/receipt',$data);
+
+    	return $pdf->download('receipt.pdf');
     }
 }
