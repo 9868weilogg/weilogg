@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Input;
 use App\Http\Traits\CodeGenerator;
 use App\User;
 use PDF;
+use App\Http\Resources\RecordResource;
 
 
 
@@ -228,5 +229,17 @@ class RecordController extends Controller
     	$pdf = PDF::loadView('/gateready/receipt',$data);
 
     	return $pdf->download('receipt.pdf');
+    }
+
+
+    /***  
+    ***
+    ***  REST API testing
+    ***
+    ***/
+    public function index()
+    {
+        // return RecordResource::collection(Record::all());
+        return Record::all();
     }
 }

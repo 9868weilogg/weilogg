@@ -254,7 +254,7 @@ class AdminController extends Controller
 
         $tracking_number = Input::get('tracking_number');
 
-        $records = Record::where('reference_number',$tracking_number)->get();
+        $records = Record::where('tracking_number',$tracking_number)->get();
 
         $status_all = Status::all();
         //  parse all location for <select> in filter location feature

@@ -4,8 +4,12 @@
 Home
 @endsection
 
+
+
 @section('content')
+
 <div class="cover">
+    
     <h1>
         Schedule Package Delivery in UPM
     </h1>

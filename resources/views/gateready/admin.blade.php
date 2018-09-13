@@ -4,6 +4,17 @@
 Admin
 @endsection
 
+@section('js-code')
+<script>
+    $(document).ready(function(){
+
+        var x =document.getElementsByTagName('option');
+        x.getElementById('123').name = "true";
+    });
+    
+</script>
+@endsection
+
 @section('content')
 
 <!-- if signed in user is weilogg mean he is admin, show the content -->
@@ -14,7 +25,7 @@ Admin
     <!-- all record button -->
     <div class="filter_btn">
         
-        <a href="/gateready/admin/Logg5843/show-all-records">
+        <a href="/gateready/admin/show-all-records">
             <button class="btn btn-default">
                 All records
             </button>
@@ -24,7 +35,7 @@ Admin
     <!-- created today fitler client record button -->
     <div class="filter_btn">
         
-        <a href="/gateready/admin/Logg5843/show-today-records">
+        <a href="/gateready/admin/show-today-records">
             <button class="btn btn-default">
                 Created today records
             </button>
@@ -34,7 +45,7 @@ Admin
     <!-- today delivery record button -->
     <div class="filter_btn">
         
-        <a href="/gateready/admin/Logg5843/show-today-delivery">
+        <a href="/gateready/admin/show-today-delivery">
             <button class="btn btn-default">
                 Today delivery
             </button>
@@ -44,7 +55,7 @@ Admin
     <!-- today remaining delivery record button -->
     <div class="filter_btn">
         
-        <a href="/gateready/admin/Logg5843/show-today-remaining-delivery">
+        <a href="/gateready/admin/show-today-remaining-delivery">
             <button class="btn btn-default">
                 Today remaining delivery
             </button>
@@ -53,10 +64,11 @@ Admin
     </div>
     
     <!-- search client record using tracking_number -->
-    <form class="search_tracking_number_form" method="get" action="/gateready/admin/Logg5843/filter-tracking-number">
+    <form class="search_tracking_number_form" method="get" action="/gateready/admin/filter-tracking-number">
         @csrf
         <input type="text" name="tracking_number" placeholder="Tracking Number" required>
-        <button name="filter_loc" class="btn btn-default" type="submit">Search Tracking Number
+
+        <button name="filter_tracking_number" class="btn btn-default" type="submit" >Search Tracking Number
 
             <!-- <a href="{{ url('/gateready/TUFY/administrator/admin/location_filter_client_record') }}">
                 Filter Client's record (Location).
@@ -88,7 +100,7 @@ Admin
                 
                 <tr>
                 	<td>{{ $customer[$record->gateready_user_id]->name }} , {{ $customer[$record->gateready_user_id]->id }}</td>
-                	<td>{{ $record->reference_number }}</td>
+                	<td>{{ $record->tracking_number }}</td>
                 	<td>{{ $courier[$record->reference_number]->name }}</td>
                 	<td>{{ $record->created_at }}</td>
                 	<td>{{ $record->schedule_date }}</td>
@@ -112,7 +124,7 @@ Admin
 	                		@csrf
 	                		
 	                		<select name="status_id">
-	                			<option selected>Choose Status</option>
+	                			<option id="123" name="">Choose Status</option>
 	                			@foreach($status_all as $status_a)
 	                			
 	                			
@@ -134,6 +146,10 @@ Admin
 
 
     
+</div>
+@else
+<div>
+    <h1>Sorry, you are not admin.</h1>
 </div>
 @endif
 
