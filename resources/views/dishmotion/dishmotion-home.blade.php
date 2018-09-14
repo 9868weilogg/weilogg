@@ -13,7 +13,7 @@ Home
 			<h2>
 				Upcoming Menu (17th November 2015) - peanut-lotusroot-soup 花生莲藕汤 + rice cook with long bean and ham 火腿豆角焖饭 
 			</h2>
-			<img src="image/peanut lotus soup.jpg">
+			<img src="image/dishmotion/peanut lotus soup.jpg">
 		</div>
 		<div class="col-md-4">
 			<h4>
