@@ -5,6 +5,7 @@ Pricing and Rewards
 @endsection
 
 @section('content')
+<div class="container">
 <div class="pricing row">
 	<div class="col-md-12">
 		<h1>Pricing and Rewards</h1>
@@ -65,6 +66,6 @@ Pricing and Rewards
 		</p>
 	</div>
 </div>
-
+</div>
 
 @endsection

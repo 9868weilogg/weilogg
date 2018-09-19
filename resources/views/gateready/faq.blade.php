@@ -5,6 +5,7 @@ Frequent Asked Question
 @endsection
 
 @section('content')
+<div class="container">
 <div class="faq row">
 	<div class="col-md-12">
 		<h1>About GateReady</h1>
@@ -171,6 +172,6 @@ Frequent Asked Question
 		</p>
 	</div>
 </div>
-
+</div>
 
 @endsection

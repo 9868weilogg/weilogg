@@ -5,6 +5,7 @@ Schedule A Delivery
 @endsection
 
 @section('content')
+<div class="container">
 <div class="row">
 	<div class="col-md-12">
 		<h1>Inform GateReady about your online purchases' details to schedule a delivery</h1>
@@ -82,7 +83,7 @@ Schedule A Delivery
 		</form>
 	</div>
 </div>
-
+</div>
 
 @endsection
 

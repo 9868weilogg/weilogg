@@ -7,7 +7,7 @@ Home
 
 
 @section('content')
-
+<div class="container">
 <div class="cover">
     
     <h1>
@@ -140,7 +140,7 @@ Home
         <a class="btn btn-outline-primary" role="button" href="#">Share this to your friends</a>
     </div>
 </div>
-
+</div>
 
 
 

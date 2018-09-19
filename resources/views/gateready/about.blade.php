@@ -5,6 +5,7 @@ About Us
 @endsection
 
 @section('content')
+<div class="container">
 <div class="about row">
 	<div class="col-md-12">
 		<h1>About GateReady</h1>
@@ -62,6 +63,6 @@ About Us
 		</p>
 	</div>
 </div>
-
+</div>
 
 @endsection

@@ -5,6 +5,8 @@ Feedback to GateReady
 @endsection
 
 @section('content')
+
+<div class="container">
 <div class="row">
 	<div class="col-md-12">
 		<h1>Feedback to us, we will serve you better.</h1>
@@ -27,7 +29,7 @@ Feedback to GateReady
 		</form>
 	</div>
 </div>
-
+</div>
 
 
 

@@ -52,4 +52,10 @@ $app->singleton(
 |
 */
 
+//   test to insert so that able to run AJAX in localhost
+//   turn of the line, since ajax runs without it
+// header('Access-Control-Allow-Origin: *');
+
 return $app;
+
+

@@ -7,10 +7,120 @@ Admin
 @section('js-code')
 <script>
     $(document).ready(function(){
-
-        var x =document.getElementsByTagName('option');
-        x.getElementById('123').name = "true";
+        $('#statusButton').click(function(){
+            $.ajax({
+                url:'/test',
+                type:'GET',
+                success:function(data){
+                    
+                    $('#ajaxResult').html(data.html);
+                    // console.log(data);
+                }
+            })
+            // console.log('button works');
+        });
+        
     });
+
+    // show all records using AJAX
+    $(document).ready(function(){
+        $('#showAllRecordsAjaxBtn').click(function(){
+            $.ajax({
+                url:'/gateready/admin/show-all-records-ajax',
+                type:'GET',
+                success:function(data){
+                    
+                    $('#ajaxResult').html(data.html);
+                    console.log(data);
+                }
+            })
+            // console.log('button works');
+        });
+        
+    });
+
+    // show today records using AJAX
+    $(document).ready(function(){
+        $('#showTodayRecordsAjaxBtn').click(function(){
+            $.ajax({
+                url:'/gateready/admin/show-today-records-ajax',
+                type:'GET',
+                success:function(data){
+                    
+                    $('#ajaxResult').html(data.html);
+                    console.log(data);
+                }
+            })
+            // console.log('button works');
+        });
+        
+    });
+
+    // show today delivery using AJAX
+    $(document).ready(function(){
+        $('#showTodayDeliveryAjaxBtn').click(function(){
+            $.ajax({
+                url:'/gateready/admin/show-today-delivery-ajax',
+                type:'GET',
+                success:function(data){
+                    
+                    $('#ajaxResult').html(data.html);
+                    console.log(data);
+                }
+            })
+            // console.log('button works');
+        });
+        
+    });
+
+    // show today remaining delivery using AJAX
+    $(document).ready(function(){
+        $('#showTodayRemainingDeliveryAjaxBtn').click(function(){
+            $.ajax({
+                url:'/gateready/admin/show-today-remaining-delivery-ajax',
+                type:'GET',
+                success:function(data){
+                    
+                    $('#ajaxResult').html(data.html);
+                    console.log(data);
+                }
+            })
+            // console.log('button works');
+        });
+        
+    });
+
+    // filter tracking number using AJAX
+    $(document).ready(function(){
+        $('#filterTrackingNumberAjaxBtn').click(function(){
+            var trackingNumber = $('#trackingNumberInput').val();
+            $.ajaxSetup({
+              headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              }
+            });
+
+            $.ajax({
+                url:"/gateready/admin/filter-tracking-number-ajax",
+                type:'GET',
+                data: trackingNumber,
+                success:function(data){
+                    
+                    // $('#ajaxResult').html(data.html);
+                    // console.log(trackingNumber);
+                }
+                
+            });
+            // console.log('button works');
+
+
+            
+        });
+
+        
+    });
+    
+    
     
 </script>
 @endsection
@@ -30,6 +140,11 @@ Admin
                 All records
             </button>
         </a>
+        <!-- <a href="/gateready/admin/show-all-records-ajax"> -->
+            <button id="showAllRecordsAjaxBtn" class="btn btn-default">
+                All records (AJAX)
+            </button>
+        <!-- </a> -->
         
     </div>
     <!-- created today fitler client record button -->
@@ -40,6 +155,9 @@ Admin
                 Created today records
             </button>
         </a>
+        <button class="btn btn-default" id="showTodayRecordsAjaxBtn">
+            Created today records (AJAX)
+        </button>
         
     </div>
     <!-- today delivery record button -->
@@ -50,6 +168,9 @@ Admin
                 Today delivery
             </button>
         </a>
+        <button class="btn btn-default" id="showTodayDeliveryAjaxBtn">
+            Today delivery (AJAX)
+        </button>
         
     </div>
     <!-- today remaining delivery record button -->
@@ -60,6 +181,9 @@ Admin
                 Today remaining delivery
             </button>
         </a>
+        <button class="btn btn-default" id="showTodayRemainingDeliveryAjaxBtn">
+            Today remaining delivery (AJAX)
+        </button>
         
     </div>
     
@@ -74,7 +198,31 @@ Admin
                 Filter Client's record (Location).
             </a> -->
         </button>
+
+        
     </form>
+
+    <!-- search client record using tracking_number (for AJAX)-->
+    <!-- <form class="search_tracking_number_form" method="get" action="/gateready/admin/filter-tracking-number-ajax"> -->
+        <!-- @csrf -->
+        <input id="trackingNumberInput" type="text" name="tracking_number" placeholder="Tracking Number" required>
+
+        <button name="filter_tracking_number" class="btn btn-default" id="filterTrackingNumberAjaxBtn" >Search Tracking Number (AJAX)
+
+            <!-- <a href="{{ url('/gateready/TUFY/administrator/admin/location_filter_client_record') }}">
+                Filter Client's record (Location).
+            </a> -->
+        </button>
+
+        
+    <!-- </form> -->
+
+    <!-- button and div to test ajax trigger -->
+    <button id="statusButton">get status</button>
+
+    <!-- div to innerHTML -->
+    <div id="ajaxResult"></div>
+
     <!-- $records->render() -->
     <div class="all_records">
         <table class="table table-striped panel panel-warning">
@@ -119,12 +267,14 @@ Admin
                 	@endif
                 	<!-- form to edit customer's delivery status -->
                 	<td>
-                		{{$status[$record->reference_number]->name}}
+                		<p>{{$status[$record->reference_number]->name}}</p>
+                        
+                        
 	                	<form method="post" action="/gateready/admin/edit-status/{{ $record->reference_number }}">
 	                		@csrf
 	                		
 	                		<select name="status_id">
-	                			<option id="123" name="">Choose Status</option>
+	                			<option >Choose Status</option>
 	                			@foreach($status_all as $status_a)
 	                			
 	                			

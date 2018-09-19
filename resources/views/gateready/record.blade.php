@@ -5,6 +5,7 @@ Delivery Records
 @endsection
 
 @section('content')
+<div class="container">
 <div class="row">
 	<div class="col-md-12">
 		<h1>GateReady Address</h1>
@@ -76,6 +77,6 @@ Delivery Records
 			@endif
 		</tbody>
 	</table>
-
+</div>
 
 @endsection
