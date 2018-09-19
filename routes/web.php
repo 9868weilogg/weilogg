@@ -23,9 +23,31 @@ Route::get('/', function () {
     return view('home');
 });
 
+/**----------- weilogg.com about page ----------------**/
+Route::get('/about', function () {
+    return view('about');
+});
+
+/**----------- weilogg.com portfolio page ----------------**/
+Route::get('/portfolio', function () {
+    return view('portfolio');
+});
+
+/**----------- weilogg.com resume page ----------------**/
+Route::get('/resume', function () {
+    return view('resume');
+});
+
+/**----------- weilogg.com contact page ----------------**/
+Route::get('/contact', function () {
+    return view('contact');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/logout', 'Auth\LoginController@logout');
 
 /**-----------------------------------
 --------------------
@@ -90,12 +112,101 @@ Route::get('/gateready/faq', function () {
     return view('/gateready/faq');
 });
 
-/**----------- gateready.com login page ----------------**/
-Route::get('/gateready/login', 'gateready\GatereadyLoginController@index');
+//     1 website cannot have login twice 
+// /**----------- gateready.com login page ----------------**/
+// Route::get('/gateready/login', 'Auth\LoginController@show_gateready_login');
 
-/**----------- gateready.com register page ----------------**/
-Route::get('/gateready/register', 'gateready\GatereadyRegisterController@index');
+// Route::get('/gateready/logout', 'Auth\LoginController@gateready_logout');
+
+// Route::post('/gateready/login', 'Auth\LoginController@post_gateready_login');
+
+// /**----------- gateready.com register page ----------------**/
+// Route::get('/gateready/register', 'Auth\RegisterController@show_gateready_register');
+
+// Route::post('/gateready/register', 'Auth\RegisterController@gateready_register');
+
+/**----------- gateready.com record page ----------------**/
+Route::get('/gateready/record/{user_id}', 'gateready\RecordController@show_record');
+
+// /**----------- gateready.com testing code generator page ----------------**/
+// Route::get('/gateready/code-generator', 'gateready\RecordController@insert_gateready_user_id');
 
 
+/**----------- gateready.com schedule delivery page ----------------**/
+Route::get('/gateready/record/{user_id}/schedule-delivery', 'gateready\RecordController@show_schedule_delivery');
 
+Route::post('/gateready/record/{user_id}/schedule-delivery', 'gateready\RecordController@post_schedule_delivery');
+
+/**----------- gateready.com print invoice page ----------------**/
+Route::get('/gateready/record/{user_id}/invoice/{record_reference_number}', 'gateready\RecordController@print_invoice');
+
+/**----------- gateready.com print receipt page ----------------**/
+Route::get('/gateready/record/{user_id}/receipt/{record_reference_number}', 'gateready\RecordController@print_receipt');
+
+/**----------- gateready.com reschedule delivery page ----------------**/
+Route::get('/gateready/record/{user_id}/reschedule-delivery/{record_reference_number}', 'gateready\RecordController@show_reschedule_delivery');
+
+Route::post('/gateready/record/{user_id}/reschedule-delivery/{record_reference_number}', 'gateready\RecordController@post_reschedule_delivery');
+
+/**----------- gateready.com feedback delivery page ----------------**/
+Route::get('/gateready/record/{user_id}/feedback/{record_reference_number}', 'gateready\RecordController@show_feedback');
+
+Route::post('/gateready/record/{user_id}/feedback/{record_reference_number}', 'gateready\RecordController@post_feedback');
+
+/**----------- gateready.com admin page ----------------**/
+Route::get('/gateready/admin', 'gateready\AdminController@show_admin');
+
+/**----------- gateready.com admin page edit status feature ----------------**/
+Route::post('/gateready/admin/edit-status/{record_reference_number}', 'gateready\AdminController@edit_status');
+
+
+/**----------- gateready.com admin page show all record feature ----------------**/
+Route::get('/gateready/admin/show-all-records', 'gateready\AdminController@show_all_records');
+
+/**----------- gateready.com admin page show all record feature (for AJAX) ----------------**/
+Route::get('/gateready/admin/show-all-records-ajax', 'gateready\AdminController@show_all_records_ajax');
+
+/**----------- gateready.com admin page filter today record feature ----------------**/
+Route::get('/gateready/admin/show-today-records', 'gateready\AdminController@show_today_records');
+
+/**----------- gateready.com admin page filter today record feature (for AJAX) ----------------**/
+Route::get('/gateready/admin/show-today-records-ajax', 'gateready\AdminController@show_today_records_ajax');
+
+/**----------- gateready.com admin page filter today delivery feature ----------------**/
+Route::get('/gateready/admin/show-today-delivery', 'gateready\AdminController@show_today_delivery');
+
+/**----------- gateready.com admin page filter today delivery feature (for AJAX)----------------**/
+Route::get('/gateready/admin/show-today-delivery-ajax', 'gateready\AdminController@show_today_delivery_ajax');
+
+/**----------- gateready.com admin page filter today remaining delivery feature ----------------**/
+Route::get('/gateready/admin/show-today-remaining-delivery', 'gateready\AdminController@show_today_remaining_delivery');
+
+/**----------- gateready.com admin page filter today remaining delivery feature (for AJAX) ----------------**/
+Route::get('/gateready/admin/show-today-remaining-delivery-ajax', 'gateready\AdminController@show_today_remaining_delivery_ajax');
+
+
+/**----------- gateready.com admin page filter tracking number feature ----------------**/
+Route::get('/gateready/admin/filter-tracking-number', 'gateready\AdminController@filter_tracking_number');
+
+/**----------- gateready.com admin page filter tracking number feature (for AJAX)----------------**/
+Route::get('/gateready/admin/filter-tracking-number-ajax', 'gateready\AdminController@filter_tracking_number_ajax');
+
+
+/**
+**
+**  REST API testing
+**
+**/
+Route::get('/records','gateready\RecordController@index');
+
+/**
+**
+**  AJAX testing
+**
+**/
+Route::get('/test',function(){
+	$view = view('welcome')->render();
+
+	return response()->json(['html' => $view]);
+});
 

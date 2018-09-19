@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'weilogg.com') }}</title>
+    <title>@yield('title') | {{ config('app.name', 'weilogg.com') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -28,82 +28,181 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <!-- Vue.js cdn -->
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script> -->
 
-    <!-- Font Awesome -->
+    <!-- Font Awesome 4.7-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     
     <!-- Material Design Bootstrap -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.9/css/mdb.min.css" rel="stylesheet">
+
+    <!-- logo font grabbed from Google font -->
+    <link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
+
+    <!-- respective page 's CSS -->
+    @yield('page-css')
+
+
+
+    <!-- responsive sidebar CSS-->
+    <style>
+    /* The sidepanel menu */
+    i.fa-bars{
+      font-size: 25px;
+      color:#937543;
+    }
+
+    .side-panel {
+        height: 100%; /* Specify a height */
+        width: 0; /* 0 width - change this with JavaScript */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Stay on top */
+        top: 0;
+        left: 0;
+        background-color: #A3A9B2; /* gray */
+        overflow-x: hidden; /* Disable horizontal scroll */
+        padding-top: 60px; /* Place content 60px from the top */
+        transition: 0.5s; /* 0.5 second transition effect to slide in the sidepanel */
+    }
+
+    /* Position and style the close button (top right corner) */
+    .side-panel .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 40px;
+        margin-left: 50px;
+        color:#937543;
+    }
+
+    /* Logo DIV and logo style */
+
+    div#logoMenu{
+      font-family: 'Poiret One', cursive;
+      
+      
+      margin:1.5% 0.5%;
+    }  
+
+    a.logo{
+      font-size: 40px;
+      border:1px double #C8C8C8 ;
+      border-width: 3px;
+      padding:0.5%;
+      font-weight: normal;
+      color:#937543;
+    }    
+
+    /*  nav link stye */
+    nav{
+      padding-top: 40%;
+    }
+
+
+    button.nav-link{
+      border:1px solid #937543;
+      border-radius: 100px;
+      width:100px;
+      background-color:#937543;
+      color:white;
+      margin-left:80px;
+      margin-top:10px;
+    } 
+
+    body{
+      font-family: 'helvetica',sans-serif;
+    }
+    
+
+    </style>
+
+    <!-- respective page 's JS -->
+    @yield('page-js')
+
+    <!-- responsive sidebar JS -->
+    <script>
+    function showSideBar()
+    {
+      document.getElementById('sideBarDiv').style.width = '250px';
+    }
+    function hideSideBar()
+    {
+      document.getElementById('sideBarDiv').style.width = '0px';
+    }
+    window.onload = function(){
+      // console.log('run');
+      var x = new Date();
+      var currentYear = x.getFullYear();
+      document.getElementById('footerYear').innerHTML = currentYear;
+      var age = currentYear - 1992;
+      document.getElementById('myAge').innerHTML = age;
+      // console.log(currentYear);
+    }
+
+    function scrollToBottom(){
+      $('html, body').animate({scrollTop:$(document).height()}, 'slow');
+      hideSideBar();
+    }
+    </script>
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'weilogg.com') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li class="nav-item">
-                              <!-- link to go to login page -->
-                              <!-- <a class="nav-link" href="/login">Login</a> -->
-                              <!-- link trigger login modal -->
-                              <a class="nav-link" data-toggle="modal" data-target="#loginModal">Login</a>
-                            </li>
-                            <li class="nav-item">
-                              <!-- link to go to register page -->
-                              <!-- <a class="nav-link" href="/register">Register</a> -->
-                              <!-- link trigger register modal -->
-                              <a class="nav-link" data-toggle="modal" data-target="#regModal">Register</a>
-                            </li>
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/logout">Logout</a>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-        <main class="py-4">
-            @yield('content')
-        </main>
-    </div>
+      <div class="container">
+        <div class="row">
+          <!-- logo with menu button during xs mode -->
+          
+          <div id="logoMenu" class="col-sm-12">
+            <a class="logo" href="{{ url('/') }}">
+              WEILOGG
+            </a>
+          </div>
+          <div id="menuIcon" class="col-sm-12">
+            <a href="javascript:void(0);" class="icon" onclick="showSideBar()"><i class="fa fa-bars" aria-hidden="true"></i></a>
+          </div>
+          <!-- logo with menu button during xs mode (end)-->
+          
+          <!-- side bar show during xs mode -->
+          <div id="sideBarDiv" class="side-panel">
+            <nav class="nav flex-column">
+              <a href="javascript:void(0)" onclick="hideSideBar()" class="closebtn" >&times</a>
+              @guest
+              
+              <button class="nav-link" onclick="window.location.href='/about'">About</button>
+              <button class="nav-link" onclick="window.location.href='/portfolio'">Portfolio</button>
+              <button class="nav-link" onclick="window.location.href='/resume'">Resume</button>
+              <button class="nav-link" onclick="scrollToBottom()">Contact</button>
+              <button class="nav-link" data-toggle="modal" data-target="#loginModal">Login</button>
+              <button class="nav-link" data-toggle="modal" data-target="#regModal">Register</button>
+              
+              @else
+              
+              <button class="nav-link" onclick="window.location.href='/about'">About</button>
+              <button class="nav-link" onclick="window.location.href='/portfolio'">Portfolio</button>
+              <button class="nav-link" onclick="window.location.href='/resume'">Resume</button>
+              <button class="nav-link" onclick="scrollToBottom()">Contact</button>
+              <button class="nav-link" onclick="window.location.href='/logout'">Logout</button>
+              @endguest
+              
+            </nav>
+          </div>
+        </div>
+      </div>
+          <!-- side bar show during xs mode (end)--> 
+    
+          
+          <!-- content with grid col-12 during xs mode -->
+          <div class="col-12" id="xsMode">
+            <main class="py-4">
+              @yield('content')
+            </main>
+          </div>
+          <!-- content with grid col-12 during xs mode (end)-->
+    </div>    
+      
     <!-- Footer -->
     <footer class="page-footer font-small blue-grey lighten-5">
 
-        <div style="background-color: #21d192;">
+        <div style="background-color: #937543;">
           <div class="container">
 
             <!-- Grid row-->
@@ -111,7 +210,7 @@
 
               <!-- Grid column -->
               <div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">
-                <h6 class="mb-0">Get connected with us on social networks!</h6>
+                <h6 class="mb-0">Get connected with me on social networks!</h6>
               </div>
               <!-- Grid column -->
 
@@ -119,23 +218,17 @@
               <div class="col-md-6 col-lg-7 text-center text-md-right">
 
                 <!-- Facebook -->
-                <a class="fb-ic">
+                <a class="fb-ic" href="https://www.facebook.com/wei.logg.william">
+                  
                   <i class="fa fa-facebook white-text mr-4"> </i>
                 </a>
-                <!-- Twitter -->
-                <a class="tw-ic">
-                  <i class="fa fa-twitter white-text mr-4"> </i>
-                </a>
-                <!-- Google +-->
-                <a class="gplus-ic">
-                  <i class="fa fa-google-plus white-text mr-4"> </i>
-                </a>
+                
                 <!--Linkedin -->
-                <a class="li-ic">
+                <a class="li-ic" href="https://www.linkedin.com/in/cheahweilogg/">
                   <i class="fa fa-linkedin white-text mr-4"> </i>
                 </a>
                 <!--Instagram-->
-                <a class="ins-ic">
+                <a class="ins-ic" href="https://www.instagram.com/the_logggggg/?hl=en">
                   <i class="fa fa-instagram white-text"> </i>
                 </a>
 
@@ -152,14 +245,14 @@
         <div class="container text-center text-md-left mt-5">
 
           <!-- Grid row -->
-          <div class="row mt-3 dark-grey-text">
+          <div class="row mt-4 dark-grey-text">
 
             <!-- Grid column -->
-            <div class="col-md-3 col-lg-4 col-xl-3 mb-4">
+            <div class="col-md-4 col-lg-4 col-xl-3 mb-4">
 
               <!-- Content -->
               <h6 class="text-uppercase font-weight-bold">weilogg.com</h6>
-              <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+              <hr class="accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; border-color:#63B1EC;">
               <p>Self-learned web programmer, tried mechanical engineering in manufacturing and construction industry, however, decided to go into software industry. Believe that software will be the future.</p>
 
             </div>
@@ -169,60 +262,36 @@
             <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
 
               <!-- Links -->
-              <h6 class="text-uppercase font-weight-bold">About Us</h6>
-              <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+              <h6 class="text-uppercase font-weight-bold">Useful Link</h6>
+              <hr class=" accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; border-color:#63B1EC;">
               <p>
                 <a class="dark-grey-text" href="/portfolio">Portfolio</a>
               </p>
               <p>
+                <a class="dark-grey-text" href="/resume">Resume</a>
+              </p>
+              <p>
+                <a class="dark-grey-text" href="/contact">Contact</a>
+              </p>
+              <p>
                 <a class="dark-grey-text" href="/site-map">Site Map</a>
               </p>
-              <p>
-                <a class="dark-grey-text" href="/contact-us">Contact Us</a>
-              </p>
-              <p>
-                <a class="dark-grey-text" href="/faq">FAQ</a>
-              </p>
 
             </div>
             <!-- Grid column -->
 
             <!-- Grid column -->
-            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-
-              <!-- Links -->
-              <h6 class="text-uppercase font-weight-bold">Useful links</h6>
-              <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-              <p>
-                <a class="dark-grey-text" href="#!">Your Account</a>
-              </p>
-              <p>
-                <a class="dark-grey-text" href="/dishmotion">DishMotion.com</a>
-              </p>
-              <p>
-                <a class="dark-grey-text" href="/gateready">gateready.com</a>
-              </p>
-              <p>
-                <a class="dark-grey-text" href="#!">Help</a>
-              </p>
-
-            </div>
-            <!-- Grid column -->
-
-            <!-- Grid column -->
-            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+            <div class="col-md-6 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
 
               <!-- Links -->
               <h6 class="text-uppercase font-weight-bold">Contact</h6>
-              <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+              <hr class="accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; border-color:#63B1EC;">
               <p>
-                <i class="fa fa-home mr-3"></i> Seri Kembangan 43300, Selangor.</p>
+                <i class="fa fa-home mr-3"></i> Taman Bukit Belimbing, Seri Kembangan 43300, Selangor.</p>
               <p>
-                <i class="fa fa-envelope mr-3"></i> info@weilogg.com</p>
+                <i class="fa fa-envelope mr-3"></i> william.wlcheah@gmail.com</p>
               <p>
-                <i class="fa fa-phone mr-3"></i> + 01 234 567 88</p>
-              <p>
-                <i class="fa fa-print mr-3"></i> + 01 234 567 89</p>
+                <i class="fa fa-phone mr-3"></i> + 017 871 3513</p>
 
             </div>
             <!-- Grid column -->
@@ -234,7 +303,7 @@
         <!-- Footer Links -->
 
         <!-- Copyright -->
-        <div class="footer-copyright text-center text-black-50 py-3">© 2018 Copyright:
+        <div class="footer-copyright text-center text-black-50 py-3">© <span id="footerYear"></span> Copyright:
           <a class="dark-grey-text" href="http://weilogg.com"> weilogg.com</a>
         </div>
         <!-- Copyright -->
