@@ -227,7 +227,11 @@ h5.serviceGroup{
         </div>
         <div class="topic">
             <h1 class="topic">My Story</h1>
-            <p>...</p>
+            <p>High tech always catch my eyes, this is one of the reason I choose to gain an engineering degree in university. The university's life is not as difficult as imagine, this is why I have the extra time to learn web programming by myself. I am impressed by the concept of automation, hence, I built Dishmotion website to automate the taking order process for my food delivery business. 
+            The food delivery business idea is inspired by my coursemates who miss their parents' home-cooked food. After sometime, I stopped the business due to time constraint for me to prepare food, study and do the delivery. In the same time, I faced a difficulty of nobody to receive parcel for my online shopping. Therefore, I built gateready to offer srrvice to help customers to receive their parcel and then deliver to them at their available time. I tested this on university students in UPM and found that the online shopping behavior is not poular yet, so gateready's service is not relevant for them.
+            I received an job offer from AD Consultants as Mechanical Engineer and started to work in the construction industry. Construction industry is a traditional industry that do not embrace the new technology due to high cost and contains a lot of waste. Therefore, I decided to leave and move on to work as an Industrial Engineer in Matrix-Ed Engineering. I choose to work in this manufacturing plant because it offers an opportunity for me to work on robotic programming and transform existing production line to automated one. I believe programming and automation will be the future. 
+            After a year, I feel like exposing myself to more technology driven industry and focus more in programming. I decided to leave and seek for a job as a web developer. I am looking forward to challenge myself and be armoured in order to participate in the future world of programming. 
+            </p>
         </div>
         <div class="topic">
             <h1 class="topic">My Skill</h1>

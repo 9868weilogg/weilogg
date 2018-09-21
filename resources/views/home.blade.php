@@ -95,6 +95,34 @@ a.myStoryLink , a.resumeLink{
 }
 </style>
 
+@section('page-js')
+<script>
+
+
+var txt = 'I am web developer & engineer.'.split('');
+var delay = 100;
+
+function type(){
+    for(i=0 ; i<txt.length ; i++){
+        setTimeout(function(){
+            $('#myDescription').append(txt.shift());
+        }, delay * i);
+    }
+    // delay * i + 1000 means 1 second after the above text finish typed
+    setTimeout(function(){
+        //  after finish, clear text in #myDescription
+        $('#myDescription').text('');
+
+        //fire 'type' method again, with 'txt' reset to its original value
+        type(txt='I am web developer & engineer.'.split(''));
+    },delay*i+1000);
+}
+type();
+      
+</script>
+@endsection
+
+
 @section('content')
 
 <div class="container">
@@ -105,7 +133,7 @@ a.myStoryLink , a.resumeLink{
         </div>
         <div class="about align-content-center">
             <p><span class="myName">WEILOGG</span> <span>aka William.</span><br>
-                <span class="myDescription">I'm web developer & engineer.</span></p>
+                <span id="myDescription"></span></p>
             
             <a href="/about" class="myStoryLink">My Story</a>
             <a href="/resume" class="resumeLink">Resume</a>
