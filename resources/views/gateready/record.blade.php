@@ -4,19 +4,46 @@
 Delivery Records
 @endsection
 
+@section('css-code')
+<style>
+body{
+	background-color: #ECECEC;
+}
+h1.record{
+	text-align: center;
+    padding:10px 20px;
+    font-size: 30px;
+}
+h2.record{
+	text-align: center;
+    padding:10px 20px;
+    font-size: 20px;
+    border: 1px solid #000;
+    color:white;
+    background-color: #000;
+}
+p.record {
+	text-align:  center;
+    padding:10px auto;
+    font-size: 16px;
+    
+}
+</style>
+@endsection
+
 @section('content')
 <div class="container">
 <div class="row">
 	<div class="col-md-12">
-		<h1>GateReady Address</h1>
-		<p>Jalan Gemia</p>
-		<p>Taman Bukit Belimbing</p>
-		<p>43300 Seri Kembangan</p>
-		<p>Selangor Darul Ehsan</p>
+		<h1 class="record">GateReady Address</h1>
+		<p class="record">Jalan Gemia<br>
+		Taman Bukit Belimbing<br>
+		43300 Seri Kembangan<br>
+		Selangor Darul Ehsan</p>
 	</div>
 	<div class="col-md-12">
-		<p>Checkout your online purchases with the address above, as shipment address. </p>
-		<p>Then inform GateReady <a href="/gateready/record/{{ Auth::user()->id }}/schedule-delivery" title="Schedule Delivery">here</a>.</p>
+		<p class="record">Checkout your online purchases with the address above, as shipment address. <br>
+		Then inform GateReady <a href="/gateready/record/{{ Auth::user()->id }}/schedule-delivery" title="Schedule Delivery">here</a>.</p>
 	</div>
 	<table class="table table-striped">
 		<thead class="thead-dark">

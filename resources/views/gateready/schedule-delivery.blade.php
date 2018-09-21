@@ -4,11 +4,67 @@
 Schedule A Delivery
 @endsection
 
+@section('css-code')
+<style>
+body{
+	background-color: #ECECEC;
+}
+
+div.order-form{
+	background-color: white;
+	padding: 5% 3%;
+}
+
+div.form-group{
+	padding: 2% 0%;
+}
+
+input, select{
+	border:0px hidden transparent;
+	border-bottom: 1px solid #000;
+	background-color: transparent;
+	width:100%;
+}
+
+label{
+	text-transform: uppercase;
+	color:#E4A490;
+}
+
+h1.schedule{
+	text-align: center;
+    padding:10px 20px;
+    font-size: 24px;
+}
+
+.center-block{
+	display:flex;
+	justify-content: center;
+}
+
+button.submit_button{
+    
+    text-align: center;
+    
+    border:2px solid #533F2F;
+    color:#533F2F;
+    padding: 10px 10px;
+    background-color: #CEBFB2;
+}
+
+button.submit_button:hover{
+	background-color: transparent;
+}
+
+
+</style>
+@endsection
+
 @section('content')
 <div class="container">
-<div class="row">
+<div class="row order-form">
 	<div class="col-md-12">
-		<h1>Inform GateReady about your online purchases' details to schedule a delivery</h1>
+		<h1 class="schedule">Inform GateReady about your online purchases' details to schedule a delivery</h1>
 	</div>
 	<div class="col-md-12">
 		<div>
@@ -20,7 +76,7 @@ Schedule A Delivery
 			@csrf
 			<div class="form-group">
 				<label for="user_id">User ID</label>
-				<input name="user_id" type="text" class="form-control" value="{{ Auth::user()->id }}" readonly>
+				<input name="user_id" type="text" class="" value="{{ Auth::user()->id }}" readonly>
 				@if($errors->has('user_id'))
 				<span class="invalid-feedback" role="alert">
 					{{ $errors->first('user_id') }}
@@ -30,7 +86,7 @@ Schedule A Delivery
 			
 			<div class="form-group">
 				<label for="package_id">Choose A Plan</label>
-				<select name="package_id" class="form-control" required>
+				<select name="package_id" class="" required>
 					<option></option>
 					<option value="1" selected>RM 3.50 per delivery (less than 5kg)</option>
 				</select>
@@ -42,11 +98,11 @@ Schedule A Delivery
 			</div>
 			<div class="form-group">
 				<label for="tracking_number">Tracking Number</label>
-				<input name="tracking_number" type="text" class="form-control" value="1234" required>
+				<input name="tracking_number" type="text" class="" value="1234" required>
 			</div>
 			<div class="form-group">
 				<label for="courier_id">Courier</label>
-				<select name="courier_id" class="form-control" required>
+				<select name="courier_id" class="" required>
 					<option></option>
 					<option value="1" selected>GDex</option>
 				</select>
@@ -58,7 +114,7 @@ Schedule A Delivery
 			</div>
 			<div class="form-group">
 				<label for="schedule_date">Schedule Your Available Date</label>
-				<input name="schedule_date" type="date" class="form-control" value="1234" required>
+				<input name="schedule_date" type="date" class="" value="1234" required>
 				@if($errors->has('schedule_date'))
 				<span class="invalid-feedback" role="alert">
 					{{ $errors->first('schedule_date') }}
@@ -67,7 +123,7 @@ Schedule A Delivery
 			</div>
 			<div class="form-group">
 				<label for="time_range_id">Schedule Your Available Time</label>
-				<select name="time_range_id" class="form-control" required>
+				<select name="time_range_id" class="" required>
 					<option></option>
 					<option value="1" selected>8pm - 10pm</option>
 				</select>
@@ -77,8 +133,8 @@ Schedule A Delivery
 				</span>
 				@endif
 			</div>
-			<div class="form-group">
-				<button name="submit_button" type="submit" class="btn btn-outline-primary">Schedule</button>
+			<div class="form-group center-block">
+				<button name="submit_button" type="submit" class=" col-md-6 submit_button">Schedule</button>
 			</div>
 		</form>
 	</div>
