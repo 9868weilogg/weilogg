@@ -5,7 +5,7 @@ Admin Log In
 @endsection
 
 @section('content')
-
+<div class="container">
 	<div class="row">
 		<h1>Log In</h1>
 		<form class="col-md-12" method="post" action="/dishmotion/login-admin">
@@ -16,10 +16,10 @@ Admin Log In
 			</div>
 			<div class="form-group">
 				<label for="password">Password:</label>
-				<input name="password" type="text" value="Logg5843" class="form-control" required>
+				<input name="password" type="password" value="Logg5843" class="form-control" required>
 			</div>
 			<button type="submit" value="LOG IN" class="btn btn-primary">LOG IN</button>
 		</form>
 	</div>
-
+</div>
 @endsection

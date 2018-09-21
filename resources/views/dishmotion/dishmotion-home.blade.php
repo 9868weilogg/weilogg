@@ -7,7 +7,7 @@ Home
 @section('content')
 
 	
-
+<div class="container">
 	<div class="row">
 		<div class="col-md-8">
 			<h2>
@@ -51,6 +51,18 @@ Home
 	</div>
 
 	<div class="row form">
+		@if(count($errors)>0)
+		<h3 class="col-md-12">
+			Order Unsuccessful
+		</h3>
+
+		<ul>
+			@foreach($errors->all() as $error)
+			<li>{{$error}}</li>
+			@endforeach
+		</ul>
+
+		@endif
 		<form class="col-md-12" action="/dishmotion/orders" method="post">
 			@csrf
 			<div class="form-group">
@@ -117,6 +129,6 @@ Home
 			<button type="submit" value="Order" class="btn btn-primary">Order</button>
 		</form>
 	</div>
-
+</div>
 
 @endsection

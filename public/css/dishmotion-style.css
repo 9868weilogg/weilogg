@@ -8,20 +8,24 @@ body{
 div.header{
 	border-bottom:10px;
 	border-color: black;
-	background: rgba(123,123,123);
+	background: orange;
 }
+
 
 h1#logo{
 	color: purple;
-	font:serif;
+	font-family:'aria',serif;
 	font-size: 60px;
 	padding-top: 2%;
+	margin-left: 2%;
 }
 
-p.header{
+h1#logo span{
+	color: purple;
+	font-family:'aria',serif;
 	text-align: right;
-	padding-top:5%;
-
+	font-size: 14px;
+	margin-left:100px;
 }
 
 p {
@@ -30,7 +34,6 @@ p {
 
 div.form{
 	padding:1% 20% 1% 20%;
-	background:orange;
 }
 
 input, select{

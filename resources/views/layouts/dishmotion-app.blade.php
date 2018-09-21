@@ -21,28 +21,49 @@
 
 	<!-- owner's style remote&local server-->
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/dishmotion-style.css') }}">
+
+	<!-- footer mdbootstrap code -->
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<!-- Bootstrap core CSS -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Material Design Bootstrap -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.10/css/mdb.min.css" rel="stylesheet">
 </head>
 <body>
-	<div class="row header">
-		<h1 id="logo" class="col-md-4 header">
-			<a href="/dishmotion">Dishmotion</a>
-		</h1>
-		<p class="col-md-8 header">
-			soup-rice delivery service around Universiti Putra Malaysia,Serdang.
-		</p>
-	</div>
+	
+		<div class="row header">
+			<h1 id="logo" class="header">
+				<a href="/dishmotion">Dishmotion</a> <span class="header">
+				soup-rice delivery service around Universiti Putra Malaysia,Serdang.
+			</span>
+		</div>
+			</h1>
+			
 	@yield('content')
 
-	<div class="row footer">
-		<p align="center">
-			2015@Design by <a href="/home">weilogg.com</a>
-			@if(Auth::check())
-			<a href="/dishmotion/admin">Admin</a>
-			<a href="/dishmotion/logout">Logout</a>
-			@else
-			<a href="/dishmotion/login-admin">Login</a>
-			@endif
-		</p>
-	</div>
+	
+	<!-- Footer -->
+	<footer class="page-footer font-small blue">
+
+	  <!-- Copyright -->
+	  <div class="footer-copyright text-center py-3">&copy; 2015 Copyright:
+	    <a href="http://weilogg.com">weilogg.com</a>
+	  </div>
+	  <!-- Copyright -->
+	  <!-- Copyright -->
+	  <div class="footer-copyright text-center py-3">
+	    @if(Auth::check())
+		<a href="/dishmotion/admin">Admin</a>
+		<a href="/dishmotion/logout">Logout</a>
+		@else
+		<a href="/dishmotion/login-admin">Login</a>
+		@endif
+	  </div>
+	  <!-- Copyright -->
+
+	</footer>
+	<!-- Footer -->
+	
 </body>
 </html>

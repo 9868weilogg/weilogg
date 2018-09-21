@@ -6,12 +6,13 @@ Unsuccessful Order
 
 @section('content')
 
+<div class="container">
 	<div class="row">
 		<div class="col-md-8">
 			<h2>
 				Upcoming Menu (17th November 2015) - peanut-lotusroot-soup 花生莲藕汤 + rice cook with long bean and ham 火腿豆角焖饭 
 			</h2>
-			<img src="/../../image/peanut lotus soup.jpg">
+			<img src="image/dishmotion/peanut lotus soup.jpg">
 		</div>
 		<div class="col-md-4">
 			<h4>
@@ -38,6 +39,12 @@ Unsuccessful Order
 			</h4>
 			<p>
 				017-1234567
+			</p>
+			<h4>
+				Products
+			</h4>
+			<p>
+				(17th November 2015) - peanut-lotusroot-soup <a href="/dishmotion/soup">+more soup</a>
 			</p>
 		</div>
 	</div>
@@ -121,5 +128,6 @@ Unsuccessful Order
 			<button type="submit" value="Order" class="btn btn-primary">Order</button>
 		</form>
 	</div>
+</div>
 @endsection
 
