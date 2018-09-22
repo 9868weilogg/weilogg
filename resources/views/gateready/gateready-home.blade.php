@@ -127,6 +127,40 @@ i.fa-edit,i.fa-calendar,i.fa-truck{
     width: 100%
 }
 
+@media screen and (max-width: 600px){
+    /*div.cover{
+        position:relative;
+        background-image: url('{{asset('image/weilogg/OBCCB40.jpg')}}');
+        background-position:  center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        width:100%;
+        height:600px;
+        margin:0;
+        padding: 0;
+        background-color:#ECECEC;
+    }*/
+
+    h1.jumbo{
+        font-size: 24px;
+        position:absolute;
+        width: 200px;
+        text-align: center;
+        top:30%;
+        left:30%;
+    }
+
+    button.jumbo{
+        position:absolute;
+        width: 200px;
+        top:40%;
+        left:30%;
+        font-size: 14px;
+    }
+
+    button.jumbo:hover{
+        background-color: transparent;
+}
 
 </style>
 @endsection
