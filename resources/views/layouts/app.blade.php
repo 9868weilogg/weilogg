@@ -106,7 +106,7 @@
       background-color:#937543;
       color:white;
       margin-left:80px;
-      margin-top:10px;
+      margin-top:20px;
     } 
 
     body{
@@ -126,6 +126,10 @@
 
     div.form-group{
       padding-bottom:20px; 
+    }
+
+    p#phoneNumber{
+      color:rgb(79,79,79);
     }
     </style>
 
@@ -183,23 +187,12 @@
           <div id="sideBarDiv" class="side-panel">
             <nav class="nav flex-column">
               <a href="javascript:void(0)" onclick="hideSideBar()" class="closebtn" >&times</a>
-              @guest
+              
               
               <button class="nav-link" onclick="window.location.href='/about'">About</button>
               <button class="nav-link" onclick="window.location.href='/portfolio'">Portfolio</button>
               <button class="nav-link" onclick="window.location.href='/resume'">Resume</button>
               <button class="nav-link" onclick="scrollToBottom()">Contact</button>
-              <button class="nav-link" data-toggle="modal" data-target="#loginModal">Login</button>
-              <button class="nav-link" data-toggle="modal" data-target="#regModal">Register</button>
-              
-              @else
-              
-              <button class="nav-link" onclick="window.location.href='/about'">About</button>
-              <button class="nav-link" onclick="window.location.href='/portfolio'">Portfolio</button>
-              <button class="nav-link" onclick="window.location.href='/resume'">Resume</button>
-              <button class="nav-link" onclick="scrollToBottom()">Contact</button>
-              <button class="nav-link" onclick="window.location.href='/logout'">Logout</button>
-              @endguest
               
             </nav>
           </div>
@@ -270,8 +263,8 @@
 
               <!-- Content -->
               <h6 class="text-uppercase font-weight-bold">weilogg.com</h6>
-              <hr class="accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; border-color:#63B1EC;">
-              <p>Self-learned web programmer, tried mechanical engineering in manufacturing and construction industry, however, decided to go into software industry. Believe that software will be the future.</p>
+              <hr class="accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; border-color:#937543;">
+              <p>Self-learned web programmer, tried mechanical engineering in construction industry and indsutrial engineering in manufacturing industry, however, decided to go into software industry. I believe that programming skill is an essential in future.</p>
 
             </div>
             <!-- Grid column -->
@@ -281,7 +274,7 @@
 
               <!-- Links -->
               <h6 class="text-uppercase font-weight-bold">Useful Link</h6>
-              <hr class=" accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; border-color:#63B1EC;">
+              <hr class=" accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; border-color:#937543;">
               <p>
                 <a class="dark-grey-text" href="/portfolio">Portfolio</a>
               </p>
@@ -289,10 +282,15 @@
                 <a class="dark-grey-text" href="/resume">Resume</a>
               </p>
               <p>
-                <a class="dark-grey-text" href="/contact">Contact</a>
+                <a class="dark-grey-text" href="/about">About</a>
               </p>
               <p>
-                <a class="dark-grey-text" href="/site-map">Site Map</a>
+                @guest
+                <a class="dark-grey-text" data-toggle="modal" data-target="#loginModal">Login</a><span> | </span>
+                <a class="dark-grey-text" data-toggle="modal" data-target="#regModal">Register</a>
+                @else
+                <a class="dark-grey-text" href='/logout'>Logout</a>
+                @endguest
               </p>
 
             </div>
@@ -303,12 +301,12 @@
 
               <!-- Links -->
               <h6 class="text-uppercase font-weight-bold">Contact</h6>
-              <hr class="accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; border-color:#63B1EC;">
+              <hr class="accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; border-color:#937543;">
               <p>
                 <i class="fa fa-home mr-3"></i> Taman Bukit Belimbing, Seri Kembangan 43300, Selangor.</p>
               <p>
                 <i class="fa fa-envelope mr-3"></i> william.wlcheah@gmail.com</p>
-              <p>
+              <p id="phoneNumber">
                 <i class="fa fa-phone mr-3"></i> + 017 871 3513</p>
 
             </div>
@@ -518,4 +516,5 @@
 </div>
 <!-- end of Register modal -->
 </body>
+
 </html>

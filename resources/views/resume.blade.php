@@ -148,6 +148,11 @@ div.box{
 
 /* mobile version */
 @media screen and (max-width:600px){
+	div#app{
+	    background-color:#ECEFF1;
+	    background-image:none;
+	  }
+	  
 	.timeline{
 		margin-left:10px;
 	}

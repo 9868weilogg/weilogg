@@ -17,82 +17,108 @@ div#app{
 h1.pageTitle{
     border-bottom: 2px solid #DED5C7;
     position: relative;
-    font-size: 80px;
+    font-size: 60px;
     color:#DED5C7;
     margin-left:50px;
-    width:310px;
+    width:220px;
 }
 
 h1.pageTitle span{
     position: absolute;
     font-size: 20px;
     color:#000;
-    bottom: 40%;
+    bottom: 30%;
     left:0;
     text-transform: uppercase;
 }
 
-div.card{
-    margin:1% 3% 1% 1%;
+.center-block{
+  display: flex;
+  justify-content: center;
 }
 
-div.webpage{
-    max-height:30%;
+
+
+h3.h3{
+  text-align: center;
+  display: block;
+  width:100%;
+  font-size: 20px;
+  padding-bottom: 30px;
 }
-img{
-    width:100%;
-    height:100%;
+
+#dishmotionHomepage, #gatereadyHomepage{
+  width:700;
+  height:450;
+}
+
+#gatereadyHomepageImg, #dishmotionHomepageImg{
+    display:none;
+}
+
+
+@media screen and (max-width: 700px){
+  div#app{
+    background-color:#ECEFF1;
+    background-image:none;
+  }
+  
+  #gatereadyHomepage,#dishmotionHomepage{
+    display: none;
+  }
+
+  #gatereadyHomepageImg, #dishmotionHomepageImg{
+    display:block;
+    width:350;
+    height:200;
+  }
+
+  h3.h3{
+    
+    font-size: 14px;
+  }
 }
 
 </style>
 
-@section('page-js')
-<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-
-<script src="lib/ImageScroll.js"></script>
-
-<script>
-    $('#dishmotionHome').imageScroll({
-        // top,right,bottom,left optional
-
-      orientation:"top",
-
-      // animation speed
-
-      speed:600,
-
-      // animation interval
-
-      interval:1500,
-
-      // pause on hover
-
-      hoverPause:true,
-
-      // callback function after every scroll motion
-
-      callback:function(){ return false;}
-
-    });
-
-</script>
-@endsection
 
 @section('content')
+<div class="container-fluid">
 <div class="row">
 
 <div class="pageTitle col-md-12">
     <h1 class="pageTitle">Portfolio<span>Portfolio</span></h1>
 
 </div>
-<div class="card col-md-5">
-    <div>dishmotion</div>
-    <div class="webpage"><a href="/dishmotion"><img id="dishmotionHome" src="{{asset('image/weilogg/dishmotion-homepage.jpg')}}" alt="dishmotion - Home-cooked soup delivery in UPM"></a></div>
-</div>
-<div class="card col-md-5">
-    <div>gateready</div>
-    <div><a href="/gateready"><img src="{{asset('image/weilogg/gateready-homepage.jpg')}}" alt="gateready - Schedule Delivery in UPM"></a></div>
-    
-</div>
 
+
+<div class="center-block col-md-12" >
+    <a href="/dishmotion">
+    <video preload="auto" autoplay="autoplay" loop  id="dishmotionHomepage">
+     <source src="{{asset('film/dishmotion-homepage.mov')}}" type="video/mov"/>
+     <source src="{{asset('film/dishmotion-homepage.mp4')}}" type="video/mp4" />
+     <source src="{{asset('film/dishmotion-homepage.ogg')}}" type="video/ogg" />
+     Your browser does not support the video tag.
+   </video>
+   <img id="dishmotionHomepageImg" src="{{asset('image/weilogg/dishmotion-poster.jpg')}}" alt="dishmotion poster">
+  </a>
+</div>
+<div class="center-block col-md-12">
+  <h3 class="h3">dishmotion</h3>
+</div>
+<div  class="center-block col-md-12" >
+    <a href="/gateready">
+    <video preload="auto" autoplay="autoplay" loop id="gatereadyHomepage" >
+     <source src="{{asset('film/gateready-homepage.mov')}}" type="video/mov"/>
+     <source src="{{asset('film/gateready-homepage.mp4')}}" type="video/mp4" />
+     <source src="{{asset('film/gateready-homepage.ogg')}}" type="video/ogg" />
+     Your browser does not support the video tag.
+   </video>
+   <img id="gatereadyHomepageImg" src="{{asset('image/weilogg/gateready-poster.jpg')}}" alt="gateready poster">
+ </a>
+</div>
+<div class="center-block col-md-12">
+  <h3 class="h3">gateready</h3>
+</div>
+</div>
 @endsection
