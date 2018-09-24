@@ -319,9 +319,7 @@ i.fa-edit,i.fa-calendar,i.fa-truck{
         <p>
             Share this to your friends. After they have experienced the free delivery offered by GateReady, both of you will enjoy free credit. (worth RM 3.50 each)
         </p>
-        <div class="center-block">
-            <a class="button-pricing-and-rewards" href="#">Share this to your friends</a>
-        </div>
+       
     </div>
 </div>
 

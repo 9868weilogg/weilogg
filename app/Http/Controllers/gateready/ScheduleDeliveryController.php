@@ -5,6 +5,7 @@ namespace App\Http\Controllers\gateready;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\gateready\Record;
+use App\gateready\Courier;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Input;
@@ -15,7 +16,10 @@ class ScheduleDeliveryController extends Controller
     //  show schedule delivery page
     public function index()
     {
-    	return view('gateready/schedule-delivery');
+    	$couriers = Courier::all();
+        return view('gateready/schedule-delivery',[
+            'couriers' => $couriers,
+        ]);
     }
 
     //  post schedule delivery 

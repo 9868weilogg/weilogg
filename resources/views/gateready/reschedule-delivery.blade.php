@@ -89,8 +89,10 @@ button.submit_button:hover{
 				<label class="col-form-label col-md-4 text-md-left" for="time_range_id">Schedule Your Available Time</label>
 				<div class="col-md-8">
 					<select name="time_range_id" class="" required>
-						<option></option>
-						<option value="1" selected>8pm - 10pm</option>
+						@foreach($time_ranges as $time_range)
+
+						<option value="{{$time_range->id}}" selected>{{$time_range->name}}</option>
+						@endforeach
 					</select>
 					@if($errors->has('time_range_id'))
 					<span class="invalid-feedback" role="alert">

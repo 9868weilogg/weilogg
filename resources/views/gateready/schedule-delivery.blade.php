@@ -75,8 +75,7 @@ button.submit_button:hover{
 		<form method="post" action="/gateready/record/{{ Auth::user()->id }}/schedule-delivery">
 			@csrf
 			<div class="form-group">
-				<label for="user_id">User ID</label>
-				<input name="user_id" type="text" class="" value="{{ Auth::user()->id }}" readonly>
+				<input name="user_id" type="hidden" class="" value="{{ Auth::user()->id }}" >
 				@if($errors->has('user_id'))
 				<span class="invalid-feedback" role="alert">
 					{{ $errors->first('user_id') }}
@@ -98,13 +97,15 @@ button.submit_button:hover{
 			</div>
 			<div class="form-group">
 				<label for="tracking_number">Tracking Number</label>
-				<input name="tracking_number" type="text" class="" value="1234" required>
+				<input name="tracking_number" type="text" class="" value="" required>
 			</div>
 			<div class="form-group">
 				<label for="courier_id">Courier</label>
 				<select name="courier_id" class="" required>
-					<option></option>
-					<option value="1" selected>GDex</option>
+					@foreach($couriers as $courier)
+
+					<option value="{{$courier->id}}" selected>{{$courier->name}}</option>
+					@endforeach
 				</select>
 				@if($errors->has('courier_id'))
 				<span class="invalid-feedback" role="alert">
@@ -114,7 +115,7 @@ button.submit_button:hover{
 			</div>
 			<div class="form-group">
 				<label for="schedule_date">Schedule Your Available Date</label>
-				<input name="schedule_date" type="date" class="" value="1234" required>
+				<input name="schedule_date" type="date" class="" value="" required>
 				@if($errors->has('schedule_date'))
 				<span class="invalid-feedback" role="alert">
 					{{ $errors->first('schedule_date') }}
@@ -124,8 +125,10 @@ button.submit_button:hover{
 			<div class="form-group">
 				<label for="time_range_id">Schedule Your Available Time</label>
 				<select name="time_range_id" class="" required>
-					<option></option>
-					<option value="1" selected>8pm - 10pm</option>
+					@foreach($time_ranges as $time_range)
+
+					<option value="{{$time_range->id}}" selected>{{$time_range->name}}</option>
+					@endforeach
 				</select>
 				@if($errors->has('time_range_id'))
 				<span class="invalid-feedback" role="alert">

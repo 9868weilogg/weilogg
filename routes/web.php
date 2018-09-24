@@ -159,6 +159,9 @@ Route::get('/gateready/admin', 'gateready\AdminController@show_admin');
 /**----------- gateready.com admin page edit status feature ----------------**/
 Route::post('/gateready/admin/edit-status/{record_reference_number}', 'gateready\AdminController@edit_status');
 
+/**----------- gateready.com admin page edit status feature (for AJAX)----------------**/
+Route::post('/gateready/admin/edit-status-ajax/{record_reference_number}', 'gateready\AdminController@edit_status_ajax');
+
 
 /**----------- gateready.com admin page show all record feature ----------------**/
 Route::get('/gateready/admin/show-all-records', 'gateready\AdminController@show_all_records');
@@ -189,7 +192,21 @@ Route::get('/gateready/admin/show-today-remaining-delivery-ajax', 'gateready\Adm
 Route::get('/gateready/admin/filter-tracking-number', 'gateready\AdminController@filter_tracking_number');
 
 /**----------- gateready.com admin page filter tracking number feature (for AJAX)----------------**/
-Route::get('/gateready/admin/filter-tracking-number-ajax', 'gateready\AdminController@filter_tracking_number_ajax');
+Route::post('/gateready/admin/filter-tracking-number-ajax', 'gateready\AdminController@filter_tracking_number_ajax');
+
+
+/**-----------------------------------
+--------------------
+--------------------   wages.com   ------------------
+--------------------
+--------------------
+-------------------------------------**/
+
+/**----------- wages.com homepage ----------------**/
+Route::get('/wages', function () {
+    return view('/wages/wages-home');
+});
+
 
 
 /**

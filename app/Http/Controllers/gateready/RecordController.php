@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\gateready\Record;
 use App\gateready\Package;
+use App\gateready\Courier;
+use App\gateready\TimeRange;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Input;
@@ -61,8 +63,12 @@ class RecordController extends Controller
     //  show schedule delivery page
     public function show_schedule_delivery($user_id)
     {
-    	return view('gateready/schedule-delivery',[
+    	$couriers = Courier::all();
+        $time_ranges = TimeRange::all();
+        return view('gateready/schedule-delivery',[
     		'user_id' => $user_id,
+            'couriers' => $couriers,
+            'time_ranges' => $time_ranges,
     	]);
     }
 
@@ -103,17 +109,17 @@ class RecordController extends Controller
     		
 
 
-    		return Redirect::to('/gateready/record/'. $user_id ,[
-
-    		]);
+    		return Redirect::to('/gateready/record/'. $user_id );
     	}
     }
 
     //  show schedule delivery page
     public function show_reschedule_delivery(Request $request, $user_id, $record_reference_number)
     {
-    	return view('gateready/reschedule-delivery',[
+    	$time_ranges = TimeRange::all();
+        return view('gateready/reschedule-delivery',[
     		'record_reference_number' => $record_reference_number,
+            'time_ranges' => $time_ranges,
     	]);
     }
 

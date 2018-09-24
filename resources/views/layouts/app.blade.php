@@ -155,8 +155,12 @@
       document.getElementById('myAge').innerHTML = age;
       // console.log(currentYear);
 
-
-
+      $(document).ready(function(){
+        if(window.location.hash === 'loginReg')
+        {
+          scrollToBottom();
+        }
+      });
       
         
     }
@@ -270,7 +274,7 @@
             <!-- Grid column -->
 
             <!-- Grid column -->
-            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4" id="loginReg">
 
               <!-- Links -->
               <h6 class="text-uppercase font-weight-bold">Useful Link</h6>
@@ -351,7 +355,7 @@
                         <label for="email" class="col-md-12 col-form-label text-md-left">{{ __('E-Mail Address') }}</label>
 
                         <div class="col-md-12">
-                            <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="weilogg@gmail.com" required autofocus>
+                            <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="" required autofocus>
 
                             @if ($errors->has('email'))
                                 <span class="invalid-feedback" role="alert">
@@ -365,7 +369,7 @@
                         <label for="password" class="col-md-12 col-form-label text-md-left">{{ __('Password') }}</label>
 
                         <div class="col-md-12">
-                            <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" value="Logg5843" required>
+                            <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" value="" required>
 
                             @if ($errors->has('password'))
                                 <span class="invalid-feedback" role="alert">
@@ -432,7 +436,7 @@
                           <label for="name" class="col-md-12 col-form-label text-md-left">{{ __('Name') }}</label>
 
                           <div class="col-md-12">
-                              <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="weilogg" required autofocus>
+                              <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="" required autofocus>
 
                               @if ($errors->has('name'))
                                   <span class="invalid-feedback" role="alert">
@@ -446,7 +450,7 @@
                           <label for="email" class="col-md-12 col-form-label text-md-left">{{ __('E-Mail Address') }}</label>
 
                           <div class="col-md-12">
-                              <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="weilogg@gmail.com" required>
+                              <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="" required>
 
                               @if ($errors->has('email'))
                                   <span class="invalid-feedback" role="alert">
@@ -460,7 +464,7 @@
                           <label for="password" class="col-md-12 col-form-label text-md-left">{{ __('Password') }}</label>
 
                           <div class="col-md-12">
-                              <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" value="Logg5843" required>
+                              <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" value="" required>
 
                               @if ($errors->has('password'))
                                   <span class="invalid-feedback" role="alert">
@@ -474,14 +478,14 @@
                           <label for="password-confirm" class="col-md-12 col-form-label text-md-left">{{ __('Confirm Password') }}</label>
 
                           <div class="col-md-12">
-                              <input id="password-confirm" type="password" class="form-control" name="password_confirmation" value="Logg5843" required>
+                              <input id="password-confirm" type="password" class="form-control" name="password_confirmation" value="" required>
                           </div>
                       </div>
 
                       <div class="form-group row">
                           <div class="col-md-12">
                               <label class="form-check-label">
-                                  <input type="checkbox" class="form-check-input" value="yes" name="agree" required> I have read and accepted <a href="gateready/term">Terms and Condition</a> and <a href="gateready/privacy-policy">Privacy Policy</a>
+                                  <input type="checkbox" class="form-check-input" value="yes" name="agree" required> I have read and accepted Terms and Condition and Privacy Policy
 
                                   @if ($errors->has('agree'))
                                       <span class="invalid-feedback" role="alert">
@@ -497,9 +501,6 @@
                           <div class="col-md-12">
                               <button type="submit" class="btn btn-primary">
                                   Register
-                              </button>
-                              <button type="submit" class="btn btn-primary">
-                                  Continue with Facebook
                               </button>
                           </div>
                       </div>

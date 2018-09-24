@@ -11,9 +11,10 @@ Home
 	<div class="row">
 		<div class="col-md-8">
 			<h2>
-				Upcoming Menu (17th November 2015) - peanut-lotusroot-soup 花生莲藕汤 + rice cook with long bean and ham 火腿豆角焖饭 
+				Upcoming Menu (17th November 2015)
 			</h2>
 			<img src="image/dishmotion/peanut lotus soup.jpg">
+			<caption>花生莲藕汤 + 火腿豆角焖饭</caption>
 		</div>
 		<div class="col-md-4">
 			<h4>
