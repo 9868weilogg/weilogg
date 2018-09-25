@@ -203,9 +203,16 @@ Route::post('/gateready/admin/filter-tracking-number-ajax', 'gateready\AdminCont
 -------------------------------------**/
 
 /**----------- wages.com homepage ----------------**/
-Route::get('/wages', function () {
-    return view('/wages/wages-home');
-});
+Route::get('/wages', 'wages\HomeController@index');
+
+/**----------- wages.com homepage ----------------**/
+Route::post('/wages', 'wages\HomeController@search');
+
+/**----------- wages.com update price in watchlist ----------------**/
+Route::get('/wages/update-price', 'wages\HomeController@show_price');
+
+/**----------- wages.com update price in watchlist ----------------**/
+Route::post('/wages/update-price', 'wages\HomeController@update_price');
 
 
 
