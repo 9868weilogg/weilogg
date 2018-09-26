@@ -16,9 +16,18 @@ class HomeController extends Controller
     public function index()
     {
     	$stocks = Stock::all();
-    	
+    	$title = 'Laravel parse title';
+    	$author = json_encode([
+    		"name" => "logg",
+    		"role" => "lol",
+    		"code" => "1",
+    	]);
+
     	return view('wages/wages-home',[
     		'stocks' => $stocks,
+    		'title' =>  $title,
+    		'author' => $author,
+    		
     	]);
     }
 
