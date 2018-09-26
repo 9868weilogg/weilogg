@@ -168,50 +168,53 @@ i.fa-edit,i.fa-calendar,i.fa-truck{
 @section('js-code')
 
 <meta id="token" name="csrf-token" content="{{ csrf_token() }}">
+
 <script type="text/javascript">
     //  update watchlist once load page
-    $(document).ready(function(){
-        var rowCount = $('table tbody tr').length;
-        console.log(rowCount);
+    // $(document).ready(function(){
+    //     var rowCount = $('table tbody tr').length;
+    //     console.log(rowCount);
         
-        // console.log(stockId);
-        var i;
-        for(i=0 ; i<rowCount ; i++)
-        {
+    //     // console.log(stockId);
+    //     var i;
+    //     for(i=0 ; i<rowCount ; i++)
+    //     {
             
-            // console.log(stockId);
-            (function(i){
+    //         // console.log(stockId);
+    //         (function(i){
                 
-                var stockId = $('table').find('tbody tr').eq(i).children().first().attr('id');
+    //             var stockId = $('table').find('tbody tr').eq(i).children().first().attr('id');
 
-                $.ajaxSetup({
-                  headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                  }
-                });
-                $.ajax({
-                    async:false,
-                    url:'/wages/update-price',
-                    type:'get',
-                    data:{'id' : stockId},
-                    beforeSend:function(xhr){
-                        xhr.setRequestHeader('X-CSRF-TOKEN', $("#token").attr('content'));
-                        $('table').find('tbody tr').eq(i).children().last().html('-');
-                        console.log("before");
-                    },
-                    success:function(data){
-                        $('table').find('tbody tr').eq(i).children().last().html(data.html);
-                        console.log(i);
+    //             $.ajaxSetup({
+    //               headers: {
+    //                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    //               }
+    //             });
+    //             $.ajax({
+    //                 async:false,
+    //                 url:'/wages/update-price',
+    //                 type:'get',
+    //                 data:{'id' : stockId},
+    //                 beforeSend:function(xhr){
+    //                     xhr.setRequestHeader('X-CSRF-TOKEN', $("#token").attr('content'));
+    //                     $('table').find('tbody tr').eq(i).children().last().html('-');
+    //                     console.log("before");
+    //                 },
+    //                 success:function(data){
+    //                     $('table').find('tbody tr').eq(i).children().last().html(data.html);
+    //                     console.log(i);
                         
-                    },
-                });
+    //                 },
+    //             });
                 
-            })(i);
+    //         })(i);
             
             
-        }
+    //     }
         
-    })
+    // })
+
+    
 // $(document).ready(function(){
 //     $(form).on('submit','#searchBtn',function(e){
     
@@ -273,6 +276,8 @@ i.fa-edit,i.fa-calendar,i.fa-truck{
         </table>
     </div>
 
+    <div id="vueTest">
+        <welcome :title="'{{$title}}'" :author="'{{$author}}'"></welcome>
     </div>
 
 </div>
