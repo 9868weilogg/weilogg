@@ -49,6 +49,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/logout', 'Auth\LoginController@logout');
 
+Route::get('/blog', 'weilogg\BlogController@show_blog');
+
+
 /**-----------------------------------
 --------------------
 --------------------   dishmotion.com   SPA   ------------------

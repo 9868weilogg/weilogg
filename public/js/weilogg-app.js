@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 41);
+/******/ 	return __webpack_require__(__webpack_require__.s = 60);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -47598,15 +47598,33 @@ module.exports = function spread(callback) {
 
 
 /***/ }),
-/* 41 */
+/* 41 */,
+/* 42 */,
+/* 43 */,
+/* 44 */,
+/* 45 */,
+/* 46 */,
+/* 47 */,
+/* 48 */,
+/* 49 */,
+/* 50 */,
+/* 51 */,
+/* 52 */,
+/* 53 */,
+/* 54 */,
+/* 55 */,
+/* 56 */,
+/* 57 */,
+/* 58 */,
+/* 59 */,
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(42);
-module.exports = __webpack_require__(48);
+module.exports = __webpack_require__(61);
 
 
 /***/ }),
-/* 42 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -47626,33 +47644,33 @@ window.Vue = __webpack_require__(15);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-// Vue.component('example-component', require('./components/ExampleComponent.vue'));
-Vue.component('welcome', __webpack_require__(43));
+Vue.component('blog-index', __webpack_require__(62));
+Vue.component('blog-admin', __webpack_require__(67));
 
-var app = new Vue({
-  el: '#vueTest'
+var blogIndex = new Vue({
+  el: '#blogIndex'
 });
 
 /***/ }),
-/* 43 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(44)
+  __webpack_require__(63)
 }
 var normalizeComponent = __webpack_require__(4)
 /* script */
-var __vue_script__ = __webpack_require__(46)
+var __vue_script__ = __webpack_require__(65)
 /* template */
-var __vue_template__ = __webpack_require__(47)
+var __vue_template__ = __webpack_require__(66)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = "data-v-73da9be7"
+var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -47663,7 +47681,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/js/components/welcome.vue"
+Component.options.__file = "resources/js/components/weilogg/blog-index.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -47672,9 +47690,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-73da9be7", Component.options)
+    hotAPI.createRecord("data-v-a9abf0ba", Component.options)
   } else {
-    hotAPI.reload("data-v-73da9be7", Component.options)
+    hotAPI.reload("data-v-a9abf0ba", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -47685,23 +47703,23 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 44 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(45);
+var content = __webpack_require__(64);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(6)("74b4d0bd", content, false, {});
+var update = __webpack_require__(6)("0c2650c4", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-73da9be7\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./welcome.vue", function() {
-     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-73da9be7\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./welcome.vue");
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-a9abf0ba\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./blog-index.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-a9abf0ba\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./blog-index.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -47711,7 +47729,7 @@ if(false) {
 }
 
 /***/ }),
-/* 45 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(5)(false);
@@ -47719,17 +47737,27 @@ exports = module.exports = __webpack_require__(5)(false);
 
 
 // module
-exports.push([module.i, "\nhtml[data-v-73da9be7], body[data-v-73da9be7] {\n    background-color: #fff;\n    color: #636b6f;\n    font-family: 'Raleway', sans-serif;\n    font-weight: 100;\n    height: 100vh;\n    margin: 0;\n}\n.full-height[data-v-73da9be7] {\n    height: 100vh;\n}\n.flex-center[data-v-73da9be7] {\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n}\n.position-ref[data-v-73da9be7] {\n    position: relative;\n}\n.top-right[data-v-73da9be7] {\n    position: absolute;\n    right: 10px;\n    top: 18px;\n}\n.content[data-v-73da9be7] {\n    text-align: center;\n}\n.title[data-v-73da9be7] {\n    font-size: 84px;\n}\n.links > a[data-v-73da9be7] {\n    color: #636b6f;\n    padding: 0 25px;\n    font-size: 12px;\n    font-weight: 600;\n    letter-spacing: .1rem;\n    text-decoration: none;\n    text-transform: uppercase;\n}\n.m-b-md[data-v-73da9be7] {\n    margin-bottom: 30px;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* page title (about) style */\nh1.pageTitle{\n    border-bottom: 2px solid #DED5C7;\n    position: relative;\n    font-size: 80px;\n    color:#DED5C7;\n    margin-left:50px;\n    width:210px;\n    font-weight:normal;\n}\nh1.pageTitle span{\n    position: absolute;\n    font-size: 20px;\n    color:#000;\n    bottom: 40%;\n    left:0;\n}\n\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 46 */
+/* 65 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -47745,50 +47773,145 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['title', 'author']
+	data: function data() {
+		return {
+			blogs: [],
+			new_title: '',
+			new_post: '',
+			update_title: '',
+			update_post: '',
+			showNew: false,
+			showUpdate: false,
+			loading: false
+		};
+	},
+
+
+	methods: {
+		showBlog: function showBlog() {
+			var _this = this;
+
+			__WEBPACK_IMPORTED_MODULE_0_axios___default.a.get("/api/blog").then(function (response) {
+				console.log('get shoeBlog success');
+				_this.blogs = response.data;
+			}, function (error) {
+				console.log(error);
+			});
+		},
+		storePost: function storePost() {
+			__WEBPACK_IMPORTED_MODULE_0_axios___default.a.post("/api/blog", {
+				new_title: this.new_title,
+				new_post: this.new_post
+			}).then(function (response) {
+				console.log('storePost success');
+			}).catch(function (error) {
+				console.log(error);
+			});
+			this.new_title = '';
+			this.new_post = '';
+			this.showBlog();
+			this.showNew = false;
+		},
+		newPost: function newPost() {
+			if (this.showNew === true) {
+				this.showNew = false;
+			} else {
+				this.showNew = true;
+			}
+		},
+		updateBtn: function updateBtn(id) {
+			var _this2 = this;
+
+			__WEBPACK_IMPORTED_MODULE_0_axios___default.a.get("/api/blog/" + id).then(function (response) {
+				console.log('show post success');
+				_this2.update_title = response.data.blog_title;
+				_this2.update_post = response.data.blog_post;
+				_this2.post_id = response.data.id;
+				_this2.showUpdate = true;
+			}, function (error) {
+				console.log(error);
+			});
+		},
+		updatePost: function updatePost() {
+			__WEBPACK_IMPORTED_MODULE_0_axios___default.a.put("/api/blog/" + this.post_id, {
+				update_title: this.update_title,
+				update_post: this.update_post
+			}).then(function (response) {
+				console.log('updatePost success');
+			}).catch(function (error) {
+				console.log(error);
+			});
+			this.update_title = '';
+			this.update_post = '';
+			this.showBlog();
+			this.showUpdate = false;
+		},
+		deletePost: function deletePost(id) {
+			__WEBPACK_IMPORTED_MODULE_0_axios___default.a.delete("/api/blog/" + id).then(function (response) {
+				console.log('updatePost success');
+			}).catch(function (error) {
+				console.log(error);
+			});
+			this.showBlog();
+		},
+		modalId: function modalId(id) {
+			return 'modal' + id;
+		}
+
+	},
+
+	created: function created() {
+		var _this3 = this;
+
+		__WEBPACK_IMPORTED_MODULE_0_axios___default.a.get("/api/blog").then(function (response) {
+			console.log('get showBlog success');
+			_this3.blogs = response.data;
+		}, function (error) {
+			console.log(error);
+		});
+	}
 
 });
 
 /***/ }),
-/* 47 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "flex-center position-ref full-height" }, [
-    _c("div", { staticClass: "content" }, [
-      _c("div", { staticClass: "title m-b-md" }, [
-        _vm._v(
-          "\n            Welcome to Vue.js on Laravel " +
-            _vm._s(_vm.title) +
-            "\n        "
-        )
-      ]),
+  return _c(
+    "div",
+    [
+      _vm._m(0),
       _vm._v(" "),
-      _vm._m(0)
-    ])
-  ])
+      _vm._l(_vm.blogs, function(blog) {
+        return _c("div", { key: blog.id }, [
+          _c("hr"),
+          _vm._v(" "),
+          _c("h3", [_vm._v(_vm._s(blog.blog_title))]),
+          _vm._v(" "),
+          _c("p", [_vm._v(_vm._s(blog.blog_post))]),
+          _vm._v(" "),
+          _c("p", [_vm._v("Date: " + _vm._s(blog.created_at))])
+        ])
+      })
+    ],
+    2
+  )
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "links" }, [
-      _c("a", { attrs: { href: "https://laravel.com/docs" } }, [
-        _vm._v("View Laravel Docs")
-      ]),
-      _vm._v(" "),
-      _c("a", { attrs: { href: "https://vuejs.org/v2/guide/" } }, [
-        _vm._v("View Vue Docs")
-      ]),
-      _vm._v(" "),
-      _c("a", { attrs: { href: "https://laracasts.com" } }, [
-        _vm._v("Watch Videos")
-      ])
+    return _c("h1", { staticClass: "pageTitle" }, [
+      _vm._v("Blog"),
+      _c("span", [_vm._v("BLOG")])
     ])
   }
 ]
@@ -47797,15 +47920,544 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-73da9be7", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-a9abf0ba", module.exports)
   }
 }
 
 /***/ }),
-/* 48 */
-/***/ (function(module, exports) {
+/* 67 */
+/***/ (function(module, exports, __webpack_require__) {
 
-// removed by extract-text-webpack-plugin
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(68)
+}
+var normalizeComponent = __webpack_require__(4)
+/* script */
+var __vue_script__ = __webpack_require__(70)
+/* template */
+var __vue_template__ = __webpack_require__(71)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/weilogg/blog-admin.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-46cd48c0", Component.options)
+  } else {
+    hotAPI.reload("data-v-46cd48c0", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 68 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(69);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(6)("31e86ef2", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-46cd48c0\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./blog-admin.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-46cd48c0\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./blog-admin.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 69 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(5)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* page title (about) style */\nh1.pageTitle{\n    border-bottom: 2px solid #DED5C7;\n    position: relative;\n    font-size: 80px;\n    color:#DED5C7;\n    margin-left:50px;\n    width:210px;\n    font-weight:normal;\n}\nh1.pageTitle span{\n    position: absolute;\n    font-size: 20px;\n    color:#000;\n    bottom: 40%;\n    left:0;\n}\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 70 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	data: function data() {
+		return {
+			blogs: [],
+			new_title: '',
+			new_post: '',
+			update_title: '',
+			update_post: '',
+			showNew: false,
+			showUpdate: false,
+			loading: false
+		};
+	},
+
+
+	methods: {
+		showBlog: function showBlog() {
+			var _this = this;
+
+			__WEBPACK_IMPORTED_MODULE_0_axios___default.a.get("/api/blog").then(function (response) {
+				console.log('get shoeBlog success');
+				_this.blogs = response.data;
+			}, function (error) {
+				console.log(error);
+			});
+		},
+		storePost: function storePost() {
+			__WEBPACK_IMPORTED_MODULE_0_axios___default.a.post("/api/blog", {
+				new_title: this.new_title,
+				new_post: this.new_post
+			}).then(function (response) {
+				console.log('storePost success');
+			}).catch(function (error) {
+				console.log(error);
+			});
+			this.new_title = '';
+			this.new_post = '';
+			this.showBlog();
+			this.showNew = false;
+		},
+		newPost: function newPost() {
+			if (this.showNew === true) {
+				this.showNew = false;
+			} else {
+				this.showNew = true;
+			}
+		},
+		updateBtn: function updateBtn(id) {
+			var _this2 = this;
+
+			__WEBPACK_IMPORTED_MODULE_0_axios___default.a.get("/api/blog/" + id).then(function (response) {
+				console.log('show post success');
+				_this2.update_title = response.data.blog_title;
+				_this2.update_post = response.data.blog_post;
+				_this2.post_id = response.data.id;
+				_this2.showUpdate = true;
+			}, function (error) {
+				console.log(error);
+			});
+		},
+		updatePost: function updatePost() {
+			__WEBPACK_IMPORTED_MODULE_0_axios___default.a.put("/api/blog/" + this.post_id, {
+				update_title: this.update_title,
+				update_post: this.update_post
+			}).then(function (response) {
+				console.log('updatePost success');
+			}).catch(function (error) {
+				console.log(error);
+			});
+			this.update_title = '';
+			this.update_post = '';
+			this.showBlog();
+			this.showUpdate = false;
+		},
+		deletePost: function deletePost(id) {
+			__WEBPACK_IMPORTED_MODULE_0_axios___default.a.delete("/api/blog/" + id).then(function (response) {
+				console.log('updatePost success');
+			}).catch(function (error) {
+				console.log(error);
+			});
+			this.showBlog();
+		},
+		modalId: function modalId(id) {
+			return 'modal' + id;
+		}
+
+	},
+
+	created: function created() {
+		var _this3 = this;
+
+		__WEBPACK_IMPORTED_MODULE_0_axios___default.a.get("/api/blog").then(function (response) {
+			console.log('get showBlog success');
+			_this3.blogs = response.data;
+		}, function (error) {
+			console.log(error);
+		});
+	}
+
+});
+
+/***/ }),
+/* 71 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _vm._m(0),
+      _vm._v(" "),
+      _vm._l(_vm.blogs, function(blog) {
+        return _c(
+          "div",
+          { key: blog.id },
+          [
+            _c("hr"),
+            _vm._v(" "),
+            _c("h3", [_vm._v(_vm._s(blog.blog_title))]),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                on: {
+                  click: function($event) {
+                    _vm.updateBtn(blog.id)
+                  }
+                }
+              },
+              [
+                _c("i", {
+                  staticClass: "fa fa-pencil",
+                  attrs: { "aria-hidden": "true" }
+                })
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                directives: [
+                  {
+                    name: "b-modal",
+                    rawName: "v-b-modal",
+                    value: _vm.modalId(blog.id),
+                    expression: "modalId(blog.id)"
+                  }
+                ]
+              },
+              [
+                _c("i", {
+                  staticClass: "fa fa-trash-o",
+                  attrs: { "aria-hidden": "true" }
+                })
+              ]
+            ),
+            _vm._v(" "),
+            _c("p", [_vm._v(_vm._s(blog.blog_post))]),
+            _vm._v(" "),
+            _c("p", [_vm._v("Date: " + _vm._s(blog.created_at))]),
+            _vm._v(" "),
+            _c(
+              "b-modal",
+              {
+                attrs: {
+                  id: "modal" + blog.id,
+                  title: "delete post",
+                  "hide-footer": ""
+                }
+              },
+              [
+                _c("p", [
+                  _vm._v("Confirm to delete " + _vm._s(blog.blog_title) + "?")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    on: {
+                      click: function($event) {
+                        _vm.deletePost(blog.id)
+                      }
+                    }
+                  },
+                  [_vm._v("YES")]
+                )
+              ]
+            )
+          ],
+          1
+        )
+      }),
+      _vm._v(" "),
+      _c(
+        "div",
+        { attrs: { id: "updatePostForm" } },
+        [
+          _c("hr"),
+          _vm._v(" "),
+          _vm.showUpdate
+            ? _c(
+                "b-form",
+                {
+                  on: {
+                    submit: function($event) {
+                      $event.preventDefault()
+                      return _vm.updatePost($event)
+                    }
+                  }
+                },
+                [
+                  _c(
+                    "b-form-group",
+                    { attrs: { label: "TITLE" } },
+                    [
+                      _c("b-form-input", {
+                        attrs: { name: "update_title" },
+                        model: {
+                          value: _vm.update_title,
+                          callback: function($$v) {
+                            _vm.update_title = $$v
+                          },
+                          expression: "update_title"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "b-form-group",
+                    { attrs: { label: "POST" } },
+                    [
+                      _c("b-form-textarea", {
+                        attrs: { name: "update_post" },
+                        model: {
+                          value: _vm.update_post,
+                          callback: function($$v) {
+                            _vm.update_post = $$v
+                          },
+                          expression: "update_post"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.post_id,
+                        expression: "post_id"
+                      }
+                    ],
+                    attrs: { type: "hidden", name: "post_id" },
+                    domProps: { value: _vm.post_id },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.post_id = $event.target.value
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("button", [_vm._v("Update Post")])
+                ],
+                1
+              )
+            : _vm._e()
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { attrs: { id: "newPostForm" } },
+        [
+          _c("hr"),
+          _vm._v(" "),
+          _c("button", { on: { click: _vm.newPost } }, [
+            _c("i", {
+              staticClass: "fa fa-plus-square-o",
+              attrs: { "aria-hidden": "true" }
+            })
+          ]),
+          _vm._v(" "),
+          _vm.showNew
+            ? _c(
+                "b-form",
+                {
+                  on: {
+                    submit: function($event) {
+                      $event.preventDefault()
+                      return _vm.storePost($event)
+                    }
+                  }
+                },
+                [
+                  _c(
+                    "b-form-group",
+                    { attrs: { label: "TITLE" } },
+                    [
+                      _c("b-form-input", {
+                        attrs: { name: "new_title" },
+                        model: {
+                          value: _vm.new_title,
+                          callback: function($$v) {
+                            _vm.new_title = $$v
+                          },
+                          expression: "new_title"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "b-form-group",
+                    { attrs: { label: "POST" } },
+                    [
+                      _c("b-form-textarea", {
+                        attrs: { name: "new_post" },
+                        model: {
+                          value: _vm.new_post,
+                          callback: function($$v) {
+                            _vm.new_post = $$v
+                          },
+                          expression: "new_post"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("button", [_vm._v("Submit")])
+                ],
+                1
+              )
+            : _vm._e()
+        ],
+        1
+      )
+    ],
+    2
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h1", { staticClass: "pageTitle" }, [
+      _vm._v("Blog"),
+      _c("span", [_vm._v("BLOG")])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-46cd48c0", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

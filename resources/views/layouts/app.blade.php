@@ -42,8 +42,6 @@
     <!-- respective page 's CSS -->
     @yield('page-css')
 
-
-
     <!-- responsive sidebar CSS-->
     <style>
     /* The sidepanel menu */

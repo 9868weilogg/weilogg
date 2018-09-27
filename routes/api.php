@@ -25,6 +25,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::apiResource('records','RecordController');
 
+/**
+**
+**   REST API weilogg.com/blog
+**
+**/
+
+Route::resource('/blog','weilogg\BlogController');
+
 
 
 
