@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 41);
+/******/ 	return __webpack_require__(__webpack_require__.s = 59);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -13990,8 +13990,316 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 13 */,
-/* 14 */,
+/* 13 */
+/***/ (function(module, exports) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function(useSourceMap) {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		return this.map(function (item) {
+			var content = cssWithMappingToString(item, useSourceMap);
+			if(item[2]) {
+				return "@media " + item[2] + "{" + content + "}";
+			} else {
+				return content;
+			}
+		}).join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function(modules, mediaQuery) {
+		if(typeof modules === "string")
+			modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for(var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if(typeof id === "number")
+				alreadyImportedModules[id] = true;
+		}
+		for(i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if(mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if(mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
+
+function cssWithMappingToString(item, useSourceMap) {
+	var content = item[1] || '';
+	var cssMapping = item[3];
+	if (!cssMapping) {
+		return content;
+	}
+
+	if (useSourceMap && typeof btoa === 'function') {
+		var sourceMapping = toComment(cssMapping);
+		var sourceURLs = cssMapping.sources.map(function (source) {
+			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
+		});
+
+		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+	}
+
+	return [content].join('\n');
+}
+
+// Adapted from convert-source-map (MIT)
+function toComment(sourceMap) {
+	// eslint-disable-next-line no-undef
+	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
+
+	return '/*# ' + data + ' */';
+}
+
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*
+  MIT License http://www.opensource.org/licenses/mit-license.php
+  Author Tobias Koppers @sokra
+  Modified by Evan You @yyx990803
+*/
+
+var hasDocument = typeof document !== 'undefined'
+
+if (typeof DEBUG !== 'undefined' && DEBUG) {
+  if (!hasDocument) {
+    throw new Error(
+    'vue-style-loader cannot be used in a non-browser environment. ' +
+    "Use { target: 'node' } in your Webpack config to indicate a server-rendering environment."
+  ) }
+}
+
+var listToStyles = __webpack_require__(40)
+
+/*
+type StyleObject = {
+  id: number;
+  parts: Array<StyleObjectPart>
+}
+
+type StyleObjectPart = {
+  css: string;
+  media: string;
+  sourceMap: ?string
+}
+*/
+
+var stylesInDom = {/*
+  [id: number]: {
+    id: number,
+    refs: number,
+    parts: Array<(obj?: StyleObjectPart) => void>
+  }
+*/}
+
+var head = hasDocument && (document.head || document.getElementsByTagName('head')[0])
+var singletonElement = null
+var singletonCounter = 0
+var isProduction = false
+var noop = function () {}
+var options = null
+var ssrIdKey = 'data-vue-ssr-id'
+
+// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+// tags it will allow on a page
+var isOldIE = typeof navigator !== 'undefined' && /msie [6-9]\b/.test(navigator.userAgent.toLowerCase())
+
+module.exports = function (parentId, list, _isProduction, _options) {
+  isProduction = _isProduction
+
+  options = _options || {}
+
+  var styles = listToStyles(parentId, list)
+  addStylesToDom(styles)
+
+  return function update (newList) {
+    var mayRemove = []
+    for (var i = 0; i < styles.length; i++) {
+      var item = styles[i]
+      var domStyle = stylesInDom[item.id]
+      domStyle.refs--
+      mayRemove.push(domStyle)
+    }
+    if (newList) {
+      styles = listToStyles(parentId, newList)
+      addStylesToDom(styles)
+    } else {
+      styles = []
+    }
+    for (var i = 0; i < mayRemove.length; i++) {
+      var domStyle = mayRemove[i]
+      if (domStyle.refs === 0) {
+        for (var j = 0; j < domStyle.parts.length; j++) {
+          domStyle.parts[j]()
+        }
+        delete stylesInDom[domStyle.id]
+      }
+    }
+  }
+}
+
+function addStylesToDom (styles /* Array<StyleObject> */) {
+  for (var i = 0; i < styles.length; i++) {
+    var item = styles[i]
+    var domStyle = stylesInDom[item.id]
+    if (domStyle) {
+      domStyle.refs++
+      for (var j = 0; j < domStyle.parts.length; j++) {
+        domStyle.parts[j](item.parts[j])
+      }
+      for (; j < item.parts.length; j++) {
+        domStyle.parts.push(addStyle(item.parts[j]))
+      }
+      if (domStyle.parts.length > item.parts.length) {
+        domStyle.parts.length = item.parts.length
+      }
+    } else {
+      var parts = []
+      for (var j = 0; j < item.parts.length; j++) {
+        parts.push(addStyle(item.parts[j]))
+      }
+      stylesInDom[item.id] = { id: item.id, refs: 1, parts: parts }
+    }
+  }
+}
+
+function createStyleElement () {
+  var styleElement = document.createElement('style')
+  styleElement.type = 'text/css'
+  head.appendChild(styleElement)
+  return styleElement
+}
+
+function addStyle (obj /* StyleObjectPart */) {
+  var update, remove
+  var styleElement = document.querySelector('style[' + ssrIdKey + '~="' + obj.id + '"]')
+
+  if (styleElement) {
+    if (isProduction) {
+      // has SSR styles and in production mode.
+      // simply do nothing.
+      return noop
+    } else {
+      // has SSR styles but in dev mode.
+      // for some reason Chrome can't handle source map in server-rendered
+      // style tags - source maps in <style> only works if the style tag is
+      // created and inserted dynamically. So we remove the server rendered
+      // styles and inject new ones.
+      styleElement.parentNode.removeChild(styleElement)
+    }
+  }
+
+  if (isOldIE) {
+    // use singleton mode for IE9.
+    var styleIndex = singletonCounter++
+    styleElement = singletonElement || (singletonElement = createStyleElement())
+    update = applyToSingletonTag.bind(null, styleElement, styleIndex, false)
+    remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true)
+  } else {
+    // use multi-style-tag mode in all other cases
+    styleElement = createStyleElement()
+    update = applyToTag.bind(null, styleElement)
+    remove = function () {
+      styleElement.parentNode.removeChild(styleElement)
+    }
+  }
+
+  update(obj)
+
+  return function updateStyle (newObj /* StyleObjectPart */) {
+    if (newObj) {
+      if (newObj.css === obj.css &&
+          newObj.media === obj.media &&
+          newObj.sourceMap === obj.sourceMap) {
+        return
+      }
+      update(obj = newObj)
+    } else {
+      remove()
+    }
+  }
+}
+
+var replaceText = (function () {
+  var textStore = []
+
+  return function (index, replacement) {
+    textStore[index] = replacement
+    return textStore.filter(Boolean).join('\n')
+  }
+})()
+
+function applyToSingletonTag (styleElement, index, remove, obj) {
+  var css = remove ? '' : obj.css
+
+  if (styleElement.styleSheet) {
+    styleElement.styleSheet.cssText = replaceText(index, css)
+  } else {
+    var cssNode = document.createTextNode(css)
+    var childNodes = styleElement.childNodes
+    if (childNodes[index]) styleElement.removeChild(childNodes[index])
+    if (childNodes.length) {
+      styleElement.insertBefore(cssNode, childNodes[index])
+    } else {
+      styleElement.appendChild(cssNode)
+    }
+  }
+}
+
+function applyToTag (styleElement, obj) {
+  var css = obj.css
+  var media = obj.media
+  var sourceMap = obj.sourceMap
+
+  if (media) {
+    styleElement.setAttribute('media', media)
+  }
+  if (options.ssrId) {
+    styleElement.setAttribute(ssrIdKey, obj.id)
+  }
+
+  if (sourceMap) {
+    // https://developer.chrome.com/devtools/docs/javascript-debugging
+    // this makes source maps inside style tags work properly in Chrome
+    css += '\n/*# sourceURL=' + sourceMap.sources[0] + ' */'
+    // http://stackoverflow.com/a/26603875
+    css += '\n/*# sourceMappingURL=data:application/json;base64,' + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + ' */'
+  }
+
+  if (styleElement.styleSheet) {
+    styleElement.styleSheet.cssText = css
+  } else {
+    while (styleElement.firstChild) {
+      styleElement.removeChild(styleElement.firstChild)
+    }
+    styleElement.appendChild(document.createTextNode(css))
+  }
+}
+
+
+/***/ }),
 /* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -47257,16 +47565,65 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(7)))
 
 /***/ }),
-/* 40 */,
-/* 41 */
-/***/ (function(module, exports, __webpack_require__) {
+/* 40 */
+/***/ (function(module, exports) {
 
-__webpack_require__(42);
-module.exports = __webpack_require__(46);
+/**
+ * Translates the list format produced by css-loader into something
+ * easier to manipulate.
+ */
+module.exports = function listToStyles (parentId, list) {
+  var styles = []
+  var newStyles = {}
+  for (var i = 0; i < list.length; i++) {
+    var item = list[i]
+    var id = item[0]
+    var css = item[1]
+    var media = item[2]
+    var sourceMap = item[3]
+    var part = {
+      id: parentId + ':' + i,
+      css: css,
+      media: media,
+      sourceMap: sourceMap
+    }
+    if (!newStyles[id]) {
+      styles.push(newStyles[id] = { id: id, parts: [part] })
+    } else {
+      newStyles[id].parts.push(part)
+    }
+  }
+  return styles
+}
 
 
 /***/ }),
-/* 42 */
+/* 41 */,
+/* 42 */,
+/* 43 */,
+/* 44 */,
+/* 45 */,
+/* 46 */,
+/* 47 */,
+/* 48 */,
+/* 49 */,
+/* 50 */,
+/* 51 */,
+/* 52 */,
+/* 53 */,
+/* 54 */,
+/* 55 */,
+/* 56 */,
+/* 57 */,
+/* 58 */,
+/* 59 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(60);
+
+
+/***/ }),
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -47286,27 +47643,32 @@ window.Vue = __webpack_require__(37);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example-component', __webpack_require__(43));
-// Vue.component('welcome', require('./components/welcome.vue'));
+Vue.component('watchlist', __webpack_require__(61));
+Vue.component('transaction', __webpack_require__(66));
+Vue.component('valuation', __webpack_require__(71));
 
-var app = new Vue({
-  el: '#vueTest'
+var wagesApp = new Vue({
+  el: '#wagesApp'
 });
 
 /***/ }),
-/* 43 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(62)
+}
 var normalizeComponent = __webpack_require__(12)
 /* script */
-var __vue_script__ = __webpack_require__(44)
+var __vue_script__ = __webpack_require__(64)
 /* template */
-var __vue_template__ = __webpack_require__(45)
+var __vue_template__ = __webpack_require__(65)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = null
+var __vue_styles__ = injectStyle
 /* scopeId */
 var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
@@ -47319,7 +47681,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/js/components/ExampleComponent.vue"
+Component.options.__file = "resources/js/components/wages/watchlist.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -47328,9 +47690,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-299e239e", Component.options)
+    hotAPI.createRecord("data-v-07a9b52e", Component.options)
   } else {
-    hotAPI.reload("data-v-299e239e", Component.options)
+    hotAPI.reload("data-v-07a9b52e", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -47341,11 +47703,67 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 44 */
+/* 62 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(63);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(14)("f0e862d0", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-07a9b52e\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./watchlist.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-07a9b52e\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./watchlist.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 63 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(13)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* page title (about) style */\nh1.pageTitle{\n    border-bottom: 2px solid #DED5C7;\n    position: relative;\n    font-size: 80px;\n    color:#DED5C7;\n    margin-left:50px;\n    width:210px;\n    font-weight:normal;\n}\nh1.pageTitle span{\n    position: absolute;\n    font-size: 20px;\n    color:#000;\n    bottom: 40%;\n    left:0;\n}\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 64 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -47363,43 +47781,144 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-    mounted: function mounted() {
-        console.log('Component mounted.');
-    }
+	data: function data() {
+		return {
+			//  v-model declare
+			price: '',
+			unit: '',
+			stock_id: '',
+			buySell: '',
+
+			//  {{ }} declare
+			conclusion: '',
+
+			//  v-for declare
+			stocks_ohlc: [],
+			stocks_code: [],
+
+			//  show/hide declare
+			completeUpdate: false,
+			showSearch: false
+		};
+	},
+
+
+	methods: {
+		showStock: function showStock() {
+			var _this = this;
+
+			__WEBPACK_IMPORTED_MODULE_0_axios___default.a.get("/api/wages").then(function (response) {
+				console.log('get showStock_ohlc success');
+				_this.stocks_ohlc = response.data;
+			}, function (error) {
+				console.log(error);
+			});
+		},
+
+		calculateContractPrice: function calculateContractPrice() {
+			this.cost = this.price * this.unit;
+			this.conclusion = "Total cost for " + this.buySell + "ing " + this.stock_id + " : RM " + this.cost + "<button>buy</button";
+		},
+
+		searchStock: function searchStock(id) {
+			var _this2 = this;
+
+			console.log(id);
+			__WEBPACK_IMPORTED_MODULE_0_axios___default.a.get("/api/wages/" + id).then(function (response) {
+				console.log('get searchStock success');
+				console.log(response.data);
+				_this2.stocks_code = response.data;
+			}, function (error) {
+				console.log(error);
+			});
+			this.showSearch = true;
+		},
+
+		returnValue: function returnValue(id) {
+			this.stock_id = id;
+			this.showSearch = false;
+		}
+
+	},
+
+	created: function created() {
+		var _this3 = this;
+
+		this.completeUpdate = true;
+		__WEBPACK_IMPORTED_MODULE_0_axios___default.a.get("/api/wages").then(function (response) {
+			console.log('get showStock_ohlc success');
+			_this3.stocks_ohlc = response.data;
+			_this3.completeUpdate = false;
+		}, function (error) {
+			console.log(error);
+		});
+	}
+
 });
 
 /***/ }),
-/* 45 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _c("a", { attrs: { href: "/wages/transaction" } }, [_vm._v("Transaction")]),
+    _vm._v(" | "),
+    _c("a", { attrs: { href: "/wages/watchlist" } }, [_vm._v("Watchlist")]),
+    _vm._v(" "),
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", [
+      _c("table", [
+        _vm._m(1),
+        _vm._v(" "),
+        _c(
+          "tbody",
+          [
+            _vm.completeUpdate ? _c("tr", [_vm._v("Loading")]) : _vm._e(),
+            _vm._v(" "),
+            _vm._l(_vm.stocks_ohlc, function(stock) {
+              return _c("tr", [
+                _c("td", [_vm._v(_vm._s(stock.id))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(stock.name))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(stock.current_price))])
+              ])
+            })
+          ],
+          2
+        )
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card card-default" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Example Component")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v(
-                "\n                    I'm an example component.\n                "
-              )
-            ])
-          ])
-        ])
-      ])
+    return _c("h1", { staticClass: "pageTitle" }, [
+      _vm._v("Watchlist"),
+      _c("span", [_vm._v("WATCHLIST")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("th", [_vm._v("Stock Code")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Stock Name")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Current Price")])
     ])
   }
 ]
@@ -47408,15 +47927,1053 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-299e239e", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-07a9b52e", module.exports)
   }
 }
 
 /***/ }),
-/* 46 */
-/***/ (function(module, exports) {
+/* 66 */
+/***/ (function(module, exports, __webpack_require__) {
 
-// removed by extract-text-webpack-plugin
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(67)
+}
+var normalizeComponent = __webpack_require__(12)
+/* script */
+var __vue_script__ = __webpack_require__(69)
+/* template */
+var __vue_template__ = __webpack_require__(70)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/wages/transaction.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-548a0b5f", Component.options)
+  } else {
+    hotAPI.reload("data-v-548a0b5f", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 67 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(68);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(14)("65cc8c34", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-548a0b5f\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./transaction.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-548a0b5f\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./transaction.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 68 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(13)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* page title (about) style */\nh1.pageTitle{\n    border-bottom: 2px solid #DED5C7;\n    position: relative;\n    font-size: 80px;\n    color:#DED5C7;\n    margin-left:50px;\n    width:210px;\n    font-weight:normal;\n}\nh1.pageTitle span{\n    position: absolute;\n    font-size: 20px;\n    color:#000;\n    bottom: 40%;\n    left:0;\n}\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 69 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	data: function data() {
+		return {
+			//  v-model declare
+			price: '1.3',
+			unit: '1000',
+			stock_id: 'AAPL',
+			buySell: '',
+
+			//  {{ }} declare
+			gross_amount: 0,
+			brokerage: 0,
+			clearing_fee: 0,
+			sst_payable: 0,
+			stamp_duty: 0,
+			total_amount_due: 0,
+			payment_due_date: '',
+			remindPayment: '',
+
+			//  v-for declare
+			stocks_code: [],
+			transactions: [],
+
+			//  show/hide declare
+			showResult: false,
+			showSearch: false,
+			showTransaction: false
+		};
+	},
+
+
+	methods: {
+		showStock: function showStock() {
+			var _this = this;
+
+			__WEBPACK_IMPORTED_MODULE_0_axios___default.a.get("/api/wages").then(function (response) {
+				console.log('get showStock_ohlc success');
+				_this.stocks_ohlc = response.data;
+			}, function (error) {
+				console.log(error);
+			});
+		},
+
+		calculateContractPrice: function calculateContractPrice() {
+			var today = new Date();
+			today.setDate(today.getDate() + 3);
+			this.payment_due_date = today.toDateString();
+			this.gross_amount = this.price * this.unit;
+			if (this.price * this.unit >= 3000) {
+				this.brokerage = Number(this.price * this.unit * 0.0042).toFixed(2);
+			} else {
+				this.brokerage = 12;
+			}
+			this.clearing_fee = this.price * this.unit * 0.0003;
+			this.sst_payable = (this.brokerage + this.clearing_fee) * 0.06;
+			this.stamp_duty = Math.ceil(this.gross_amount / 1000);
+			this.total_amount_due = this.gross_amount + this.brokerage + this.clearing_fee + this.sst_payable + this.stamp_duty;
+			this.buySell = this.buySell;
+			this.showResult = true;
+		},
+
+		submitTransaction: function submitTransaction() {
+			__WEBPACK_IMPORTED_MODULE_0_axios___default.a.post("/wages/transaction", {
+				'type': this.buySell,
+				'unit': this.unit,
+				'price': this.price,
+				'stock_id': this.stock_id,
+				'gross_amount': this.gross_amount,
+				'brokerage': this.brokerage,
+				'clearing_fee': this.clearing_fee,
+				'sst_payable': this.sst_payable,
+				'stamp_duty': this.stamp_duty,
+				'total_amount_due': this.total_amount_due,
+				'payment_due_date': this.payment_due_date
+			}).then(function (response) {
+				console.log(response.data);
+			}).catch(function (error) {
+				console.log(error.response);
+			});
+		},
+
+		searchStock: function searchStock(id) {
+			var _this2 = this;
+
+			console.log(id);
+			__WEBPACK_IMPORTED_MODULE_0_axios___default.a.get("/api/wages/" + id).then(function (response) {
+				console.log('get searchStock success');
+				console.log(response.data);
+				_this2.stocks_code = response.data;
+			}, function (error) {
+				console.log(error);
+			});
+			this.showSearch = true;
+		},
+
+		returnValue: function returnValue(id) {
+			this.stock_id = id;
+			this.showSearch = false;
+		},
+
+		toggleTransaction: function toggleTransaction() {
+			var _this3 = this;
+
+			if (this.showTransaction === true) {
+				this.showTransaction = false;
+			} else {
+				this.showTransaction = true;
+				__WEBPACK_IMPORTED_MODULE_0_axios___default.a.get("/wages/transaction/api").then(function (response) {
+					console.log('toggleTransaction success');
+					var a = response.data;
+					_this3.transactions = response.data;
+					var today = "Mon Oct 01 2018";
+					for (var key in a) {
+
+						if (a[key].payment_due_date === today) {
+							_this3.remindPayment += "make payment " + a[key].stock_id + "\n";
+						}
+					}
+				}, function (error) {
+					console.log(error.response);
+				});
+			}
+		}
+
+	}
+
+});
+
+/***/ }),
+/* 70 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("a", { attrs: { href: "/wages/transaction" } }, [_vm._v("Transaction")]),
+    _vm._v(" | "),
+    _c("a", { attrs: { href: "/wages/watchlist" } }, [_vm._v("Watchlist")]),
+    _vm._v(" "),
+    _vm._m(0),
+    _vm._v(" "),
+    _c("button", { on: { click: _vm.toggleTransaction } }, [
+      _vm._v("Display Transaction")
+    ]),
+    _vm._v(" "),
+    _vm.showTransaction
+      ? _c("div", { attrs: { id: "transactionRecord" } }, [
+          _vm._v("\n\t\t" + _vm._s(_vm.remindPayment) + "\n\t\t"),
+          _c("table", [
+            _vm._m(1),
+            _vm._v(" "),
+            _c(
+              "tbody",
+              _vm._l(_vm.transactions, function(transaction) {
+                return _c("tr", { key: transaction.id }, [
+                  _c("td", [_vm._v(_vm._s(transaction.id))]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(
+                      _vm._s(transaction.name.name) +
+                        " - " +
+                        _vm._s(transaction.stock_id)
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(transaction.type))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(transaction.price))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(transaction.unit))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(transaction.gross_amount))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(transaction.brokerage))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(transaction.clearing_fee))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(transaction.sst_payable))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(transaction.stamp_duty))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(transaction.total_amount_due))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(transaction.payment_due_date))])
+                ])
+              })
+            )
+          ])
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _c(
+      "div",
+      { attrs: { id: "transactionForm" } },
+      [
+        _c("label", [_vm._v("Transaction Type")]),
+        _vm._v(" "),
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.buySell,
+                expression: "buySell"
+              }
+            ],
+            on: {
+              change: function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.buySell = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              }
+            }
+          },
+          [
+            _c("option", [_vm._v("Buy")]),
+            _vm._v(" "),
+            _c("option", [_vm._v("Sell")])
+          ]
+        ),
+        _vm._v(" "),
+        _c("label", [_vm._v("Stock Code")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.stock_id,
+              expression: "stock_id"
+            }
+          ],
+          attrs: { type: "text" },
+          domProps: { value: _vm.stock_id },
+          on: {
+            input: [
+              function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.stock_id = $event.target.value
+              },
+              function($event) {
+                _vm.searchStock(_vm.stock_id)
+              }
+            ]
+          }
+        }),
+        _vm._v(" "),
+        _vm._l(_vm.stocks_code, function(stock_code) {
+          return _vm.showSearch
+            ? _c("div", [
+                _c(
+                  "a",
+                  {
+                    on: {
+                      click: function($event) {
+                        _vm.returnValue(stock_code.id)
+                      }
+                    }
+                  },
+                  [
+                    _vm._v(
+                      _vm._s(stock_code.name) + " - " + _vm._s(stock_code.id)
+                    )
+                  ]
+                )
+              ])
+            : _vm._e()
+        }),
+        _vm._v(" "),
+        _c("label", [_vm._v("Buy / Sell Price")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.price,
+              expression: "price"
+            }
+          ],
+          attrs: { type: "text" },
+          domProps: { value: _vm.price },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.price = $event.target.value
+            }
+          }
+        }),
+        _vm._v(" "),
+        _c("label", [_vm._v("Buy / Sell Unit")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.unit,
+              expression: "unit"
+            }
+          ],
+          attrs: { type: "text" },
+          domProps: { value: _vm.unit },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.unit = $event.target.value
+            }
+          }
+        }),
+        _vm._v(" "),
+        _c("button", { on: { click: _vm.calculateContractPrice } }, [
+          _vm._v("Calculate")
+        ])
+      ],
+      2
+    ),
+    _vm._v(" "),
+    _vm.showResult
+      ? _c("div", { attrs: { id: "result" } }, [
+          _c("h3", [_vm._v("Result")]),
+          _vm._v(" "),
+          _c("p", [_vm._v("Gross Amount: " + _vm._s(_vm.gross_amount))]),
+          _vm._v(" "),
+          _c("p", [_vm._v("Brokerage: " + _vm._s(_vm.brokerage))]),
+          _vm._v(" "),
+          _c("p", [_vm._v("Clearing Fee: " + _vm._s(_vm.clearing_fee))]),
+          _vm._v(" "),
+          _c("p", [_vm._v("SST Payable: " + _vm._s(_vm.sst_payable))]),
+          _vm._v(" "),
+          _c("p", [_vm._v("Stamp Duty: " + _vm._s(_vm.stamp_duty))]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v("Total Amount Due: " + _vm._s(_vm.total_amount_due))
+          ]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v("Payment Due Date: " + _vm._s(_vm.payment_due_date))
+          ]),
+          _vm._v(" "),
+          _c("button", { on: { click: _vm.submitTransaction } }, [
+            _vm._v(_vm._s(_vm.buySell))
+          ])
+        ])
+      : _vm._e()
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h1", { staticClass: "pageTitle" }, [
+      _vm._v("Transaction"),
+      _c("span", [_vm._v("TRANSACTION")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("th", [_vm._v("ID")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Stock")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Type")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Price")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Unit")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Gross Amount")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Brokerage")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Clearing Fee")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("SST Payable")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Stamp Duty")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Total Amount Due")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Payment Due Date")])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-548a0b5f", module.exports)
+  }
+}
+
+/***/ }),
+/* 71 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(72)
+}
+var normalizeComponent = __webpack_require__(12)
+/* script */
+var __vue_script__ = __webpack_require__(74)
+/* template */
+var __vue_template__ = __webpack_require__(75)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/wages/valuation.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-6da5097c", Component.options)
+  } else {
+    hotAPI.reload("data-v-6da5097c", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 72 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(73);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(14)("33f28264", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6da5097c\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./valuation.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6da5097c\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./valuation.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 73 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(13)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* page title (about) style */\nh1.pageTitle{\n    border-bottom: 2px solid #DED5C7;\n    position: relative;\n    font-size: 80px;\n    color:#DED5C7;\n    margin-left:50px;\n    width:210px;\n    font-weight:normal;\n}\nh1.pageTitle span{\n    position: absolute;\n    font-size: 20px;\n    color:#000;\n    bottom: 40%;\n    left:0;\n}\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 74 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	data: function data() {
+		return {
+			//  v-model declare
+			stockName: '',
+			stock_id: '',
+
+			//  {{ }} declare
+
+
+			//  v-for declare
+			stocks_code: [],
+			stock_fundamental: [],
+
+			//  show/hide declare
+			showSearch: false,
+			showFundamental: false
+		};
+	},
+
+
+	methods: {
+		getData: function getData(stock_id) {
+			var _this = this;
+
+			__WEBPACK_IMPORTED_MODULE_0_axios___default.a.get("/wages/valuation/api/" + stock_id).then(function (response) {
+				console.log('get getData success');
+				_this.stock_fundamental = response.data;
+				var a = response.data.dividends;
+				_this.showFundamental = true;
+				for (var x in a) {
+					if (a[x].paymentDate.includes('2017')) {
+						console.log(a[x].amount);
+					}
+				}
+			}, function (error) {
+				console.log(error.response);
+			});
+		},
+
+		searchStock: function searchStock(stock_id) {
+			var _this2 = this;
+
+			console.log(stock_id);
+			__WEBPACK_IMPORTED_MODULE_0_axios___default.a.get("/api/wages/" + stock_id).then(function (response) {
+				console.log('get searchStock success');
+				console.log(response.data);
+				_this2.stocks_code = response.data;
+			}, function (error) {
+				console.log(error);
+			});
+			this.showSearch = true;
+		},
+
+		returnValue: function returnValue(stock_id) {
+			this.stock_id = stock_id;
+			this.showSearch = false;
+		}
+
+	}
+
+});
+
+/***/ }),
+/* 75 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("a", { attrs: { href: "/wages/transaction" } }, [_vm._v("Transaction")]),
+    _vm._v(" | "),
+    _c("a", { attrs: { href: "/wages/watchlist" } }, [_vm._v("Watchlist")]),
+    _vm._v(" | "),
+    _c("a", { attrs: { href: "/wages/valuation" } }, [_vm._v("Valuation")]),
+    _vm._v(" "),
+    _vm._m(0),
+    _vm._v(" "),
+    _c(
+      "div",
+      { attrs: { id: "searchStockForm" } },
+      [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.stock_id,
+              expression: "stock_id"
+            }
+          ],
+          attrs: { type: "text", placeholder: "Search Stock Here" },
+          domProps: { value: _vm.stock_id },
+          on: {
+            input: [
+              function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.stock_id = $event.target.value
+              },
+              function($event) {
+                _vm.searchStock(_vm.stock_id)
+              }
+            ]
+          }
+        }),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            on: {
+              click: function($event) {
+                _vm.getData(_vm.stock_id)
+              }
+            }
+          },
+          [_vm._v("Search")]
+        ),
+        _vm._v(" "),
+        _vm._l(_vm.stocks_code, function(s_c) {
+          return _vm.showSearch
+            ? _c("div", { attrs: { id: "searchResult" } }, [
+                _c(
+                  "a",
+                  {
+                    on: {
+                      click: function($event) {
+                        _vm.returnValue(s_c.id)
+                      }
+                    }
+                  },
+                  [_vm._v(_vm._s(s_c.name) + " - " + _vm._s(s_c.id))]
+                )
+              ])
+            : _vm._e()
+        })
+      ],
+      2
+    ),
+    _vm._v(" "),
+    _vm.showFundamental
+      ? _c("div", { attrs: { id: "stockFundamental" } }, [
+          _c("table", [
+            _vm._m(1),
+            _vm._v(" "),
+            _c(
+              "tbody",
+              _vm._l(_vm.stock_fundamental.fundamental.financials, function(
+                s_f
+              ) {
+                return _c("tr", [
+                  _c("td", [_vm._v(_vm._s(s_f.reportDate))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(s_f.netIncome))])
+                ])
+              })
+            )
+          ]),
+          _vm._v(" "),
+          _c("table", [
+            _vm._m(2),
+            _vm._v(" "),
+            _c(
+              "tbody",
+              _vm._l(_vm.stock_fundamental.dividends, function(s_f) {
+                return _c("tr", [
+                  _c("td", [_vm._v(_vm._s(s_f.paymentDate))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(s_f.amount))])
+                ])
+              })
+            )
+          ]),
+          _vm._v(" "),
+          _c("table", [
+            _vm._m(3),
+            _vm._v(" "),
+            _c("tbody", [
+              _c("tr", [
+                _c("td", [
+                  _vm._v(
+                    _vm._s(
+                      _vm.stock_fundamental.today_earning.bto.quote.peRatio
+                    )
+                  )
+                ]),
+                _vm._v(" "),
+                _c("td", [
+                  _vm._v(
+                    _vm._s(
+                      _vm.stock_fundamental.today_earning.bto.quote.week52High
+                    )
+                  )
+                ]),
+                _vm._v(" "),
+                _c("td", [
+                  _vm._v(
+                    _vm._s(
+                      _vm.stock_fundamental.today_earning.bto.quote.week52Low
+                    )
+                  )
+                ]),
+                _vm._v(" "),
+                _c("td", [
+                  _vm._v(
+                    _vm._s(
+                      _vm.stock_fundamental.today_earning.bto.quote.marketCap
+                    )
+                  )
+                ]),
+                _vm._v(" "),
+                _c("td", [
+                  _vm._v(
+                    _vm._s(
+                      _vm.stock_fundamental.today_earning.bto.quote.latestPrice
+                    )
+                  )
+                ])
+              ])
+            ])
+          ])
+        ])
+      : _vm._e()
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h1", { staticClass: "pageTitle" }, [
+      _vm._v("Valuation"),
+      _c("span", [_vm._v("VALUATION")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("th", [_vm._v("Report Date")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Net Profit")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("th", [_vm._v("Payment Date")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Dividend")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("th", [_vm._v("PE")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("52 Week Low")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("52 Week High")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Market Cap")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Price")])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-6da5097c", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

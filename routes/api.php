@@ -33,6 +33,16 @@ Route::apiResource('records','RecordController');
 
 Route::resource('/blog','weilogg\BlogController');
 
+/**
+**
+**   REST API weilogg.com/wages
+**
+**/
+
+Route::resource('/wages','wages\HomeController');
+
+
+
 
 
 

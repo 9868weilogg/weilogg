@@ -59,9 +59,9 @@ Route::get('/blog', 'weilogg\BlogController@show_blog');
 --------------------
 -------------------------------------**/
 
-Route::get('/{any}', function () {
-    return view('/dishmotion/dishmotion-home-spa');
-})->where('any','.*');
+// Route::get('/{any}', function () {
+//     return view('/dishmotion/dishmotion-home-spa');
+// })->where('any','.*');
 
 
 
@@ -219,16 +219,35 @@ Route::post('/gateready/admin/filter-tracking-number-ajax', 'gateready\AdminCont
 -------------------------------------**/
 
 /**----------- wages.com homepage ----------------**/
-Route::get('/wages', 'wages\HomeController@index');
+Route::get('/wages1', 'wages\HomeController@index1');
 
 /**----------- wages.com homepage ----------------**/
-Route::post('/wages', 'wages\HomeController@search');
+Route::post('/wages1', 'wages\HomeController@search');
 
 /**----------- wages.com update price in watchlist ----------------**/
-Route::get('/wages/update-price', 'wages\HomeController@show_price');
+Route::get('/wages1/update-price', 'wages\HomeController@show_price');
 
 /**----------- wages.com update price in watchlist ----------------**/
-Route::post('/wages/update-price', 'wages\HomeController@update_price');
+Route::post('/wages1/update-price', 'wages\HomeController@update_price');
+
+/**----------- wages.com valuation with VUE ----------------**/
+Route::get('/wages/valuation', 'wages\ValuationController@show_valuation');
+
+/**----------- wages.com valuation with VUE ----------------**/
+Route::get('/wages/valuation/api/{id}', 'wages\ValuationController@show');
+
+/**----------- wages.com watchlist with VUE ----------------**/
+Route::get('/wages/watchlist', 'wages\HomeController@show_watchlist');
+
+/**----------- wages.com transaction with VUE ----------------**/
+Route::get('/wages/transaction', 'wages\HomeController@show_transaction');
+
+/**----------- wages.com submit transaction with VUE ----------------**/
+Route::post('/wages/transaction', 'wages\HomeController@post_transaction');
+
+/**----------- wages.com parse transaction API with VUE ----------------**/
+Route::get('/wages/transaction/api', 'wages\HomeController@api_show_transaction');
+
 
 
 
