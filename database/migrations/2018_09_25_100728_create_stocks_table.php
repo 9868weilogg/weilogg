@@ -14,9 +14,9 @@ class CreateStocksTable extends Migration
     public function up()
     {
         Schema::create('stocks', function (Blueprint $table) {
-            $table->integer('id')->unsigned()->primary();
-            $table->string('name',12);
-            $table->decimal('current_price',6,3);
+            $table->string('id',10)primary();
+            $table->string('name',30);
+            $table->decimal('current_price',8,3);
             $table->timestamps();
         });
     }

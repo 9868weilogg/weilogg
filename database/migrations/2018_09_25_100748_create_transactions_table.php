@@ -17,9 +17,16 @@ class CreateTransactionsTable extends Migration
             $table->string('id',6)->primary();
             $table->string('type',8);
             $table->integer('unit');
-            $table->decimal('price',6,3);
-            $table->integer('stock_id')->unsigned()->index();
+            $table->decimal('price',8,3);
+            $table->string('stock_id',10)->index();
             $table->string('user_id',6)->index();
+            $table->decimal('gross_amount',12,3);
+            $table->decimal('brokerage',12,3);
+            $table->decimal('clearing_fee',12,3);
+            $table->decimal('sst_payable',12,3);
+            $table->decimal('stamp_duty',12,3);
+            $table->decimal('total_amount_due',12,3);
+            $table->string('payment_due_date',20);
             $table->timestamps();
         });
     }
