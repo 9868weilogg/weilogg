@@ -4,16 +4,16 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateStocksTable extends Migration
+class CreateWatchlistsTable extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
+    public function up() 
     {
-        Schema::create('stocks', function (Blueprint $table) {
+        Schema::create('watchlists', function (Blueprint $table) {
             $table->string('id',20)->primary();
             $table->string('code',100);
             $table->string('name',200);
@@ -30,6 +30,6 @@ class CreateStocksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('stocks');
+        Schema::dropIfExists('watchlists');
     }
 }

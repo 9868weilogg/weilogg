@@ -1,10 +1,15 @@
 
 <template>
 	<div>
-		<a href="/wages/transaction">Transaction</a> | <a href="/wages/watchlist">Watchlist</a>
+		
 		<h1 class="pageTitle">Watchlist<span>WATCHLIST</span></h1>
 		
 		<div>
+			<label>Stock Code</label>
+			<input type="text" v-model="stock_id" v-on:input="searchStock(stock_id)">
+			<div v-for="stock_code in stocks_code" v-if="showSearch">
+				<a v-on:click="addWatchStock(stock_code.id)">{{stock_code.name}} - {{stock_code.id}}</a>
+			</div>
 			<table>
 				<thead>
 					<th>Stock Code</th>
@@ -13,10 +18,11 @@
 				</thead>
 				<tbody>
 					<tr v-if="completeUpdate">Loading</tr>
-					<tr v-for="stock in stocks_ohlc">
+					<tr v-for="stock in watchlist">
 						<td>{{stock.id}}</td>
 						<td>{{stock.name}}</td>
 						<td>{{stock.current_price}}</td>
+						<button v-on:click="deleteWatchStock(stock.id)">Delete</button>
 					</tr>
 				</tbody>
 			</table>
@@ -46,7 +52,7 @@
 
 
 			//  v-for declare
-			stocks_ohlc:[],
+			watchlist:[],
 			stocks_code:[],
 			
 			//  show/hide declare
@@ -56,11 +62,11 @@
 	},
 			
 	methods:{
-		showStock: function () {
-		  axios.get("/api/wages")
+		showWatchlist: function () {
+		  axios.get("/wages/watchlist/api/index-watchlist")
 		  .then((response) => {
-		    console.log('get showStock_ohlc success');
-		    this.stocks_ohlc = response.data;
+		    console.log('get showWatchlist success');
+		    this.watchlist = response.data;
 		  }
 		  ,(error) => {
 		  	console.log(error);
@@ -84,28 +90,57 @@
 		  ,(error) => {
 		  	console.log(error);
 		  });
-		  this.showSearch = true;
+		  
+		  if(id == '')
+		  {
+		  	this.showSearch = false;
+		  }
+		  else
+		  {
+		  	this.showSearch = true;
+		  }
 		},
 
-		returnValue: function(id){
-			this.stock_id = id;
+		addWatchStock: function(id){
+			axios.post("/wages/watchlist/api/add-watchlist",{
+				'id' : id,
+
+			})
+			.then(function(response){
+				console.log('addWatchStock success');
+				console.log(response.data);
+			})
+			.catch(function(error){
+				console.log(error.response);
+			});
+			this.stock_id = '';
 			this.showSearch = false;
+			this.showWatchlist();
+		},
+
+		deleteWatchStock: function(id){
+			axios.delete("/wages/watchlist/api/delete-watchlist/"+id)
+			.then(function(response){
+				console.log('deleteWatchStock success');
+			})
+			.catch(function(error){
+				console.log(error.response);
+			});
+			this.showWatchlist();
 		},
 
 	},
 
 	created : function () {
-		this.completeUpdate = true;
-	  axios.get("/api/wages")
+	  axios.get("/wages/watchlist/api/index-watchlist")
 	  .then((response) => {
-	    console.log('get showStock_ohlc success');
-	    this.stocks_ohlc = response.data;
-	    this.completeUpdate = false;
+	    console.log('get showWatchlist success');
+	    this.watchlist = response.data;
 	  }
 	  ,(error) => {
 	  	console.log(error);
 	  });
-	  
+
 	},
 
 	

@@ -4,9 +4,9 @@ namespace App\wages;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Stock extends Model
+class Watchlist extends Model
 {
-	public $incrementing = false;
+    public $incrementing = false;
 
 	protected $fillable = [
 		'id','code','name','current_price','share_qty',
