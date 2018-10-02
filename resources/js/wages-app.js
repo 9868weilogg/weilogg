@@ -19,6 +19,7 @@ window.Vue = require('vue');
 Vue.component('watchlist', require('./components/wages/watchlist.vue'));
 Vue.component('transaction', require('./components/wages/transaction.vue'));
 Vue.component('valuation', require('./components/wages/valuation.vue'));
+Vue.component('cash', require('./components/wages/cash.vue'));
 
 
 const wagesApp = new Vue({

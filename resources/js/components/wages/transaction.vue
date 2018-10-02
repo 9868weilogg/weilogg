@@ -1,7 +1,7 @@
 
 <template>
 	<div>
-		<a href="/wages/transaction">Transaction</a> | <a href="/wages/watchlist">Watchlist</a>
+		
 		<h1 class="pageTitle">Transaction<span>TRANSACTION</span></h1>
 		<button v-on:click="toggleTransaction">Display Transaction</button>
 		<div id="transactionRecord" v-if="showTransaction">

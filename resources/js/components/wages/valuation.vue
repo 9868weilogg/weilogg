@@ -1,7 +1,7 @@
 
 <template>
 	<div>
-		<a href="/wages/transaction">Transaction</a> | <a href="/wages/watchlist">Watchlist</a> | <a href="/wages/valuation">Valuation</a>
+		
 		<h1 class="pageTitle">Valuation<span>VALUATION</span></h1>
 		
 		<div id="searchStockForm">
@@ -17,6 +17,7 @@
 				<thead>
 					<th>Report Date</th>
 					<th>Net Profit</th>
+					<th>EPS</th>
 				</thead>
 				<tbody>
 					<tr v-for="s_f in stock_fundamental.fundamental.financials">
@@ -89,7 +90,7 @@
 			
 	methods:{
 		getData: function (stock_id) {
-		  axios.get("/wages/valuation/api/"+stock_id)
+		  axios.get("/wages/valuation/api/show/"+stock_id)
 		  .then((response) => {
 		    console.log('get getData success');
 		    this.stock_fundamental = response.data;

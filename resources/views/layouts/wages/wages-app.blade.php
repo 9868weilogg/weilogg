@@ -193,9 +193,10 @@
               <a href="javascript:void(0)" onclick="hideSideBar()" class="closebtn" >&times</a>
               
               
-              <button class="nav-link" onclick="window.location.href='/about'">About</button>
-              <button class="nav-link" onclick="window.location.href='/portfolio'">Portfolio</button>
-              <button class="nav-link" onclick="window.location.href='/resume'">Resume</button>
+              <button class="nav-link" onclick="window.location.href='/wages/transaction'">Transaction</button>
+              <button class="nav-link" onclick="window.location.href='/wages/cash'">Cash</button>
+              <button class="nav-link" onclick="window.location.href='/wages/valuation'">Valuation</button>
+              <button class="nav-link" onclick="window.location.href='/wages/watchlist'">Watchlist</button>
               <button class="nav-link" onclick="scrollToBottom()">Contact</button>
               
             </nav>

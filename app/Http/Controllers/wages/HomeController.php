@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
 use App\wages\Stock;
 use App\wages\Transaction;
+use App\wages\EOD;
+use App\wages\Watchlist;
 
 class HomeController extends Controller
 {
@@ -18,7 +20,6 @@ class HomeController extends Controller
     public function index()
     {
         
-        $this->updatePrice();
         return Stock::all();
     }
 
@@ -39,16 +40,16 @@ class HomeController extends Controller
      */
     public function store(Request $request)
     {
-        $transaction = new Transaction();
-        $transaction->id = 1;
-        $transaction->type = $request->buySell;
-        $transaction->unit = $request->unit;
-        $transaction->price = $request->price;
-        $transaction->stock_id = $request->stock_id;
-        $transaction->user_id = 123;
-        $transaction->save();
+        // $transaction = new Transaction();
+        // $transaction->id = 1;
+        // $transaction->type = $request->buySell;
+        // $transaction->unit = $request->unit;
+        // $transaction->price = $request->price;
+        // $transaction->stock_id = $request->stock_id;
+        // $transaction->user_id = 123;
+        // $transaction->save();
 
-        return response($transaction->jsonSerialize(),201);
+        // return response($transaction->jsonSerialize(),201);
         // return ['1','2'];
     }
 
@@ -82,12 +83,7 @@ class HomeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Blog::where('id',$id)->update([
-            'blog_title' => $request->update_title,
-            'blog_post' => $request->update_post,
-        ]);
-
-        return response(null,200);
+        
     }
 
     /**
@@ -98,144 +94,105 @@ class HomeController extends Controller
      */
     public function destroy($id)
     {
-        Blog::destroy($id);
-
-        return response(null,200);
+        
     }
+
+    /**
+     * show API 3A EOD
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function api_show_eod($id)
+    {
+        return EOD::select('stock_id','last_refreshed','date','open','high','low','close','volume')->where('stock_id',$id)->get();
+    }
+
 
     
 
-    // homepage
-    // 
-    // 
-
-    public function index1()
-    {
-    	$stocks = Stock::all();
-    	$title = 'Laravel parse title';
-    	$author = json_encode([
-    		"name" => "logg",
-    		"role" => "lol",
-    		"code" => "1",
-    	]);
-
-    	return view('wages/wages-home',[
-    		'stocks' => $stocks,
-    		'title' =>  $title,
-    		'author' => $author,
-    		
-    	]);
-    }
-
-    // watchlist VUE
-    // 
-    // 
-
-    public function show_watchlist()
-    {
-        
-
-        return view('wages/wages-watchlist');
-    }
-
-    // transaction VUE
-    // 
-    // 
-
-    public function show_transaction()
-    {
-        
-
-        return view('wages/wages-transaction');
-    }
-
-    // parse transaction VUE
-    // 
-    // 
-
-    public function api_show_transaction()
-    {
-        $transactions = Transaction::all();
-
-        foreach($transactions as $transaction)
-        {
-            $records[] = array(
-                'id' => $transaction->id,
-                'stock_id' => $transaction->stock_id,
-                'name' => Stock::select('name')->where('id',$transaction->stock_id)->first(),
-                'type' => $transaction->type,
-                'price' => $transaction->price,
-                'unit' => $transaction->unit,
-                'gross_amount' => $transaction->gross_amount,
-                'brokerage' => $transaction->brokerage,
-                'clearing_fee' => $transaction->clearing_fee,
-                'sst_payable' => $transaction->sst_payable,
-                'stamp_duty' => $transaction->stamp_duty,
-                'total_amount_due' => $transaction->total_amount_due,
-                'payment_due_date' => $transaction->payment_due_date,
-            );
-        }
-
-        return $records;
-        // return Stock::select('name')->where('id','AAPL')->get();
-    }
-
-    
     /**
      * update price of stock into database
      *
      * @return Response
      */
-    public function updatePrice()
+    public function eod_insert()
     {
-        
-        
-        $stocks = Stock::all();
+        $stocks = Watchlist::all();
         foreach($stocks as $stock)
         {
+            $stock_data = '';
+            $json_data = file_get_contents('https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=' . $stock->id . '.kl&outputsize=full&apikey=PVVY41A3AOTEE26O');
+            if(key(json_decode($json_data,true)) == 'Error Message')
+            {
+                echo $stock->id;
+                $stock_data = 'N/A';
+
+                echo $stock_data;
+                sleep(30);
+            }
+            else
+            {
+                $stock_id = $stock->id;
+
+                $json = json_decode($json_data,true);
+                $last_refreshed = $json['Meta Data']['3. Last Refreshed'] ;
+                $symbol = $json['Meta Data']['2. Symbol'];
+                $stock_data = $json['Time Series (Daily)'];
+                $current_price = $json['Time Series (Daily)'][$last_refreshed]['4. close'];
+                Watchlist::where('id',$stock_id)->update([
+                    'current_price' => $current_price,
+                ]);
+
+                 /**
+                    **
+                    **  update alpha vantage full stocks's EOD
+                    **
+                    **/
+                
+                foreach($stock_data as $key => $value)
+                {
+                    if(EOD::where([
+                        ['stock_id','=', $stock_id],
+                        ['last_refreshed', '=', $last_refreshed],
+                        ['date', '=', $key],
+                    ])->count()>0){
+                        EOD::where([
+                            ['stock_id','=', $stock_id],
+                            ['last_refreshed', '=', $last_refreshed],
+                            ['date', '=', $key],
+                        ])->update([
+                            
+                            'open' =>$value['1. open'],
+                            'high' =>$value['2. high'],
+                            'low' =>$value['3. low'],
+                            'close' =>$value['4. close'],
+                            'volume' =>$value['5. volume'],
+                        ]);
+                    }
+                    else
+                    {
+                        EOD::create([
+                            'stock_id' => $stock_id,
+                            'last_refreshed' => $last_refreshed,
+                            'date' => $key,
+                            'open' =>$value['1. open'],
+                            'high' =>$value['2. high'],
+                            'low' =>$value['3. low'],
+                            'close' =>$value['4. close'],
+                            'volume' =>$value['5. volume'],
+                        ]);
+                    }
+                    
+                }
+                sleep(30);
+            }
             
-            $json_data = file_get_contents('https://api.iextrading.com/1.0/stock/' . $stock->id . '/ohlc');
-            $json = json_decode($json_data,true);
-            $stock_data = $json['close']['price'];
-            
-            Stock::where('id',$stock->id)->update(['current_price' => $stock_data]);    
+
         }
+        return "EOD update complete"; 
+       
 
-        
-    }
 
-    /**
-     * post transaction.
-     *
-     * @return Response
-     */
-    public function post_transaction(Request $request)
-    {
-        $transaction = new Transaction;
-        $transaction->id = '2';
-        $transaction->type = $request->type;
-        $transaction->unit = $request->unit;
-        $transaction->price = $request->price;
-        $transaction->stock_id = $request->stock_id;
-        $transaction->user_id = '123';
-        $transaction->gross_amount = $request->gross_amount;
-        $transaction->brokerage = $request->brokerage;
-        $transaction->clearing_fee = $request->clearing_fee;
-        $transaction->sst_payable = $request->sst_payable;
-        $transaction->stamp_duty = $request->stamp_duty;
-        $transaction->total_amount_due = $request->total_amount_due;
-        $transaction->payment_due_date = $request->payment_due_date;
-        $transaction->save();
-        // $transaction = Transaction::create([
-        //     'id' => '1',
-        //     'type' => '1',//$request->type,
-        //     'unit' => 1,//$request->unit,
-        //     'price' => 1,//$request->price,
-        //     'stock_id' => '1',//$request->stock_id,
-        //     'user_id' => '123',
-        // ]);
-
-        return response($transaction->jsonSerialize(),201);
-        // return $request->type;
     }
 }

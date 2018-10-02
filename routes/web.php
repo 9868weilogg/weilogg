@@ -227,26 +227,54 @@ Route::post('/wages1', 'wages\HomeController@search');
 /**----------- wages.com update price in watchlist ----------------**/
 Route::get('/wages1/update-price', 'wages\HomeController@show_price');
 
-/**----------- wages.com update price in watchlist ----------------**/
-Route::post('/wages1/update-price', 'wages\HomeController@update_price');
+/**----------- wages.com home in VUE ----------------**/
+/**----------- wages.com home API ----------------**/
+Route::get('/wages/api/show-eod/{id}', 'wages\HomeController@api_show_eod');
 
 /**----------- wages.com valuation with VUE ----------------**/
 Route::get('/wages/valuation', 'wages\ValuationController@show_valuation');
 
 /**----------- wages.com valuation with VUE ----------------**/
-Route::get('/wages/valuation/api/{id}', 'wages\ValuationController@show');
+/**----------- wages.com valuation API ----------------**/
+Route::get('/wages/valuation/api/show/{id}', 'wages\ValuationController@show');
 
 /**----------- wages.com watchlist with VUE ----------------**/
-Route::get('/wages/watchlist', 'wages\HomeController@show_watchlist');
+/**----------- wages.com index watchlist API ----------------**/
+Route::get('/wages/watchlist/api/index-watchlist', 'wages\WatchlistController@api_index_watchlist');
+
+/**----------- wages.com add watchlist API ----------------**/
+Route::post('/wages/watchlist/api/add-watchlist', 'wages\WatchlistController@api_add_watchlist');
+
+/**----------- wages.com delete watchlist API ----------------**/
+Route::delete('/wages/watchlist/api/delete-watchlist/{id}', 'wages\WatchlistController@api_delete_watchlist');
+
+/**----------- wages.com watchlist with VUE ----------------**/
+Route::get('/wages/watchlist', 'wages\WatchlistController@show_watchlist');
 
 /**----------- wages.com transaction with VUE ----------------**/
-Route::get('/wages/transaction', 'wages\HomeController@show_transaction');
+Route::get('/wages/transaction', 'wages\TransactionController@show_transaction');
 
 /**----------- wages.com submit transaction with VUE ----------------**/
-Route::post('/wages/transaction', 'wages\HomeController@post_transaction');
+Route::post('/wages/transaction', 'wages\TransactionController@post_transaction');
 
 /**----------- wages.com parse transaction API with VUE ----------------**/
-Route::get('/wages/transaction/api', 'wages\HomeController@api_show_transaction');
+Route::get('/wages/transaction/api', 'wages\TransactionController@api_show_transaction');
+
+/**----------- wages.com cash with VUE ----------------**/
+/**----------- wages.com cash API ----------------**/
+Route::get('/wages/cash/api/index', 'wages\CashController@index');
+Route::get('/wages/cash/api/show/{id}', 'wages\CashController@show');
+Route::post('/wages/cash/api/update-cash', 'wages\CashController@update_cash');
+
+/**----------- wages.com cash with VUE ----------------**/
+Route::get('/wages/cash', 'wages\CashController@show_cash');
+
+/**
+**
+**  run background to insert EOD data
+**
+**/
+Route::get('/wages/eod', 'wages\HomeController@eod_insert');
 
 
 

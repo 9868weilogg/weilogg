@@ -70,7 +70,7 @@
 "use strict";
 
 
-var bind = __webpack_require__(6);
+var bind = __webpack_require__(7);
 var isBuffer = __webpack_require__(20);
 
 /*global toString:true*/
@@ -404,6 +404,12 @@ module.exports = g;
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
+module.exports = __webpack_require__(19);
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
@@ -424,10 +430,10 @@ function getDefaultAdapter() {
   var adapter;
   if (typeof XMLHttpRequest !== 'undefined') {
     // For browsers use XHR adapter
-    adapter = __webpack_require__(8);
+    adapter = __webpack_require__(9);
   } else if (typeof process !== 'undefined') {
     // For node use HTTP adapter
-    adapter = __webpack_require__(8);
+    adapter = __webpack_require__(9);
   }
   return adapter;
 }
@@ -502,16 +508,119 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 
 module.exports = defaults;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(19);
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 
 /***/ }),
 /* 4 */
+/***/ (function(module, exports) {
+
+/* globals __VUE_SSR_CONTEXT__ */
+
+// IMPORTANT: Do NOT use ES2015 features in this file.
+// This module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle.
+
+module.exports = function normalizeComponent (
+  rawScriptExports,
+  compiledTemplate,
+  functionalTemplate,
+  injectStyles,
+  scopeId,
+  moduleIdentifier /* server only */
+) {
+  var esModule
+  var scriptExports = rawScriptExports = rawScriptExports || {}
+
+  // ES6 modules interop
+  var type = typeof rawScriptExports.default
+  if (type === 'object' || type === 'function') {
+    esModule = rawScriptExports
+    scriptExports = rawScriptExports.default
+  }
+
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // render functions
+  if (compiledTemplate) {
+    options.render = compiledTemplate.render
+    options.staticRenderFns = compiledTemplate.staticRenderFns
+    options._compiled = true
+  }
+
+  // functional template
+  if (functionalTemplate) {
+    options.functional = true
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = scopeId
+  }
+
+  var hook
+  if (moduleIdentifier) { // server build
+    hook = function (context) {
+      // 2.3 injection
+      context =
+        context || // cached call
+        (this.$vnode && this.$vnode.ssrContext) || // stateful
+        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
+      // 2.2 with runInNewContext: true
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__
+      }
+      // inject component styles
+      if (injectStyles) {
+        injectStyles.call(this, context)
+      }
+      // register component module identifier for async chunk inferrence
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier)
+      }
+    }
+    // used by ssr in case component is cached and beforeCreate
+    // never gets called
+    options._ssrRegister = hook
+  } else if (injectStyles) {
+    hook = injectStyles
+  }
+
+  if (hook) {
+    var functional = options.functional
+    var existing = functional
+      ? options.render
+      : options.beforeCreate
+
+    if (!functional) {
+      // inject component registration as beforeCreate hook
+      options.beforeCreate = existing
+        ? [].concat(existing, hook)
+        : [hook]
+    } else {
+      // for template-only hot-reload because in that case the render fn doesn't
+      // go through the normalizer
+      options._injectStyles = hook
+      // register for functioal component in vue file
+      options.render = function renderWithStyleInjection (h, context) {
+        hook.call(context)
+        return existing(h, context)
+      }
+    }
+  }
+
+  return {
+    esModule: esModule,
+    exports: scriptExports,
+    options: options
+  }
+}
+
+
+/***/ }),
+/* 5 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3052,7 +3161,7 @@ Popper.Defaults = Defaults;
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -13423,7 +13532,7 @@ return jQuery;
 
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13441,7 +13550,7 @@ module.exports = function bind(fn, thisArg) {
 
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -13631,7 +13740,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13642,7 +13751,7 @@ var settle = __webpack_require__(23);
 var buildURL = __webpack_require__(25);
 var parseHeaders = __webpack_require__(26);
 var isURLSameOrigin = __webpack_require__(27);
-var createError = __webpack_require__(9);
+var createError = __webpack_require__(10);
 var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(28);
 
 module.exports = function xhrAdapter(config) {
@@ -13818,7 +13927,7 @@ module.exports = function xhrAdapter(config) {
 
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13843,7 +13952,7 @@ module.exports = function createError(message, config, code, request, response) 
 
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13855,7 +13964,7 @@ module.exports = function isCancel(value) {
 
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13878,115 +13987,6 @@ Cancel.prototype.toString = function toString() {
 Cancel.prototype.__CANCEL__ = true;
 
 module.exports = Cancel;
-
-
-/***/ }),
-/* 12 */
-/***/ (function(module, exports) {
-
-/* globals __VUE_SSR_CONTEXT__ */
-
-// IMPORTANT: Do NOT use ES2015 features in this file.
-// This module is a runtime utility for cleaner component module output and will
-// be included in the final webpack user bundle.
-
-module.exports = function normalizeComponent (
-  rawScriptExports,
-  compiledTemplate,
-  functionalTemplate,
-  injectStyles,
-  scopeId,
-  moduleIdentifier /* server only */
-) {
-  var esModule
-  var scriptExports = rawScriptExports = rawScriptExports || {}
-
-  // ES6 modules interop
-  var type = typeof rawScriptExports.default
-  if (type === 'object' || type === 'function') {
-    esModule = rawScriptExports
-    scriptExports = rawScriptExports.default
-  }
-
-  // Vue.extend constructor export interop
-  var options = typeof scriptExports === 'function'
-    ? scriptExports.options
-    : scriptExports
-
-  // render functions
-  if (compiledTemplate) {
-    options.render = compiledTemplate.render
-    options.staticRenderFns = compiledTemplate.staticRenderFns
-    options._compiled = true
-  }
-
-  // functional template
-  if (functionalTemplate) {
-    options.functional = true
-  }
-
-  // scopedId
-  if (scopeId) {
-    options._scopeId = scopeId
-  }
-
-  var hook
-  if (moduleIdentifier) { // server build
-    hook = function (context) {
-      // 2.3 injection
-      context =
-        context || // cached call
-        (this.$vnode && this.$vnode.ssrContext) || // stateful
-        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
-      // 2.2 with runInNewContext: true
-      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
-        context = __VUE_SSR_CONTEXT__
-      }
-      // inject component styles
-      if (injectStyles) {
-        injectStyles.call(this, context)
-      }
-      // register component module identifier for async chunk inferrence
-      if (context && context._registeredComponents) {
-        context._registeredComponents.add(moduleIdentifier)
-      }
-    }
-    // used by ssr in case component is cached and beforeCreate
-    // never gets called
-    options._ssrRegister = hook
-  } else if (injectStyles) {
-    hook = injectStyles
-  }
-
-  if (hook) {
-    var functional = options.functional
-    var existing = functional
-      ? options.render
-      : options.beforeCreate
-
-    if (!functional) {
-      // inject component registration as beforeCreate hook
-      options.beforeCreate = existing
-        ? [].concat(existing, hook)
-        : [hook]
-    } else {
-      // for template-only hot-reload because in that case the render fn doesn't
-      // go through the normalizer
-      options._injectStyles = hook
-      // register for functioal component in vue file
-      options.render = function renderWithStyleInjection (h, context) {
-        hook.call(context)
-        return existing(h, context)
-      }
-    }
-  }
-
-  return {
-    esModule: esModule,
-    exports: scriptExports,
-    options: options
-  }
-}
 
 
 /***/ }),
@@ -14305,7 +14305,7 @@ function applyToTag (styleElement, obj) {
 
 
 window._ = __webpack_require__(16);
-window.Popper = __webpack_require__(4).default;
+window.Popper = __webpack_require__(5).default;
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -14314,7 +14314,7 @@ window.Popper = __webpack_require__(4).default;
  */
 
 try {
-  window.$ = window.jQuery = __webpack_require__(5);
+  window.$ = window.jQuery = __webpack_require__(6);
 
   __webpack_require__(18);
 } catch (e) {}
@@ -14325,7 +14325,7 @@ try {
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-window.axios = __webpack_require__(3);
+window.axios = __webpack_require__(2);
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
@@ -31513,7 +31513,7 @@ module.exports = function(module) {
   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
   */
 (function (global, factory) {
-   true ? factory(exports, __webpack_require__(5), __webpack_require__(4)) :
+   true ? factory(exports, __webpack_require__(6), __webpack_require__(5)) :
   typeof define === 'function' && define.amd ? define(['exports', 'jquery', 'popper.js'], factory) :
   (factory((global.bootstrap = {}),global.jQuery,global.Popper));
 }(this, (function (exports,$,Popper) { 'use strict';
@@ -35461,9 +35461,9 @@ module.exports = function(module) {
 
 
 var utils = __webpack_require__(0);
-var bind = __webpack_require__(6);
+var bind = __webpack_require__(7);
 var Axios = __webpack_require__(21);
-var defaults = __webpack_require__(2);
+var defaults = __webpack_require__(3);
 
 /**
  * Create an instance of Axios
@@ -35496,9 +35496,9 @@ axios.create = function create(instanceConfig) {
 };
 
 // Expose Cancel & CancelToken
-axios.Cancel = __webpack_require__(11);
+axios.Cancel = __webpack_require__(12);
 axios.CancelToken = __webpack_require__(35);
-axios.isCancel = __webpack_require__(10);
+axios.isCancel = __webpack_require__(11);
 
 // Expose all/spread
 axios.all = function all(promises) {
@@ -35546,7 +35546,7 @@ function isSlowBuffer (obj) {
 "use strict";
 
 
-var defaults = __webpack_require__(2);
+var defaults = __webpack_require__(3);
 var utils = __webpack_require__(0);
 var InterceptorManager = __webpack_require__(30);
 var dispatchRequest = __webpack_require__(31);
@@ -35651,7 +35651,7 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 "use strict";
 
 
-var createError = __webpack_require__(9);
+var createError = __webpack_require__(10);
 
 /**
  * Resolve or reject a Promise based on response status.
@@ -36084,8 +36084,8 @@ module.exports = InterceptorManager;
 
 var utils = __webpack_require__(0);
 var transformData = __webpack_require__(32);
-var isCancel = __webpack_require__(10);
-var defaults = __webpack_require__(2);
+var isCancel = __webpack_require__(11);
+var defaults = __webpack_require__(3);
 var isAbsoluteURL = __webpack_require__(33);
 var combineURLs = __webpack_require__(34);
 
@@ -36244,7 +36244,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 "use strict";
 
 
-var Cancel = __webpack_require__(11);
+var Cancel = __webpack_require__(12);
 
 /**
  * A `CancelToken` is an object that can be used to request cancellation of an operation.
@@ -47562,7 +47562,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(7)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(8)))
 
 /***/ }),
 /* 40 */
@@ -47646,6 +47646,7 @@ window.Vue = __webpack_require__(37);
 Vue.component('watchlist', __webpack_require__(61));
 Vue.component('transaction', __webpack_require__(66));
 Vue.component('valuation', __webpack_require__(71));
+Vue.component('cash', __webpack_require__(76));
 
 var wagesApp = new Vue({
   el: '#wagesApp'
@@ -47660,7 +47661,7 @@ function injectStyle (ssrContext) {
   if (disposed) return
   __webpack_require__(62)
 }
-var normalizeComponent = __webpack_require__(12)
+var normalizeComponent = __webpack_require__(4)
 /* script */
 var __vue_script__ = __webpack_require__(64)
 /* template */
@@ -47737,7 +47738,7 @@ exports = module.exports = __webpack_require__(13)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* page title (about) style */\nh1.pageTitle{\n    border-bottom: 2px solid #DED5C7;\n    position: relative;\n    font-size: 80px;\n    color:#DED5C7;\n    margin-left:50px;\n    width:210px;\n    font-weight:normal;\n}\nh1.pageTitle span{\n    position: absolute;\n    font-size: 20px;\n    color:#000;\n    bottom: 40%;\n    left:0;\n}\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* page title (about) style */\nh1.pageTitle{\n    border-bottom: 2px solid #DED5C7;\n    position: relative;\n    font-size: 80px;\n    color:#DED5C7;\n    margin-left:50px;\n    width:210px;\n    font-weight:normal;\n}\nh1.pageTitle span{\n    position: absolute;\n    font-size: 20px;\n    color:#000;\n    bottom: 40%;\n    left:0;\n}\n\n", ""]);
 
 // exports
 
@@ -47748,8 +47749,14 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -47796,7 +47803,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			conclusion: '',
 
 			//  v-for declare
-			stocks_ohlc: [],
+			watchlist: [],
 			stocks_code: [],
 
 			//  show/hide declare
@@ -47807,12 +47814,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 	methods: {
-		showStock: function showStock() {
+		showWatchlist: function showWatchlist() {
 			var _this = this;
 
-			__WEBPACK_IMPORTED_MODULE_0_axios___default.a.get("/api/wages").then(function (response) {
-				console.log('get showStock_ohlc success');
-				_this.stocks_ohlc = response.data;
+			__WEBPACK_IMPORTED_MODULE_0_axios___default.a.get("/wages/watchlist/api/index-watchlist").then(function (response) {
+				console.log('get showWatchlist success');
+				_this.watchlist = response.data;
 			}, function (error) {
 				console.log(error);
 			});
@@ -47834,12 +47841,36 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			}, function (error) {
 				console.log(error);
 			});
-			this.showSearch = true;
+
+			if (id == '') {
+				this.showSearch = false;
+			} else {
+				this.showSearch = true;
+			}
 		},
 
-		returnValue: function returnValue(id) {
-			this.stock_id = id;
+		addWatchStock: function addWatchStock(id) {
+			__WEBPACK_IMPORTED_MODULE_0_axios___default.a.post("/wages/watchlist/api/add-watchlist", {
+				'id': id
+
+			}).then(function (response) {
+				console.log('addWatchStock success');
+				console.log(response.data);
+			}).catch(function (error) {
+				console.log(error.response);
+			});
+			this.stock_id = '';
 			this.showSearch = false;
+			this.showWatchlist();
+		},
+
+		deleteWatchStock: function deleteWatchStock(id) {
+			__WEBPACK_IMPORTED_MODULE_0_axios___default.a.delete("/wages/watchlist/api/delete-watchlist/" + id).then(function (response) {
+				console.log('deleteWatchStock success');
+			}).catch(function (error) {
+				console.log(error.response);
+			});
+			this.showWatchlist();
 		}
 
 	},
@@ -47847,11 +47878,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	created: function created() {
 		var _this3 = this;
 
-		this.completeUpdate = true;
-		__WEBPACK_IMPORTED_MODULE_0_axios___default.a.get("/api/wages").then(function (response) {
-			console.log('get showStock_ohlc success');
-			_this3.stocks_ohlc = response.data;
-			_this3.completeUpdate = false;
+		__WEBPACK_IMPORTED_MODULE_0_axios___default.a.get("/wages/watchlist/api/index-watchlist").then(function (response) {
+			console.log('get showWatchlist success');
+			_this3.watchlist = response.data;
 		}, function (error) {
 			console.log(error);
 		});
@@ -47868,35 +47897,97 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("a", { attrs: { href: "/wages/transaction" } }, [_vm._v("Transaction")]),
-    _vm._v(" | "),
-    _c("a", { attrs: { href: "/wages/watchlist" } }, [_vm._v("Watchlist")]),
-    _vm._v(" "),
     _vm._m(0),
     _vm._v(" "),
-    _c("div", [
-      _c("table", [
-        _vm._m(1),
+    _c(
+      "div",
+      [
+        _c("label", [_vm._v("Stock Code")]),
         _vm._v(" "),
-        _c(
-          "tbody",
-          [
-            _vm.completeUpdate ? _c("tr", [_vm._v("Loading")]) : _vm._e(),
-            _vm._v(" "),
-            _vm._l(_vm.stocks_ohlc, function(stock) {
-              return _c("tr", [
-                _c("td", [_vm._v(_vm._s(stock.id))]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(stock.name))]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(stock.current_price))])
-              ])
-            })
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.stock_id,
+              expression: "stock_id"
+            }
           ],
-          2
-        )
-      ])
-    ])
+          attrs: { type: "text" },
+          domProps: { value: _vm.stock_id },
+          on: {
+            input: [
+              function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.stock_id = $event.target.value
+              },
+              function($event) {
+                _vm.searchStock(_vm.stock_id)
+              }
+            ]
+          }
+        }),
+        _vm._v(" "),
+        _vm._l(_vm.stocks_code, function(stock_code) {
+          return _vm.showSearch
+            ? _c("div", [
+                _c(
+                  "a",
+                  {
+                    on: {
+                      click: function($event) {
+                        _vm.addWatchStock(stock_code.id)
+                      }
+                    }
+                  },
+                  [
+                    _vm._v(
+                      _vm._s(stock_code.name) + " - " + _vm._s(stock_code.id)
+                    )
+                  ]
+                )
+              ])
+            : _vm._e()
+        }),
+        _vm._v(" "),
+        _c("table", [
+          _vm._m(1),
+          _vm._v(" "),
+          _c(
+            "tbody",
+            [
+              _vm.completeUpdate ? _c("tr", [_vm._v("Loading")]) : _vm._e(),
+              _vm._v(" "),
+              _vm._l(_vm.watchlist, function(stock) {
+                return _c("tr", [
+                  _c("td", [_vm._v(_vm._s(stock.id))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(stock.name))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(stock.current_price))]),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      on: {
+                        click: function($event) {
+                          _vm.deleteWatchStock(stock.id)
+                        }
+                      }
+                    },
+                    [_vm._v("Delete")]
+                  )
+                ])
+              })
+            ],
+            2
+          )
+        ])
+      ],
+      2
+    )
   ])
 }
 var staticRenderFns = [
@@ -47940,7 +48031,7 @@ function injectStyle (ssrContext) {
   if (disposed) return
   __webpack_require__(67)
 }
-var normalizeComponent = __webpack_require__(12)
+var normalizeComponent = __webpack_require__(4)
 /* script */
 var __vue_script__ = __webpack_require__(69)
 /* template */
@@ -48028,7 +48119,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 //
 //
@@ -48247,10 +48338,6 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("a", { attrs: { href: "/wages/transaction" } }, [_vm._v("Transaction")]),
-    _vm._v(" | "),
-    _c("a", { attrs: { href: "/wages/watchlist" } }, [_vm._v("Watchlist")]),
-    _vm._v(" "),
     _vm._m(0),
     _vm._v(" "),
     _c("button", { on: { click: _vm.toggleTransaction } }, [
@@ -48534,7 +48621,7 @@ function injectStyle (ssrContext) {
   if (disposed) return
   __webpack_require__(72)
 }
-var normalizeComponent = __webpack_require__(12)
+var normalizeComponent = __webpack_require__(4)
 /* script */
 var __vue_script__ = __webpack_require__(74)
 /* template */
@@ -48611,7 +48698,7 @@ exports = module.exports = __webpack_require__(13)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* page title (about) style */\nh1.pageTitle{\n    border-bottom: 2px solid #DED5C7;\n    position: relative;\n    font-size: 80px;\n    color:#DED5C7;\n    margin-left:50px;\n    width:210px;\n    font-weight:normal;\n}\nh1.pageTitle span{\n    position: absolute;\n    font-size: 20px;\n    color:#000;\n    bottom: 40%;\n    left:0;\n}\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* page title (about) style */\nh1.pageTitle{\n    border-bottom: 2px solid #DED5C7;\n    position: relative;\n    font-size: 80px;\n    color:#DED5C7;\n    margin-left:50px;\n    width:210px;\n    font-weight:normal;\n}\nh1.pageTitle span{\n    position: absolute;\n    font-size: 20px;\n    color:#000;\n    bottom: 40%;\n    left:0;\n}\n\n", ""]);
 
 // exports
 
@@ -48622,8 +48709,9 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+//
 //
 //
 //
@@ -48716,7 +48804,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		getData: function getData(stock_id) {
 			var _this = this;
 
-			__WEBPACK_IMPORTED_MODULE_0_axios___default.a.get("/wages/valuation/api/" + stock_id).then(function (response) {
+			__WEBPACK_IMPORTED_MODULE_0_axios___default.a.get("/wages/valuation/api/show/" + stock_id).then(function (response) {
 				console.log('get getData success');
 				_this.stock_fundamental = response.data;
 				var a = response.data.dividends;
@@ -48763,12 +48851,6 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("a", { attrs: { href: "/wages/transaction" } }, [_vm._v("Transaction")]),
-    _vm._v(" | "),
-    _c("a", { attrs: { href: "/wages/watchlist" } }, [_vm._v("Watchlist")]),
-    _vm._v(" | "),
-    _c("a", { attrs: { href: "/wages/valuation" } }, [_vm._v("Valuation")]),
-    _vm._v(" "),
     _vm._m(0),
     _vm._v(" "),
     _c(
@@ -48936,7 +49018,9 @@ var staticRenderFns = [
     return _c("thead", [
       _c("th", [_vm._v("Report Date")]),
       _vm._v(" "),
-      _c("th", [_vm._v("Net Profit")])
+      _c("th", [_vm._v("Net Profit")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("EPS")])
     ])
   },
   function() {
@@ -48972,6 +49056,501 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-6da5097c", module.exports)
+  }
+}
+
+/***/ }),
+/* 76 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(77)
+}
+var normalizeComponent = __webpack_require__(4)
+/* script */
+var __vue_script__ = __webpack_require__(79)
+/* template */
+var __vue_template__ = __webpack_require__(80)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/wages/cash.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-1a6a08fc", Component.options)
+  } else {
+    hotAPI.reload("data-v-1a6a08fc", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 77 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(78);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(14)("2fdcb5f9", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1a6a08fc\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./cash.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1a6a08fc\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./cash.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 78 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(13)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* page title (about) style */\nh1.pageTitle{\n    border-bottom: 2px solid #DED5C7;\n    position: relative;\n    font-size: 80px;\n    color:#DED5C7;\n    margin-left:50px;\n    width:210px;\n    font-weight:normal;\n}\nh1.pageTitle span{\n    position: absolute;\n    font-size: 20px;\n    color:#000;\n    bottom: 40%;\n    left:0;\n}\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 79 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	data: function data() {
+		return {
+			//  v-model declare
+			description: 'book',
+			amount: '20',
+			flowIn: 'Cash In',
+			flowOut: 'Cash Out',
+			bank_id: '',
+			flow: '',
+
+			//  {{ }} declare
+			acc_id: '',
+
+			//  v-for declare
+			bankStatus: [],
+			cashStatus: [],
+
+			//  show/hide declare
+			showCashFlow: false
+		};
+	},
+
+
+	methods: {
+		index: function index() {
+			var _this = this;
+
+			__WEBPACK_IMPORTED_MODULE_0_axios___default.a.get("/wages/cash/api/index").then(function (response) {
+				console.log('index success');
+				_this.bankStatus = response.data;
+			}, function (error) {
+				console.log(error.response);
+			});
+		},
+		getCashStatus: function getCashStatus(bank_id) {
+			var _this2 = this;
+
+			__WEBPACK_IMPORTED_MODULE_0_axios___default.a.get("/wages/cash/api/show/" + bank_id).then(function (response) {
+				console.log('get getCashStatus success');
+				_this2.cashStatus = response.data;
+				_this2.acc_id = bank_id;
+				_this2.showCashFlow = true;
+			}, function (error) {
+				console.log(error.response);
+			});
+		},
+
+		updateCash: function updateCash() {
+			console.log(this.flow);
+			__WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/wages/cash/api/update-cash', {
+				'amount': this.amount,
+				'description': this.description,
+				'bank_id': this.bank_id,
+				'flow': this.flow
+			}).then(function (response) {
+				console.log('updateCash success');
+				console.log(response);
+			}).catch(function (error) {
+				console.log(error.response);
+			});
+			this.index();
+		}
+
+	},
+
+	created: function created() {
+		var _this3 = this;
+
+		__WEBPACK_IMPORTED_MODULE_0_axios___default.a.get("/wages/cash/api/index").then(function (response) {
+			console.log('index success');
+			_this3.bankStatus = response.data;
+		}, function (error) {
+			console.log(error.response);
+		});
+	}
+
+});
+
+/***/ }),
+/* 80 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { attrs: { id: "updateCash" } }, [
+      _c("h2", [_vm._v("Update")]),
+      _vm._v(" "),
+      _c("label", [_vm._v("Bank")]),
+      _vm._v(" "),
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.bank_id,
+              expression: "bank_id"
+            }
+          ],
+          on: {
+            change: function($event) {
+              var $$selectedVal = Array.prototype.filter
+                .call($event.target.options, function(o) {
+                  return o.selected
+                })
+                .map(function(o) {
+                  var val = "_value" in o ? o._value : o.value
+                  return val
+                })
+              _vm.bank_id = $event.target.multiple
+                ? $$selectedVal
+                : $$selectedVal[0]
+            }
+          }
+        },
+        _vm._l(_vm.bankStatus.acc, function(acc) {
+          return _c("option", [_vm._v(_vm._s(acc.id))])
+        })
+      ),
+      _vm._v(" "),
+      _c("label", [_vm._v("Description")]),
+      _vm._v(" "),
+      _c("textarea", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.description,
+            expression: "description"
+          }
+        ],
+        domProps: { value: _vm.description },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.description = $event.target.value
+          }
+        }
+      }),
+      _vm._v(" "),
+      _c("label", [_vm._v("Amount")]),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.amount,
+            expression: "amount"
+          }
+        ],
+        attrs: { type: "text" },
+        domProps: { value: _vm.amount },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.amount = $event.target.value
+          }
+        }
+      }),
+      _vm._v(" "),
+      _c("label", [_vm._v("In / Out")]),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.flow,
+            expression: "flow"
+          }
+        ],
+        attrs: { type: "radio", value: "1" },
+        domProps: { checked: _vm._q(_vm.flow, "1") },
+        on: {
+          change: function($event) {
+            _vm.flow = "1"
+          }
+        }
+      }),
+      _vm._v("Cash In\n\t\t"),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.flow,
+            expression: "flow"
+          }
+        ],
+        attrs: { type: "radio", value: "0" },
+        domProps: { checked: _vm._q(_vm.flow, "0") },
+        on: {
+          change: function($event) {
+            _vm.flow = "0"
+          }
+        }
+      }),
+      _vm._v("Cash Out\n\t\t"),
+      _c("button", { on: { click: _vm.updateCash } }, [_vm._v("Update")])
+    ]),
+    _vm._v(" "),
+    _c("div", { attrs: { id: "bankAccList" } }, [
+      _c("h2", [_vm._v("Bank Status")]),
+      _vm._v(" "),
+      _c("table", [
+        _vm._m(1),
+        _vm._v(" "),
+        _c(
+          "tbody",
+          _vm._l(_vm.bankStatus.acc, function(acc) {
+            return _c("tr", [
+              _c("td", [_vm._v(_vm._s(acc.id))]),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  on: {
+                    click: function($event) {
+                      _vm.getCashStatus(acc.id)
+                    }
+                  }
+                },
+                [_c("td", [_vm._v(_vm._s(acc.bank))])]
+              ),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(acc.owner_name))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(acc.balance))])
+            ])
+          })
+        )
+      ])
+    ]),
+    _vm._v(" "),
+    _vm.showCashFlow
+      ? _c("div", { attrs: { id: "cashFlowList" } }, [
+          _c("h2", [
+            _vm._v("Cash Flow Status in account: " + _vm._s(_vm.acc_id))
+          ]),
+          _vm._v(" "),
+          _c("table", [
+            _vm._m(2),
+            _vm._v(" "),
+            _c(
+              "tbody",
+              _vm._l(_vm.cashStatus, function(cash) {
+                return _c(
+                  "tr",
+                  [
+                    _c("td", [_vm._v(_vm._s(cash.description))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(cash.cash))]),
+                    _vm._v(" "),
+                    cash.flow === 1
+                      ? [_c("td", [_vm._v("In")])]
+                      : [_c("td", [_vm._v("Out")])]
+                  ],
+                  2
+                )
+              })
+            )
+          ])
+        ])
+      : _vm._e()
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h1", { staticClass: "pageTitle" }, [
+      _vm._v("Cash"),
+      _c("span", [_vm._v("CASH")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("th", [_vm._v("Bank Account")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Bank")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Owner")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Balance")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("th", [_vm._v("Description")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Cash")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("In / Out")])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-1a6a08fc", module.exports)
   }
 }
 

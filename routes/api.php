@@ -46,3 +46,5 @@ Route::resource('/wages','wages\HomeController');
 
 
 
+
+
