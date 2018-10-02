@@ -191,6 +191,28 @@ div#ajaxLevel{
     height:10px;
 }
 
+div#jquery{
+    width:100%;
+    background-color: #c8c8c8;
+}
+
+div#jqueryLevel{
+    width:60%;
+    background-color: #937543;
+    height:10px;
+}
+
+div#vue{
+    width:100%;
+    background-color: #c8c8c8;
+}
+
+div#vueLevel{
+    width:30%;
+    background-color: #937543;
+    height:10px;
+}
+
 /* skill level bar style */
 
 
@@ -281,6 +303,10 @@ span.italic{
             <div id="javascript"><div id="javascriptLevel"></div></div>
             <div><h4>AJAX</h4></div>
             <div id="ajax"><div id="ajaxLevel"></div></div>
+            <div><h4>jQuery</h4></div>
+            <div id="jquery"><div id="jqueryLevel"></div></div>
+            <div><h4>VueJS</h4></div>
+            <div id="vue"><div id="vueLevel"></div></div>
             <div><h4>CNC Programming</h4></div>
             <div id="cnc"><div id="cncLevel"></div></div>
             <div><h4>PLC</h4></div>
