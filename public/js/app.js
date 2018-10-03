@@ -47289,9 +47289,7 @@ window.Vue = __webpack_require__(37);
 Vue.component('example-component', __webpack_require__(43));
 // Vue.component('welcome', require('./components/welcome.vue'));
 
-var app = new Vue({
-  el: '#vueTest'
-});
+var app = new Vue({});
 
 /***/ }),
 /* 43 */

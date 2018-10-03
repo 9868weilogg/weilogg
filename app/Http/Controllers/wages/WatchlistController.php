@@ -22,6 +22,19 @@ class WatchlistController extends Controller
         // return $stock->code;
     }
 
+    // API show watchlist VUE
+    // 
+    // 
+
+    public function api_show_watchlist($id)
+    {
+        
+
+        return Watchlist::where('id',$id)->first();
+        
+        // return $stock->code;
+    }
+
     // API add watchlist VUE
     // 
     // 

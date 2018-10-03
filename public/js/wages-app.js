@@ -48698,7 +48698,7 @@ exports = module.exports = __webpack_require__(13)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* page title (about) style */\nh1.pageTitle{\n    border-bottom: 2px solid #DED5C7;\n    position: relative;\n    font-size: 80px;\n    color:#DED5C7;\n    margin-left:50px;\n    width:210px;\n    font-weight:normal;\n}\nh1.pageTitle span{\n    position: absolute;\n    font-size: 20px;\n    color:#000;\n    bottom: 40%;\n    left:0;\n}\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* page title (about) style */\nh1.pageTitle{\n    border-bottom: 2px solid #DED5C7;\n    position: relative;\n    font-size: 80px;\n    color:#DED5C7;\n    margin-left:50px;\n    width:210px;\n    font-weight:normal;\n}\nh1.pageTitle span{\n    position: absolute;\n    font-size: 20px;\n    color:#000;\n    bottom: 40%;\n    left:0;\n}\n\n", ""]);
 
 // exports
 
@@ -48776,6 +48776,135 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -48784,18 +48913,63 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		return {
 			//  v-model declare
 			stockName: '',
-			stock_id: '',
+			stock_id: '9334',
+			fye: '2017',
+			pe: '15.17',
+			net_margin: '13.02',
+			roe: '13.37',
+			gearing: '1.40',
+			gp_cashflow: '2.12',
+			dy: '0.81',
+			bv: '7.6517',
+			revenue: '337988000',
+			eps: 102.30,
+			dps: '12.50',
+			cash_eq: '127576000',
+			stl: '31875000',
+			ltl: '37604000',
+			debt_equity: '0.11',
+			fcf: '-0.02',
+			roa: '9.24',
+			asset_turnover: '0.71',
+			np_gr: '43.38',
+			earning_growth_rate: 1.15,
+			w52h: 0,
+			w52l: 0,
 
 			//  {{ }} declare
-
+			avg_EPS: '',
+			avg_PE: '',
+			avg_DY: '',
+			sumPJE: '',
+			projectedDiv: '',
+			projectedReturn: '',
+			estimatePrice: '',
+			currentIntrinsicValue: '',
+			fairValue: '',
+			currentPrice: '',
+			avg_roe: '',
+			current_roe: '',
+			avg_debt_equity: '',
+			current_debt_equity: '',
+			avg_net_margin: '',
+			current_net_margin: '',
+			avg_gp_cashflow: '',
+			current_gp_cashflow: '',
+			avg_gearing: '',
+			current_gearing: '',
+			eps_gr: '',
 
 			//  v-for declare
 			stocks_code: [],
 			stock_fundamental: [],
+			projectedEPS: [],
 
 			//  show/hide declare
 			showSearch: false,
-			showFundamental: false
+			showFundamental: false,
+			showUploadForm: false,
+			showValuation: false
 		};
 	},
 
@@ -48807,12 +48981,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			__WEBPACK_IMPORTED_MODULE_0_axios___default.a.get("/wages/valuation/api/show/" + stock_id).then(function (response) {
 				console.log('get getData success');
 				_this.stock_fundamental = response.data;
-				var a = response.data.dividends;
-				_this.showFundamental = true;
-				for (var x in a) {
-					if (a[x].paymentDate.includes('2017')) {
-						console.log(a[x].amount);
-					}
+				if (response.data.length == 0) {
+					_this.showUploadForm = true;
+				} else {
+					_this.showFundamental = true;
 				}
 			}, function (error) {
 				console.log(error.response);
@@ -48830,12 +49002,160 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			}, function (error) {
 				console.log(error);
 			});
-			this.showSearch = true;
+			if (stock_id == '') {
+				this.showSearch = false;
+			} else {
+				this.showSearch = true;
+			}
 		},
 
 		returnValue: function returnValue(stock_id) {
 			this.stock_id = stock_id;
 			this.showSearch = false;
+		},
+
+		uploadForm: function uploadForm() {
+			__WEBPACK_IMPORTED_MODULE_0_axios___default.a.post("/wages/valuation/api/upload-fundamental", {
+				'stock_id': this.stock_id,
+				'fye': this.fye,
+				'pe': this.pe,
+				'net_margin': this.net_margin,
+				'roe': this.roe,
+				'gearing': this.gearing,
+				'gp_cashflow': this.gp_cashflow,
+				'dy': this.dy,
+				'revenue': this.revenue,
+				'eps': this.eps,
+				'dps': this.dps,
+				'cash_eq': this.cash_eq,
+				'stl': this.stl,
+				'ltl': this.ltl,
+				'debt_equity': this.debt_equity,
+				'bv': this.bv,
+				'fcf': this.fcf,
+				'roa': this.roa,
+				'asset_turnover': this.asset_turnover,
+				'np_gr': this.np_gr
+			}).then(function (response) {
+				console.log(response.data);
+			}).catch(function (error) {
+				console.log(error.response);
+			});
+
+			this.getData(this.stock_id);
+		},
+
+		toggleValuation: function toggleValuation(stock_id) {
+			if (this.showValuation == true) {
+				this.showValuation = false;
+			} else {
+				this.showValuation = true;
+				this.getValuation(stock_id);
+			}
+		},
+
+		getValuation: function getValuation(stock_id) {
+			var _this3 = this;
+
+			__WEBPACK_IMPORTED_MODULE_0_axios___default.a.get("/wages/valuation/api/show/" + stock_id).then(function (response) {
+				console.log('get getValuation success');
+				var x = response.data;
+				var EPS = [];
+				var PE = [];
+				var DY = [];
+				var aROE = [];
+				var cROE = '';
+				var aDebtEquity = [];
+				var cDebtEquity = '';
+				var aNetMargin = [];
+				var cNetMargin = '';
+				var aGPCashflow = [];
+				var cGPCashflow = '';
+				var aGearing = [];
+				var cGearing = '';
+				var eps_gr = '';
+				var projectedEPS = [];
+				for (var i in x) {
+					EPS[i] = Number(x[i]['EPS']);
+					PE[i] = Number(x[i]['PE']);
+					DY[i] = Number(x[i]['DY']);
+					projectedEPS[0] = Number(x[0]['EPS']);
+					aROE[i] = Number(x[i]['roe']);
+					cROE = Number(x[0]['roe']);
+					aDebtEquity[i] = Number(x[i]['debt_equity']);
+					cDebtEquity = Number(x[0]['debt_equity']);
+					aNetMargin[i] = Number(x[i]['net_margin']);
+					cNetMargin = Number(x[0]['net_margin']);
+					aGPCashflow[i] = Number(x[i]['gp_cashflow']);
+					cGPCashflow = Number(x[0]['gp_cashflow']);
+					aGearing[i] = Number(x[i]['gearing']);
+					cGearing = Number(x[0]['gearing']);
+					eps_gr = (Number(x[0]['net_profit_gr']) - Number(x[4]['net_profit_gr'])) / Number(x[4]['net_profit_gr']) * 100;
+				}
+
+				for (var _i = 0; _i < 5; _i++) {
+					projectedEPS[_i + 1] = projectedEPS[_i] * _this3.earning_growth_rate;
+				}
+				_this3.avg_EPS = Number(_this3.avgArray(EPS)).toFixed(2);
+				_this3.avg_PE = Number(_this3.avgArray(PE)).toFixed(2);
+				_this3.avg_DY = Number(_this3.avgArray(DY)).toFixed(2);
+				_this3.avg_roe = Number(_this3.avgArray(aROE)).toFixed(2);
+				_this3.current_roe = Number(cROE).toFixed(2);
+				_this3.avg_debt_equity = Number(_this3.avgArray(aDebtEquity)).toFixed(2);
+				_this3.current_debt_equity = Number(cDebtEquity).toFixed(2);
+				_this3.avg_net_margin = Number(_this3.avgArray(aNetMargin)).toFixed(2);
+				_this3.current_net_margin = Number(cNetMargin).toFixed(2);
+				_this3.avg_gp_cashflow = Number(_this3.avgArray(aGPCashflow)).toFixed(2);
+				_this3.current_gp_cashflow = Number(cGPCashflow).toFixed(2);
+				_this3.avg_gearing = Number(_this3.avgArray(aGearing)).toFixed(2);
+				_this3.current_gearing = Number(cGearing).toFixed(2);
+				_this3.eps_gr = Number(eps_gr).toFixed(2);
+				_this3.projectedEPS = projectedEPS;
+				_this3.sumPJE = _this3.sumArray(projectedEPS);
+				_this3.projectedDiv = _this3.sumPJE * _this3.avgArray(DY);
+				_this3.projectedReturn = _this3.projectedDiv + _this3.sumPJE;
+				_this3.estimatePrice = _this3.projectedEPS[5] * _this3.avgArray(PE);
+				_this3.currentIntrinsicValue = _this3.estimatePrice / Math.pow(_this3.earning_growth_rate, 5);
+				_this3.getFairValue(stock_id);
+			}, function (error) {
+				console.log(error.response);
+			});
+		},
+
+		sumArray: function sumArray(array) {
+			var sum = 0;
+			for (var i = array.length; i--;) {
+				sum += array[i];
+			}
+			return sum;
+		},
+
+		avgArray: function avgArray(array) {
+			var sum = 0;
+			var avg = 0;
+			for (var i = array.length; i--;) {
+				sum += array[i];
+			}
+			avg = sum / array.length;
+
+			return avg;
+		},
+
+		getFairValue: function getFairValue(stock_id) {
+			var _this4 = this;
+
+			var a = this.currentIntrinsicValue / 100 * 0.75;
+			var b = (this.w52h - this.w52l) * 0.33 + this.w52l;
+			if (a > b) {
+				this.fairValue = b;
+			} else {
+				this.fairValue = a;
+			}
+			__WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/wages/watchlist/api/show-watchlist/' + stock_id).then(function (response) {
+				_this4.currentPrice = response.data.current_price;
+			}, function (error) {
+				console.log(error.response);
+			});
 		}
 
 	}
@@ -48916,86 +49236,808 @@ var render = function() {
       2
     ),
     _vm._v(" "),
-    _vm.showFundamental
-      ? _c("div", { attrs: { id: "stockFundamental" } }, [
-          _c("table", [
-            _vm._m(1),
-            _vm._v(" "),
-            _c(
-              "tbody",
-              _vm._l(_vm.stock_fundamental.fundamental.financials, function(
-                s_f
-              ) {
-                return _c("tr", [
-                  _c("td", [_vm._v(_vm._s(s_f.reportDate))]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(s_f.netIncome))])
-                ])
-              })
-            )
-          ]),
+    _vm.showUploadForm
+      ? _c("div", { attrs: { id: "uploadFundamental" } }, [
+          _c("h2", [_vm._v("Upload Fundamental Data for Analyse")]),
           _vm._v(" "),
           _c("table", [
-            _vm._m(2),
+            _c("tr", [
+              _vm._m(1),
+              _vm._v(" "),
+              _c("td", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.stock_id,
+                      expression: "stock_id"
+                    }
+                  ],
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.stock_id },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.stock_id = $event.target.value
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _vm._m(2),
+              _vm._v(" "),
+              _c("td", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.fye,
+                      expression: "fye"
+                    }
+                  ],
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.fye },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.fye = $event.target.value
+                    }
+                  }
+                })
+              ])
+            ]),
             _vm._v(" "),
-            _c(
-              "tbody",
-              _vm._l(_vm.stock_fundamental.dividends, function(s_f) {
-                return _c("tr", [
-                  _c("td", [_vm._v(_vm._s(s_f.paymentDate))]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(s_f.amount))])
-                ])
-              })
-            )
-          ]),
-          _vm._v(" "),
-          _c("table", [
-            _vm._m(3),
+            _c("tr", [
+              _vm._m(3),
+              _vm._v(" "),
+              _c("td", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.pe,
+                      expression: "pe"
+                    }
+                  ],
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.pe },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.pe = $event.target.value
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _vm._m(4),
+              _vm._v(" "),
+              _c("td", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.net_margin,
+                      expression: "net_margin"
+                    }
+                  ],
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.net_margin },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.net_margin = $event.target.value
+                    }
+                  }
+                })
+              ])
+            ]),
             _vm._v(" "),
-            _c("tbody", [
-              _c("tr", [
-                _c("td", [
-                  _vm._v(
-                    _vm._s(
-                      _vm.stock_fundamental.today_earning.bto.quote.peRatio
-                    )
-                  )
-                ]),
-                _vm._v(" "),
-                _c("td", [
-                  _vm._v(
-                    _vm._s(
-                      _vm.stock_fundamental.today_earning.bto.quote.week52High
-                    )
-                  )
-                ]),
-                _vm._v(" "),
-                _c("td", [
-                  _vm._v(
-                    _vm._s(
-                      _vm.stock_fundamental.today_earning.bto.quote.week52Low
-                    )
-                  )
-                ]),
-                _vm._v(" "),
-                _c("td", [
-                  _vm._v(
-                    _vm._s(
-                      _vm.stock_fundamental.today_earning.bto.quote.marketCap
-                    )
-                  )
-                ]),
-                _vm._v(" "),
-                _c("td", [
-                  _vm._v(
-                    _vm._s(
-                      _vm.stock_fundamental.today_earning.bto.quote.latestPrice
-                    )
-                  )
-                ])
+            _c("tr", [
+              _vm._m(5),
+              _vm._v(" "),
+              _c("td", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.roe,
+                      expression: "roe"
+                    }
+                  ],
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.roe },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.roe = $event.target.value
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _vm._m(6),
+              _vm._v(" "),
+              _c("td", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.gearing,
+                      expression: "gearing"
+                    }
+                  ],
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.gearing },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.gearing = $event.target.value
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _vm._m(7),
+              _vm._v(" "),
+              _c("td", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.gp_cashflow,
+                      expression: "gp_cashflow"
+                    }
+                  ],
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.gp_cashflow },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.gp_cashflow = $event.target.value
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _vm._m(8),
+              _vm._v(" "),
+              _c("td", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.dy,
+                      expression: "dy"
+                    }
+                  ],
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.dy },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.dy = $event.target.value
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _vm._m(9),
+              _vm._v(" "),
+              _c("td", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.revenue,
+                      expression: "revenue"
+                    }
+                  ],
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.revenue },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.revenue = $event.target.value
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _vm._m(10),
+              _vm._v(" "),
+              _c("td", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.eps,
+                      expression: "eps"
+                    }
+                  ],
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.eps },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.eps = $event.target.value
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _vm._m(11),
+              _vm._v(" "),
+              _c("td", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.dps,
+                      expression: "dps"
+                    }
+                  ],
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.dps },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.dps = $event.target.value
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _vm._m(12),
+              _vm._v(" "),
+              _c("td", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.cash_eq,
+                      expression: "cash_eq"
+                    }
+                  ],
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.cash_eq },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.cash_eq = $event.target.value
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _vm._m(13),
+              _vm._v(" "),
+              _c("td", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.stl,
+                      expression: "stl"
+                    }
+                  ],
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.stl },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.stl = $event.target.value
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _vm._m(14),
+              _vm._v(" "),
+              _c("td", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.ltl,
+                      expression: "ltl"
+                    }
+                  ],
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.ltl },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.ltl = $event.target.value
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _vm._m(15),
+              _vm._v(" "),
+              _c("td", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.debt_equity,
+                      expression: "debt_equity"
+                    }
+                  ],
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.debt_equity },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.debt_equity = $event.target.value
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _vm._m(16),
+              _vm._v(" "),
+              _c("td", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.bv,
+                      expression: "bv"
+                    }
+                  ],
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.bv },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.bv = $event.target.value
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _vm._m(17),
+              _vm._v(" "),
+              _c("td", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.fcf,
+                      expression: "fcf"
+                    }
+                  ],
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.fcf },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.fcf = $event.target.value
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _vm._m(18),
+              _vm._v(" "),
+              _c("td", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.roa,
+                      expression: "roa"
+                    }
+                  ],
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.roa },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.roa = $event.target.value
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _vm._m(19),
+              _vm._v(" "),
+              _c("td", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.asset_turnover,
+                      expression: "asset_turnover"
+                    }
+                  ],
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.asset_turnover },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.asset_turnover = $event.target.value
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _vm._m(20),
+              _vm._v(" "),
+              _c("td", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.np_gr,
+                      expression: "np_gr"
+                    }
+                  ],
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.np_gr },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.np_gr = $event.target.value
+                    }
+                  }
+                })
               ])
             ])
+          ]),
+          _vm._v(" "),
+          _c("button", { on: { click: _vm.uploadForm } }, [_vm._v("Upload")])
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.showFundamental
+      ? _c("div", { attrs: { id: "stockFundamental" } }, [
+          _c("h2", [_vm._v("Fundamental Data")]),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              on: {
+                click: function($event) {
+                  _vm.showUploadForm = true
+                }
+              }
+            },
+            [_vm._v("Update Data")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              on: {
+                click: function($event) {
+                  _vm.toggleValuation(_vm.stock_id)
+                }
+              }
+            },
+            [_vm._v("Valuation")]
+          ),
+          _vm._v(" "),
+          _c("table", [
+            _vm._m(21),
+            _vm._v(" "),
+            _c(
+              "tbody",
+              _vm._l(_vm.stock_fundamental, function(s_f) {
+                return _c("tr", [
+                  _c("td", [_vm._v(_vm._s(s_f.FYE))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(s_f.stock_id))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(s_f.PE))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(s_f.DY))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(s_f.EPS))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(s_f.DPS))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(s_f.net_profit_gr))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(s_f.revenue))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(s_f.cash_equivalent))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(s_f.short_term_loan))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(s_f.long_term_loan))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(s_f.book_value))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(s_f.gearing))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(s_f.debt_equity))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(s_f.FCF))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(s_f.gp_cashflow))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(s_f.net_margin))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(s_f.roe))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(s_f.roa))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(s_f.asset_turnover))])
+                ])
+              })
+            )
+          ])
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.showValuation
+      ? _c("div", { attrs: { id: "valuationResult" } }, [
+          _c("h2", [_vm._v("Valuation")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.earning_growth_rate,
+                expression: "earning_growth_rate"
+              }
+            ],
+            attrs: { type: "text" },
+            domProps: { value: _vm.earning_growth_rate },
+            on: {
+              input: [
+                function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.earning_growth_rate = $event.target.value
+                },
+                function($event) {
+                  _vm.getValuation(_vm.stock_id)
+                }
+              ]
+            }
+          }),
+          _vm._v(" "),
+          _c("table", [
+            _vm._m(22),
+            _vm._v(" "),
+            _c(
+              "tbody",
+              [
+                _vm._l(_vm.projectedEPS, function(pje, key) {
+                  return _c("tr", [
+                    _c("td", [_vm._v(_vm._s(key))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(pje))])
+                  ])
+                }),
+                _vm._v(" "),
+                _c("tr", [
+                  _c("td", [_vm._v("Total")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(_vm.sumPJE))])
+                ])
+              ],
+              2
+            )
+          ]),
+          _vm._v(" "),
+          _c("h4", [_vm._v("Intrinsic Value")]),
+          _vm._v(" "),
+          _c("p", [_vm._v("5 yrs average EPS: " + _vm._s(_vm.avg_EPS))]),
+          _vm._v(" "),
+          _c("p", [_vm._v("5 yrs average PE: " + _vm._s(_vm.avg_PE))]),
+          _vm._v(" "),
+          _c("p", [_vm._v("5 yrs average DY: " + _vm._s(_vm.avg_DY))]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v("Total 5Y Projected Dividend: " + _vm._s(_vm.projectedDiv))
+          ]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v("Total 5Y Projected Return: " + _vm._s(_vm.projectedReturn))
+          ]),
+          _vm._v(" "),
+          _c("p", [_vm._v("Estimate Price: " + _vm._s(_vm.estimatePrice))]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              "Current Intrinsic Value: " + _vm._s(_vm.currentIntrinsicValue)
+            )
+          ]),
+          _vm._v(" "),
+          _c("h4", [_vm._v("Fair Value")]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v("52 week High: "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.w52h,
+                  expression: "w52h"
+                }
+              ],
+              attrs: { type: "text" },
+              domProps: { value: _vm.w52h },
+              on: {
+                input: [
+                  function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.w52h = $event.target.value
+                  },
+                  function($event) {
+                    _vm.getValuation(_vm.stock_id)
+                  }
+                ]
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v("52 week Low: "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.w52l,
+                  expression: "w52l"
+                }
+              ],
+              attrs: { type: "text" },
+              domProps: { value: _vm.w52l },
+              on: {
+                input: [
+                  function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.w52l = $event.target.value
+                  },
+                  function($event) {
+                    _vm.getValuation(_vm.stock_id)
+                  }
+                ]
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("p", [_vm._v("Current Price: " + _vm._s(_vm.currentPrice))]),
+          _vm._v(" "),
+          _c("p", [_vm._v("Fair Value: " + _vm._s(_vm.fairValue))]),
+          _vm._v(" "),
+          _c("h4", [_vm._v("Fundamental Analysis")]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              "ROE(>15%): Avg - " +
+                _vm._s(_vm.avg_roe) +
+                " | Current - " +
+                _vm._s(_vm.current_roe)
+            )
+          ]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v("EPS Growth Rate(>15%): " + _vm._s(_vm.eps_gr) + "%")
+          ]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              "Debt/Equity Ratio(<0.5): Avg - " +
+                _vm._s(_vm.avg_debt_equity) +
+                " | Current - " +
+                _vm._s(_vm.current_debt_equity)
+            )
+          ]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              "Net Margin(>15%): Avg - " +
+                _vm._s(_vm.avg_net_margin) +
+                " | Current - " +
+                _vm._s(_vm.current_net_margin)
+            )
+          ]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              "GP Cashflow(>0.88): Avg - " +
+                _vm._s(_vm.avg_gp_cashflow) +
+                " | Current - " +
+                _vm._s(_vm.current_gp_cashflow)
+            )
+          ]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              "Gearing(<1.5): Avg - " +
+                _vm._s(_vm.avg_gearing) +
+                " | Current - " +
+                _vm._s(_vm.current_gearing)
+            )
           ])
         ])
       : _vm._e()
@@ -49015,38 +50057,176 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("th", [_vm._v("Report Date")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Net Profit")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("EPS")])
-    ])
+    return _c("td", [_c("label", [_vm._v("Stock")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [_c("label", [_vm._v("Financial Year End")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [_c("label", [_vm._v("PE ratio")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [_c("label", [_vm._v("Net Margin")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [_c("label", [_vm._v("ROE")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [_c("label", [_vm._v("Gearing Ratio")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [_c("label", [_vm._v("Grandpine Cash Flow")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [_c("label", [_vm._v("Dividend Yield")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [_c("label", [_vm._v("Revenue")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [_c("label", [_vm._v("Earning Per Share")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [_c("label", [_vm._v("Dividend Per Share")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [_c("label", [_vm._v("Cash & Equivalent")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [_c("label", [_vm._v("Short Term Loan")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [_c("label", [_vm._v("Long Term Loan")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [_c("label", [_vm._v("Debt-Equity Ratio")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [_c("label", [_vm._v("Book Value")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [_c("label", [_vm._v("Free Cash Flow")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [_c("label", [_vm._v("ROA")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [_c("label", [_vm._v("Asset Turnover")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [_c("label", [_vm._v("Net Profit Growth Rate")])])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("thead", [
-      _c("th", [_vm._v("Payment Date")]),
+      _c("th", [_vm._v("FYE")]),
       _vm._v(" "),
-      _c("th", [_vm._v("Dividend")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
+      _c("th", [_vm._v("Stock")]),
+      _vm._v(" "),
       _c("th", [_vm._v("PE")]),
       _vm._v(" "),
-      _c("th", [_vm._v("52 Week Low")]),
+      _c("th", [_vm._v("DY")]),
       _vm._v(" "),
-      _c("th", [_vm._v("52 Week High")]),
+      _c("th", [_vm._v("EPS")]),
       _vm._v(" "),
-      _c("th", [_vm._v("Market Cap")]),
+      _c("th", [_vm._v("DPS")]),
       _vm._v(" "),
-      _c("th", [_vm._v("Price")])
+      _c("th", [_vm._v("Net Profit GR")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Revenue")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Cash & Equivalent")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Short Term Loan")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Long Term Loan")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Book Value")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Gearing")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Debt/Equity")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("FCF")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("GP Cashflow")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Net Margin")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("ROE")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("ROA")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Asset Turnover")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("th", [_vm._v("FYE")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("EPS (E)")])
     ])
   }
 ]

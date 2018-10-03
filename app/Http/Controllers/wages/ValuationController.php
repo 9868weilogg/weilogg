@@ -4,6 +4,7 @@ namespace App\Http\Controllers\wages;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\wages\Fundamental;
 
 class ValuationController extends Controller
 {
@@ -55,24 +56,8 @@ class ValuationController extends Controller
      */
     public function show($id)
     {
-        $fundamental_json = file_get_contents("https://api.iextrading.com/1.0/stock/" . $id . "/financials?period=annual");
-        $fundamental_data = json_decode($fundamental_json,true);
-        // $today_earning_json = file_get_contents("https://api.iextrading.com/1.0/stock/" . $id . "/today-earnings");
-        // $today_earning_data = json_decode($today_earning_json,true);
-        // $dividends_json = file_get_contents("https://api.iextrading.com/1.0/stock/" . $id . "/dividends/5y");
-        // $dividends_data = json_decode($dividends_json,true);
-        // $stats_json = file_get_contents("https://api.iextrading.com/1.0/stock/" . $id . "/stats");
-        // $stats_data = json_decode($stats_json,true);
-        // $return[] = array(
-        // 	'fundamental' => $fundamental_data,
-        // 	'today_earning' => $today_earning_data,
-        // 	'dividends' => $dividends_data,
-        //     'stats' => $stats_data,
-        // );
         
-        // return json_encode($return[0]);
-        $return = $fundamental_data['financials'];
-        return json_encode($fundamental_data['financials']);
+        return Fundamental::where('stock_id',$id)->orderBy('FYE','desc')->get();
     }
 
     /**
@@ -124,5 +109,50 @@ class ValuationController extends Controller
     {
         
         return view('wages/wages-valuation');
+    }
+
+    /**
+     * Upload fundamental
+     *
+     * @return Response
+     */
+    public function upload_fundamental(Request $request)
+    {
+        
+        if(Fundamental::where([
+            ['stock_id','=',$request->stock_id],
+            ['FYE','=',$request->fye],
+
+        ])->count() > 0)
+        {
+            return "data exists";
+        }
+        else
+        {
+            Fundamental::create([
+                'stock_id' => $request->stock_id,
+                'FYE' => $request->fye,
+                'PE' => $request->pe,
+                'net_margin' => $request->net_margin,
+                'roe' => $request->roe,
+                'gearing' => $request->gearing,
+                'gp_cashflow' => $request->gp_cashflow,
+                'DY' => $request->dy,
+                'book_value' => $request->bv,
+                'revenue' => $request->revenue,
+                'EPS' => $request->eps,
+                'DPS' => $request->dps,
+                'cash_equivalent' => $request->cash_eq,
+                'short_term_loan' => $request->stl,
+                'long_term_loan' => $request->ltl,
+                'debt_equity' => $request->debt_equity,
+                'FCF' => $request->fcf,
+                'roa' => $request->roa,
+                'asset_turnover' => $request->asset_turnover,
+                'net_profit_gr' => $request->np_gr,
+
+            ]);
+            // return $request->eps;
+        }
     }
 }

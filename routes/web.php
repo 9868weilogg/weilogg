@@ -218,14 +218,16 @@ Route::post('/gateready/admin/filter-tracking-number-ajax', 'gateready\AdminCont
 --------------------
 -------------------------------------**/
 
-/**----------- wages.com homepage ----------------**/
-Route::get('/wages1', 'wages\HomeController@index1');
+
 
 /**----------- wages.com homepage ----------------**/
 Route::post('/wages1', 'wages\HomeController@search');
 
 /**----------- wages.com update price in watchlist ----------------**/
 Route::get('/wages1/update-price', 'wages\HomeController@show_price');
+
+/**----------- wages.com homepage in VUE----------------**/
+Route::get('/wages', 'wages\HomeController@show_wages');
 
 /**----------- wages.com home in VUE ----------------**/
 /**----------- wages.com home API ----------------**/
@@ -235,12 +237,18 @@ Route::get('/wages/api/show-eod/{id}', 'wages\HomeController@api_show_eod');
 Route::get('/wages/valuation', 'wages\ValuationController@show_valuation');
 
 /**----------- wages.com valuation with VUE ----------------**/
-/**----------- wages.com valuation API ----------------**/
+/**----------- wages.com show valuation API ----------------**/
 Route::get('/wages/valuation/api/show/{id}', 'wages\ValuationController@show');
+
+/**----------- wages.com upload fundamental API ----------------**/
+Route::post('/wages/valuation/api/upload-fundamental', 'wages\ValuationController@upload_fundamental');
 
 /**----------- wages.com watchlist with VUE ----------------**/
 /**----------- wages.com index watchlist API ----------------**/
 Route::get('/wages/watchlist/api/index-watchlist', 'wages\WatchlistController@api_index_watchlist');
+
+/**----------- wages.com index watchlist API ----------------**/
+Route::get('/wages/watchlist/api/show-watchlist/{id}', 'wages\WatchlistController@api_show_watchlist');
 
 /**----------- wages.com add watchlist API ----------------**/
 Route::post('/wages/watchlist/api/add-watchlist', 'wages\WatchlistController@api_add_watchlist');

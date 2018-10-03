@@ -19,5 +19,5 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
 // Vue.component('welcome', require('./components/welcome.vue'));
 
 const app = new Vue({
-    el: '#vueTest'
+    
 });
