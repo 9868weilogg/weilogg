@@ -256,6 +256,15 @@ Route::post('/wages/watchlist/api/add-watchlist', 'wages\WatchlistController@api
 /**----------- wages.com delete watchlist API ----------------**/
 Route::delete('/wages/watchlist/api/delete-watchlist/{id}', 'wages\WatchlistController@api_delete_watchlist');
 
+/**----------- wages.com show gis rank API ----------------**/
+Route::get('/wages/watchlist/api/show-gis-rank/{id}', 'wages\WatchlistController@api_show_gis_rank');
+
+/**----------- wages.com compute buffett API ----------------**/
+Route::post('/wages/watchlist/api/compute-buffett', 'wages\WatchlistController@api_compute_buffett');
+
+/**----------- wages.com compute fisher API ----------------**/
+Route::post('/wages/watchlist/api/compute-fisher', 'wages\WatchlistController@api_compute_fisher');
+
 /**----------- wages.com watchlist with VUE ----------------**/
 Route::get('/wages/watchlist', 'wages\WatchlistController@show_watchlist');
 

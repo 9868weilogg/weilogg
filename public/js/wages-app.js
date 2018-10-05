@@ -47738,7 +47738,7 @@ exports = module.exports = __webpack_require__(13)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* page title (about) style */\nh1.pageTitle{\n    border-bottom: 2px solid #DED5C7;\n    position: relative;\n    font-size: 80px;\n    color:#DED5C7;\n    margin-left:50px;\n    width:210px;\n    font-weight:normal;\n}\nh1.pageTitle span{\n    position: absolute;\n    font-size: 20px;\n    color:#000;\n    bottom: 40%;\n    left:0;\n}\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* page title (about) style */\nh1.pageTitle{\n    border-bottom: 2px solid #DED5C7;\n    position: relative;\n    font-size: 80px;\n    color:#DED5C7;\n    margin-left:50px;\n    width:210px;\n    font-weight:normal;\n}\nh1.pageTitle span{\n    position: absolute;\n    font-size: 20px;\n    color:#000;\n    bottom: 40%;\n    left:0;\n}\n\n", ""]);
 
 // exports
 
@@ -47787,6 +47787,153 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -47798,9 +47945,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			unit: '',
 			stock_id: '',
 			buySell: '',
+			ba1: '',
+			ba1_1: '',
+			ba1_2: '',
+			ba1_3: '',
+			ba1_4: '',
+			ba1_5: '',
+			ba2: '',
+			ba3: '',
+			ba4: '',
+			ba5: '',
+			ba6: '',
+			ba7: '',
+			fa1: '',
+			fa2: '',
+			fa3: '',
+			fa4: '',
+			fa5: '',
+			fa6: '',
+			fa7: '',
 
 			//  {{ }} declare
 			conclusion: '',
+			buffettMark: '',
+			fisherMark: '',
 
 			//  v-for declare
 			watchlist: [],
@@ -47808,7 +47976,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 			//  show/hide declare
 			completeUpdate: false,
-			showSearch: false
+			showSearch: false,
+			showBuffett: false,
+			showFisher: false
 		};
 	},
 
@@ -47871,16 +48041,119 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				console.log(error.response);
 			});
 			this.showWatchlist();
+		},
+
+		showApproach: function showApproach(stock_id) {
+			var _this3 = this;
+
+			__WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/wages/watchlist/api/show-gis-rank/' + stock_id).then(function (response) {
+				console.log('showApproach success');
+				if (response.data) {
+					_this3.ba1 = response.data.ba1;
+					_this3.ba1_1 = response.data.ba1_1;
+					_this3.ba1_2 = response.data.ba1_2;
+					_this3.ba1_3 = response.data.ba1_3;
+					_this3.ba1_4 = response.data.ba1_4;
+					_this3.ba1_5 = response.data.ba1_5;
+					_this3.ba2 = response.data.ba2;
+					_this3.ba3 = response.data.ba3;
+					_this3.ba4 = response.data.ba4;
+					_this3.ba5 = response.data.ba5;
+					_this3.ba6 = response.data.ba6;
+					_this3.ba7 = response.data.ba7;
+					_this3.fa1 = response.data.fa1;
+					_this3.fa2 = response.data.fa2;
+					_this3.fa3 = response.data.fa3;
+					_this3.fa4 = response.data.fa4;
+					_this3.fa5 = response.data.fa5;
+					_this3.fa6 = response.data.fa6;
+					_this3.fa7 = response.data.fa7;
+					_this3.buffettMark = response.data.buffettMark;
+					_this3.fisherMark = response.data.fisherMark;
+				} else {
+					_this3.ba1 = 0;
+					_this3.ba1_1 = 0;
+					_this3.ba1_2 = 0;
+					_this3.ba1_3 = 0;
+					_this3.ba1_4 = 0;
+					_this3.ba1_5 = 0;
+					_this3.ba2 = 0;
+					_this3.ba3 = 0;
+					_this3.ba4 = 0;
+					_this3.ba5 = 0;
+					_this3.ba6 = 0;
+					_this3.ba7 = 0;
+					_this3.fa1 = 0;
+					_this3.fa2 = 0;
+					_this3.fa3 = 0;
+					_this3.fa4 = 0;
+					_this3.fa5 = 0;
+					_this3.fa6 = 0;
+					_this3.fa7 = 0;
+					_this3.buffettMark = 0;
+					_this3.fisherMark = 0;
+				}
+			}, function (error) {
+				console.log(error.response);
+			});
+			this.stock_id = stock_id;
+			this.showBuffett = true;
+			this.showFisher = true;
+		},
+
+		computeBuffett: function computeBuffett(stock_id) {
+
+			this.ba1 = (this.ba1_1 || 0) + (this.ba1_2 || 0) + (this.ba1_3 || 0) + (this.ba1_4 || 0) + (this.ba1_5 || 0);
+			this.buffettMark = (this.ba1 || 0) + (this.ba2 || 0) + (this.ba3 || 0) + (this.ba4 || 0) + (this.ba5 || 0) + (this.ba6 || 0) + (this.ba7 || 0);
+			__WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/wages/watchlist/api/compute-buffett', {
+				'stock_id': stock_id,
+				'ba1': this.ba1,
+				'ba1_1': this.ba1_1,
+				'ba1_2': this.ba1_2,
+				'ba1_3': this.ba1_3,
+				'ba1_4': this.ba1_4,
+				'ba1_5': this.ba1_5,
+				'ba2': this.ba2,
+				'ba3': this.ba3,
+				'ba4': this.ba4,
+				'ba5': this.ba5,
+				'ba6': this.ba6,
+				'ba7': this.ba7,
+				'buffettMark': this.buffettMark
+			}).then(function (response) {
+				console.log('buffett success');
+			}).catch(function (error) {
+				console.log(error.response);
+			});
+		},
+
+		computeFisher: function computeFisher(stock_id) {
+			this.fisherMark = (this.fa1 || 0) + (this.fa2 || 0) + (this.fa3 || 0) + (this.fa4 || 0) + (this.fa5 || 0) + (this.fa6 || 0) + (this.fa7 || 0);
+			__WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/wages/watchlist/api/compute-fisher', {
+				'stock_id': stock_id,
+				'fa1': this.fa1,
+				'fa2': this.fa2,
+				'fa3': this.fa3,
+				'fa4': this.fa4,
+				'fa5': this.fa5,
+				'fa6': this.fa6,
+				'fa7': this.fa7,
+				'fisherMark': this.fisherMark
+			}).then(function (response) {
+				console.log('fisher success');
+			}).catch(function (error) {
+				console.log(error.response);
+			});
 		}
 
 	},
 
 	created: function created() {
-		var _this3 = this;
+		var _this4 = this;
 
 		__WEBPACK_IMPORTED_MODULE_0_axios___default.a.get("/wages/watchlist/api/index-watchlist").then(function (response) {
 			console.log('get showWatchlist success');
-			_this3.watchlist = response.data;
+			_this4.watchlist = response.data;
 		}, function (error) {
 			console.log(error);
 		});
@@ -47950,44 +48223,828 @@ var render = function() {
                 )
               ])
             : _vm._e()
-        }),
-        _vm._v(" "),
-        _c("table", [
-          _vm._m(1),
-          _vm._v(" "),
-          _c(
-            "tbody",
-            [
-              _vm.completeUpdate ? _c("tr", [_vm._v("Loading")]) : _vm._e(),
+        })
+      ],
+      2
+    ),
+    _vm._v(" "),
+    _vm.showBuffett
+      ? _c("div", [
+          _c("table", [
+            _c("thead", [
+              _c("th", { attrs: { colspan: "4" } }, [
+                _vm._v("Buffett Approach - " + _vm._s(_vm.buffettMark) + "/35")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("td", [_vm._v("1")]),
               _vm._v(" "),
-              _vm._l(_vm.watchlist, function(stock) {
-                return _c("tr", [
-                  _c("td", [_vm._v(_vm._s(stock.id))]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(stock.name))]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(stock.current_price))]),
-                  _vm._v(" "),
+              _c("td", [_vm._v("Business Sexiness")]),
+              _vm._v(" "),
+              _c("td"),
+              _vm._v(" "),
+              _c("td", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model.number",
+                      value: _vm.ba1,
+                      expression: "ba1",
+                      modifiers: { number: true }
+                    }
+                  ],
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.ba1 },
+                  on: {
+                    input: [
+                      function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.ba1 = _vm._n($event.target.value)
+                      },
+                      function($event) {
+                        _vm.computeBuffett(_vm.stock_id)
+                      }
+                    ],
+                    blur: function($event) {
+                      _vm.$forceUpdate()
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("td"),
+              _vm._v(" "),
+              _c("td", [_vm._v("Supplier No.")]),
+              _vm._v(" "),
+              _c("td", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model.number",
+                      value: _vm.ba1_1,
+                      expression: "ba1_1",
+                      modifiers: { number: true }
+                    }
+                  ],
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.ba1_1 },
+                  on: {
+                    input: [
+                      function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.ba1_1 = _vm._n($event.target.value)
+                      },
+                      function($event) {
+                        _vm.computeBuffett(_vm.stock_id)
+                      }
+                    ],
+                    blur: function($event) {
+                      _vm.$forceUpdate()
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("td")
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("td"),
+              _vm._v(" "),
+              _c("td", [_vm._v("Customer Choices")]),
+              _vm._v(" "),
+              _c("td", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model.number",
+                      value: _vm.ba1_2,
+                      expression: "ba1_2",
+                      modifiers: { number: true }
+                    }
+                  ],
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.ba1_2 },
+                  on: {
+                    input: [
+                      function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.ba1_2 = _vm._n($event.target.value)
+                      },
+                      function($event) {
+                        _vm.computeBuffett(_vm.stock_id)
+                      }
+                    ],
+                    blur: function($event) {
+                      _vm.$forceUpdate()
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("td")
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("td"),
+              _vm._v(" "),
+              _c("td", [_vm._v("Barrier of Entry")]),
+              _vm._v(" "),
+              _c("td", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model.number",
+                      value: _vm.ba1_3,
+                      expression: "ba1_3",
+                      modifiers: { number: true }
+                    }
+                  ],
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.ba1_3 },
+                  on: {
+                    input: [
+                      function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.ba1_3 = _vm._n($event.target.value)
+                      },
+                      function($event) {
+                        _vm.computeBuffett(_vm.stock_id)
+                      }
+                    ],
+                    blur: function($event) {
+                      _vm.$forceUpdate()
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("td")
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("td"),
+              _vm._v(" "),
+              _c("td", [_vm._v("Substitute")]),
+              _vm._v(" "),
+              _c("td", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model.number",
+                      value: _vm.ba1_4,
+                      expression: "ba1_4",
+                      modifiers: { number: true }
+                    }
+                  ],
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.ba1_4 },
+                  on: {
+                    input: [
+                      function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.ba1_4 = _vm._n($event.target.value)
+                      },
+                      function($event) {
+                        _vm.computeBuffett(_vm.stock_id)
+                      }
+                    ],
+                    blur: function($event) {
+                      _vm.$forceUpdate()
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("td")
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("td"),
+              _vm._v(" "),
+              _c("td", [_vm._v("Competition No.")]),
+              _vm._v(" "),
+              _c("td", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model.number",
+                      value: _vm.ba1_5,
+                      expression: "ba1_5",
+                      modifiers: { number: true }
+                    }
+                  ],
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.ba1_5 },
+                  on: {
+                    input: [
+                      function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.ba1_5 = _vm._n($event.target.value)
+                      },
+                      function($event) {
+                        _vm.computeBuffett(_vm.stock_id)
+                      }
+                    ],
+                    blur: function($event) {
+                      _vm.$forceUpdate()
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("td")
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("td", [_vm._v("2")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("Competitiveness(1st/2nd)")]),
+              _vm._v(" "),
+              _c("td"),
+              _vm._v(" "),
+              _c("td", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model.number",
+                      value: _vm.ba2,
+                      expression: "ba2",
+                      modifiers: { number: true }
+                    }
+                  ],
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.ba2 },
+                  on: {
+                    input: [
+                      function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.ba2 = _vm._n($event.target.value)
+                      },
+                      function($event) {
+                        _vm.computeBuffett(_vm.stock_id)
+                      }
+                    ],
+                    blur: function($event) {
+                      _vm.$forceUpdate()
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("td", [_vm._v("3")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("FPE<25")]),
+              _vm._v(" "),
+              _c("td"),
+              _vm._v(" "),
+              _c("td", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model.number",
+                      value: _vm.ba3,
+                      expression: "ba3",
+                      modifiers: { number: true }
+                    }
+                  ],
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.ba3 },
+                  on: {
+                    input: [
+                      function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.ba3 = _vm._n($event.target.value)
+                      },
+                      function($event) {
+                        _vm.computeBuffett(_vm.stock_id)
+                      }
+                    ],
+                    blur: function($event) {
+                      _vm.$forceUpdate()
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("td", [_vm._v("4")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("Gearing<1.5")]),
+              _vm._v(" "),
+              _c("td"),
+              _vm._v(" "),
+              _c("td", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model.number",
+                      value: _vm.ba4,
+                      expression: "ba4",
+                      modifiers: { number: true }
+                    }
+                  ],
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.ba4 },
+                  on: {
+                    input: [
+                      function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.ba4 = _vm._n($event.target.value)
+                      },
+                      function($event) {
+                        _vm.computeBuffett(_vm.stock_id)
+                      }
+                    ],
+                    blur: function($event) {
+                      _vm.$forceUpdate()
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("td", [_vm._v("5")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("GP Cashflow>0.8")]),
+              _vm._v(" "),
+              _c("td"),
+              _vm._v(" "),
+              _c("td", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model.number",
+                      value: _vm.ba5,
+                      expression: "ba5",
+                      modifiers: { number: true }
+                    }
+                  ],
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.ba5 },
+                  on: {
+                    input: [
+                      function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.ba5 = _vm._n($event.target.value)
+                      },
+                      function($event) {
+                        _vm.computeBuffett(_vm.stock_id)
+                      }
+                    ],
+                    blur: function($event) {
+                      _vm.$forceUpdate()
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("td", [_vm._v("6")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("Good Will")]),
+              _vm._v(" "),
+              _c("td"),
+              _vm._v(" "),
+              _c("td", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model.number",
+                      value: _vm.ba6,
+                      expression: "ba6",
+                      modifiers: { number: true }
+                    }
+                  ],
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.ba6 },
+                  on: {
+                    input: [
+                      function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.ba6 = _vm._n($event.target.value)
+                      },
+                      function($event) {
+                        _vm.computeBuffett(_vm.stock_id)
+                      }
+                    ],
+                    blur: function($event) {
+                      _vm.$forceUpdate()
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("td", [_vm._v("7")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("Customer Loyalty")]),
+              _vm._v(" "),
+              _c("td"),
+              _vm._v(" "),
+              _c("td", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model.number",
+                      value: _vm.ba7,
+                      expression: "ba7",
+                      modifiers: { number: true }
+                    }
+                  ],
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.ba7 },
+                  on: {
+                    input: [
+                      function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.ba7 = _vm._n($event.target.value)
+                      },
+                      function($event) {
+                        _vm.computeBuffett(_vm.stock_id)
+                      }
+                    ],
+                    blur: function($event) {
+                      _vm.$forceUpdate()
+                    }
+                  }
+                })
+              ])
+            ])
+          ])
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.showFisher
+      ? _c("div", [
+          _c("table", [
+            _c("thead", [
+              _c("th", { attrs: { colspan: "3" } }, [
+                _vm._v("Fisher Approach - " + _vm._s(_vm.fisherMark) + "/35")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("td", [_vm._v("1")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("Future Grow Opportunity")]),
+              _vm._v(" "),
+              _c("td", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model.number",
+                      value: _vm.fa1,
+                      expression: "fa1",
+                      modifiers: { number: true }
+                    }
+                  ],
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.fa1 },
+                  on: {
+                    input: [
+                      function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.fa1 = _vm._n($event.target.value)
+                      },
+                      function($event) {
+                        _vm.computeFisher(_vm.stock_id)
+                      }
+                    ],
+                    blur: function($event) {
+                      _vm.$forceUpdate()
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("td", [_vm._v("2")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("Competitiveness(1st/2nd)")]),
+              _vm._v(" "),
+              _c("td", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model.number",
+                      value: _vm.fa2,
+                      expression: "fa2",
+                      modifiers: { number: true }
+                    }
+                  ],
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.fa2 },
+                  on: {
+                    input: [
+                      function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.fa2 = _vm._n($event.target.value)
+                      },
+                      function($event) {
+                        _vm.computeFisher(_vm.stock_id)
+                      }
+                    ],
+                    blur: function($event) {
+                      _vm.$forceUpdate()
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("td", [_vm._v("3")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("Net Margin>15")]),
+              _vm._v(" "),
+              _c("td", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model.number",
+                      value: _vm.fa3,
+                      expression: "fa3",
+                      modifiers: { number: true }
+                    }
+                  ],
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.fa3 },
+                  on: {
+                    input: [
+                      function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.fa3 = _vm._n($event.target.value)
+                      },
+                      function($event) {
+                        _vm.computeFisher(_vm.stock_id)
+                      }
+                    ],
+                    blur: function($event) {
+                      _vm.$forceUpdate()
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("td", [_vm._v("4")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("GP Cashflow>0.8")]),
+              _vm._v(" "),
+              _c("td", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model.number",
+                      value: _vm.fa4,
+                      expression: "fa4",
+                      modifiers: { number: true }
+                    }
+                  ],
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.fa4 },
+                  on: {
+                    input: [
+                      function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.fa4 = _vm._n($event.target.value)
+                      },
+                      function($event) {
+                        _vm.computeFisher(_vm.stock_id)
+                      }
+                    ],
+                    blur: function($event) {
+                      _vm.$forceUpdate()
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("td", [_vm._v("5")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("Marginal Cost (R&D Important)")]),
+              _vm._v(" "),
+              _c("td", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model.number",
+                      value: _vm.fa5,
+                      expression: "fa5",
+                      modifiers: { number: true }
+                    }
+                  ],
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.fa5 },
+                  on: {
+                    input: [
+                      function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.fa5 = _vm._n($event.target.value)
+                      },
+                      function($event) {
+                        _vm.computeFisher(_vm.stock_id)
+                      }
+                    ],
+                    blur: function($event) {
+                      _vm.$forceUpdate()
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("td", [_vm._v("6")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("Leadership")]),
+              _vm._v(" "),
+              _c("td", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model.number",
+                      value: _vm.fa6,
+                      expression: "fa6",
+                      modifiers: { number: true }
+                    }
+                  ],
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.fa6 },
+                  on: {
+                    input: [
+                      function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.fa6 = _vm._n($event.target.value)
+                      },
+                      function($event) {
+                        _vm.computeFisher(_vm.stock_id)
+                      }
+                    ],
+                    blur: function($event) {
+                      _vm.$forceUpdate()
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("td", [_vm._v("7")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("Talent")]),
+              _vm._v(" "),
+              _c("td", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model.number",
+                      value: _vm.fa7,
+                      expression: "fa7",
+                      modifiers: { number: true }
+                    }
+                  ],
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.fa7 },
+                  on: {
+                    input: [
+                      function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.fa7 = _vm._n($event.target.value)
+                      },
+                      function($event) {
+                        _vm.computeFisher(_vm.stock_id)
+                      }
+                    ],
+                    blur: function($event) {
+                      _vm.$forceUpdate()
+                    }
+                  }
+                })
+              ])
+            ])
+          ])
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _c("div", [
+      _c("table", [
+        _vm._m(1),
+        _vm._v(" "),
+        _c(
+          "tbody",
+          [
+            _vm.completeUpdate ? _c("tr", [_vm._v("Loading")]) : _vm._e(),
+            _vm._v(" "),
+            _vm._l(_vm.watchlist, function(stock) {
+              return _c("tr", [
+                _c("td", [_vm._v(_vm._s(stock.id))]),
+                _vm._v(" "),
+                _c("td", [
                   _c(
-                    "button",
+                    "a",
                     {
                       on: {
                         click: function($event) {
-                          _vm.deleteWatchStock(stock.id)
+                          _vm.showApproach(stock.id)
                         }
                       }
                     },
-                    [_vm._v("Delete")]
+                    [_vm._v(_vm._s(stock.name))]
                   )
-                ])
-              })
-            ],
-            2
-          )
-        ])
-      ],
-      2
-    )
+                ]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(stock.current_price))]),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    on: {
+                      click: function($event) {
+                        _vm.deleteWatchStock(stock.id)
+                      }
+                    }
+                  },
+                  [_vm._v("Delete")]
+                )
+              ])
+            })
+          ],
+          2
+        )
+      ])
+    ])
   ])
 }
 var staticRenderFns = [

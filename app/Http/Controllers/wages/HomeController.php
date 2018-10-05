@@ -188,7 +188,7 @@ class HomeController extends Controller
                 sleep(30);
             }
             
-
+            // echo $stock->id.'\n\n\n';
         }
         return "EOD update complete"; 
        
