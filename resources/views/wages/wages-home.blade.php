@@ -5,161 +5,26 @@ Home
 @endsection
 
 @section('css-code')
+
 <style>
+/* page title (about) style */
 
-
-
-div.cover{
-    position:relative;
-    background-image: url('{{asset('image/weilogg/OBCCB40.jpg')}}');
-    background-position:  center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    width:100%;
-    height:600px;
-    margin:0;
-    padding: 0;
-    background-color:#ECECEC;
+h1.pageTitle{
+    border-bottom: 2px solid #DED5C7;
+    position: relative;
+    font-size: 80px;
+    color:#DED5C7;
+    margin-left:50px;
+    width:210px;
+    font-weight:normal;
 }
 
-h1.jumbo{
-    
-    position:absolute;
-    width: 400px;
-    padding: 0;
-    text-align: center;
-    top:30%;
-    left:30%;
-}
-
-button.jumbo{
-    position:absolute;
-    width: 300px;
-    text-align: center;
-    top:50%;
-    left:35%;
-    border:2px solid #533F2F;
-    color:#533F2F;
-    padding: 10px 10px;
-    background-color: #CEBFB2;
-}
-
-button.jumbo:hover{
-    background-color: transparent;
-}
-
-div.what-is-gateready, div.how-it-works , div.what-does-gateready-help , div.pricing-and-rewards{
-    background-color: #ECECEC;
-    padding-bottom: 5%;
-}
-
-
-div.how-it-works h1 , div.what-does-gateready-help h1  , div.pricing-and-rewards h1 ,div.what-is-gateready h1 {
-    text-align: center;
-    padding:2% 1%;
-    font-size: 30px;
-}
-
-div.how-it-works h2, div.what-does-gateready-help h2 , div.pricing-and-rewards h2  {
-    text-align: center;
-    padding:2% 1%;
+h1.pageTitle span{
+    position: absolute;
     font-size: 20px;
-    height:15%;
-    color:#533F2F;
-}
-
-div.how-it-works p, div.what-does-gateready-help p, div.pricing-and-rewards p , div.what-is-gateready p{
-    text-align: center;
-    padding:2% 1%;
-    font-size: 14px;
-    margin:30px 30px;
-}
-
-div.what-is-gateready a , div.how-it-works a , div.what-does-gateready-help a , a.button-pricing-and-rewards{
-    
-    width: 300px;
-    text-align: center;
-    /*margin:20px auto;*/
-    border:2px solid #533F2F;
-    color:#533F2F;
-    padding: 10px 10px;
-    background-color: #CEBFB2;
-    height:50px;
-}
-
-.center-block{
-    display:flex;
-    justify-content: center;
-}
-
-
-i.fa-shopping-bag,i.fa-smile-o,i.fa-money,i.fa-clock-o,i.fa-edit,i.fa-calendar,i.fa-truck{
-    font-size: 80px;
-    position: relative;
-    margin:0 auto 0 auto;
-    color:#533F2F;
-    height:100px;
-    padding:0 auto;
-}
-
-i.fa-gift,i.fa-credit-card{
-    font-size: 80px;
-    position: relative;
-    margin:0 auto 0 auto;
-    color:#594B96;
-    height:100px;
-    padding:0 auto;
-}
-
-i.fa-edit,i.fa-calendar,i.fa-truck{
-    font-size: 80px;
-    position: relative;
-    margin:0 auto 0 auto;
-    color:#606060;
-    height:100px;
-    padding:0 auto;
-}
-
-.tnc{
-    font-size: 10px;
-    margin:10px;
-    padding:0;
-    width: 100%
-}
-
-@media screen and (max-width: 600px){
-    /*div.cover{
-        position:relative;
-        background-image: url('{{asset('image/weilogg/OBCCB40.jpg')}}');
-        background-position:  center;
-        background-size: cover;
-        background-repeat: no-repeat;
-        width:100%;
-        height:600px;
-        margin:0;
-        padding: 0;
-        background-color:#ECECEC;
-    }*/
-
-    h1.jumbo{
-        font-size: 24px;
-        position:absolute;
-        width: 200px;
-        text-align: center;
-        top:30%;
-        left:30%;
-    }
-
-    button.jumbo{
-        position:absolute;
-        width: 200px;
-        top:40%;
-        left:30%;
-        font-size: 14px;
-    }
-
-    button.jumbo:hover{
-        background-color: transparent;
+    color:#000;
+    bottom: 40%;
+    left:0;
 }
 
 </style>
@@ -169,122 +34,11 @@ i.fa-edit,i.fa-calendar,i.fa-truck{
 
 <meta id="token" name="csrf-token" content="{{ csrf_token() }}">
 
-<script type="text/javascript">
-    //  update watchlist once load page
-    // $(document).ready(function(){
-    //     var rowCount = $('table tbody tr').length;
-    //     console.log(rowCount);
-        
-    //     // console.log(stockId);
-    //     var i;
-    //     for(i=0 ; i<rowCount ; i++)
-    //     {
-            
-    //         // console.log(stockId);
-    //         (function(i){
-                
-    //             var stockId = $('table').find('tbody tr').eq(i).children().first().attr('id');
 
-    //             $.ajaxSetup({
-    //               headers: {
-    //                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    //               }
-    //             });
-    //             $.ajax({
-    //                 async:false,
-    //                 url:'/wages/update-price',
-    //                 type:'get',
-    //                 data:{'id' : stockId},
-    //                 beforeSend:function(xhr){
-    //                     xhr.setRequestHeader('X-CSRF-TOKEN', $("#token").attr('content'));
-    //                     $('table').find('tbody tr').eq(i).children().last().html('-');
-    //                     console.log("before");
-    //                 },
-    //                 success:function(data){
-    //                     $('table').find('tbody tr').eq(i).children().last().html(data.html);
-    //                     console.log(i);
-                        
-    //                 },
-    //             });
-                
-    //         })(i);
-            
-            
-    //     }
-        
-    // })
-
-    
-// $(document).ready(function(){
-//     $(form).on('submit','#searchBtn',function(e){
-    
-//         e.preventDefault();
-        
-//         var stockKey = $('input[name="stock_key"]').val();
-//         console.log(stockKey);
-
-//         $.ajaxSetup({
-//           headers: {
-//             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-//           }
-//         });
-//         $.ajax({
-//             url:'/wages',
-//             type:'post',
-//             data:{'stock_key' : stockKey},
-//             beforeSend:function(){
-//                 $('#searchTable').html('');
-//             },
-//             success:function(data){
-//                 $('#searchTable').html(data.html);
-//             },
-//         });
-//     });
-// })
-
-    
-
-</script>
 @endsection
 
 @section('content')
-<div class="container-fluid">
-
-    <form method="post" action="/wages">
-        @csrf
-        <label>Stock Key</label>
-        <input type="text" name="stock_key" value="1155.kl">
-        <button id="searchBtn" type="submit">Submit</button>
-    </form>
-
-    <div id="searchTable"></div>
-    <div class="watchlist">
-        <h3>Watchlist</h3>
-        <table class="table table-striped">
-            <thead>
-                <th>Stock Name</th>
-                <th>Current Price</th>
-            </thead>
-            <tbody>
-                @foreach($stocks as $stock)
-                <tr>
-                    <td id="{{$stock->id}}">{{$stock->name}} ({{$stock->id}})</td>
-                    <td>-</td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
-
-    <div id="vueTest">
-        <welcome :title="'{{$title}}'" :author="'{{$author}}'"></welcome>
-    </div>
-
-</div>
-
-
-
-
+<div id="wagesApp"></div>
 
 @endsection
 

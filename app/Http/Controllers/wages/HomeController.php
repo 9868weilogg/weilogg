@@ -195,4 +195,15 @@ class HomeController extends Controller
 
 
     }
+
+    /**
+     * show wages homepage
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function show_wages()
+    {
+        return view('wages/wages-home');
+    }
 }

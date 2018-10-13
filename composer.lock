@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d0c9c484e295c2ba202dfe6a3061cf0f",
-    "content-hash": "d660b1acf457d742342f328dac81db5b",
+    "hash": "76c4de59be49dd039fdb8500a5271ceb",
+    "content-hash": "6af4b163356f0fb9a27d769d6543cb77",
     "packages": [
         {
             "name": "barryvdh/laravel-dompdf",
@@ -860,6 +860,55 @@
             "time": "2018-08-22 07:45:22"
         },
         {
+            "name": "marochmielo/php-html-parser-fix",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/marochmielo/php-html-parser-fix.git",
+                "reference": "6d44fd3f64496217289d7ce3fc04a9f378482467"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/marochmielo/php-html-parser-fix/zipball/6d44fd3f64496217289d7ce3fc04a9f378482467",
+                "reference": "6d44fd3f64496217289d7ce3fc04a9f378482467",
+                "shasum": ""
+            },
+            "require": {
+                "paquettg/string-encode": "~0.1.0",
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "mockery/mockery": "~0.9.0",
+                "phpunit/phpunit": "~5.3.0",
+                "satooshi/php-coveralls": "~1.0.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "PHPHtmlParser": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Gilles Paquette",
+                    "email": "paquettg@gmail.com",
+                    "homepage": "http://gillespaquette.ca"
+                }
+            ],
+            "description": "https://github.com/paquettg/php-html-parser with fix from @Mehrdad-Dadkhah that supports php7.2",
+            "homepage": "https://github.com/paquettg/php-html-parser",
+            "keywords": [
+                "dom",
+                "html",
+                "parser"
+            ],
+            "time": "2018-03-12 09:01:35"
+        },
+        {
             "name": "monolog/monolog",
             "version": "1.23.0",
             "source": {
@@ -1042,6 +1091,52 @@
                 "php"
             ],
             "time": "2018-07-15 17:25:16"
+        },
+        {
+            "name": "paquettg/string-encode",
+            "version": "0.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/paquettg/string-encoder.git",
+                "reference": "cf08343649701979f581c1601d01247fa3782439"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/paquettg/string-encoder/zipball/cf08343649701979f581c1601d01247fa3782439",
+                "reference": "cf08343649701979f581c1601d01247fa3782439",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "stringEncode": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Gilles Paquette",
+                    "email": "paquettg@gmail.com",
+                    "homepage": "http://gillespaquette.ca"
+                }
+            ],
+            "description": "Facilitating the process of altering string encoding in PHP.",
+            "homepage": "https://github.com/paquettg/string-encoder",
+            "keywords": [
+                "charset",
+                "encoding",
+                "string"
+            ],
+            "time": "2014-05-29 18:38:09"
         },
         {
             "name": "paragonie/random_compat",
@@ -4296,7 +4391,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "marochmielo/php-html-parser-fix": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

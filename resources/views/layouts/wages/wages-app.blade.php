@@ -30,6 +30,10 @@
     <!-- Vue.js cdn -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script> -->
 
+    <!-- react.js cdn -->
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
     <!-- Font Awesome 4.7-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     
@@ -332,8 +336,8 @@
       </footer>
       <!-- Footer -->
 
-
-
+<!-- mix react js components -->
+<script src="{{asset('js/wages-app.js')}}"></script>
 </body>
 
 </html>
