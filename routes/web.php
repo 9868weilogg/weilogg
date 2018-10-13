@@ -226,7 +226,7 @@ Route::post('/wages1', 'wages\HomeController@search');
 /**----------- wages.com update price in watchlist ----------------**/
 Route::get('/wages1/update-price', 'wages\HomeController@show_price');
 
-/**----------- wages.com homepage in VUE----------------**/
+/**----------- wages.com homepage view ----------------**/
 Route::get('/wages', 'wages\HomeController@show_wages');
 
 /**----------- wages.com home in VUE ----------------**/
@@ -280,7 +280,7 @@ Route::get('/wages/transaction/api', 'wages\TransactionController@api_show_trans
 /**----------- wages.com cash with VUE ----------------**/
 /**----------- wages.com cash API ----------------**/
 Route::get('/wages/cash/api/index', 'wages\CashController@index');
-Route::get('/wages/cash/api/show/{id}', 'wages\CashController@show');
+Route::get('/wages/cash/api/show-bank-cash/{field}/{value}', 'wages\CashController@show_bank_cash');
 Route::post('/wages/cash/api/update-cash', 'wages\CashController@update_cash');
 
 /**----------- wages.com cash with VUE ----------------**/
@@ -293,6 +293,12 @@ Route::get('/wages/cash', 'wages\CashController@show_cash');
 **/
 Route::get('/wages/eod', 'wages\HomeController@eod_insert');
 
+/**
+**
+**  crawler testing (tutorial get data in a page)
+**
+**/
+Route::get('/check-quotes','wages\WatchlistController@get_quotes');
 
 
 
@@ -313,4 +319,20 @@ Route::get('/test',function(){
 
 	return response()->json(['html' => $view]);
 });
+
+/**
+**
+**  crawler testing (tutorial get links in a page)
+**
+**/
+Route::get('/crawler','wages\WatchlistController@crawler');
+
+
+/**test**/
+Route::get('/testing',function(){
+    return view('test');
+});
+
+Route::post('/testing/a','TestController@test2');
+
 

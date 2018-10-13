@@ -3,6 +3,7 @@
 namespace App\wages;
 
 use Illuminate\Database\Eloquent\Model;
+use App\wages\Cash;
 
 class BankAccount extends Model
 {
@@ -11,4 +12,8 @@ class BankAccount extends Model
     protected $fillable = [
 		'id','owner_name','bank','balance',
 	];
+
+	public function cash(){
+		return $this->hasMany('App\wages\Cash');
+	}
 }
