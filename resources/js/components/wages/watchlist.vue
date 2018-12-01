@@ -19,84 +19,18 @@
 		*
 		-->
 		<div v-if="showBuffett">
-			<table>
-				<thead>
-					<th colspan="4">Buffett Approach - {{buffettMark}}/35</th>
-
-				</thead>
-				<tr>
-					<td>1</td>
-					<td>Business Sexiness</td>
-					<td></td>
-					<td><input type="text" v-model.number="ba1" v-on:input="computeBuffett(stock_id)"></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td>Supplier No.</td>
-					<td><input type="text" v-model.number="ba1_1" v-on:input="computeBuffett(stock_id)"></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td>Customer Choices</td>
-					<td><input type="text" v-model.number="ba1_2" v-on:input="computeBuffett(stock_id)"></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td>Barrier of Entry</td>
-					<td><input type="text" v-model.number="ba1_3" v-on:input="computeBuffett(stock_id)"></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td>Substitute</td>
-					<td><input type="text" v-model.number="ba1_4" v-on:input="computeBuffett(stock_id)"></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td>Competition No.</td>
-					<td><input type="text" v-model.number="ba1_5" v-on:input="computeBuffett(stock_id)"></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>2</td>
-					<td>Competitiveness(1st/2nd)</td>
-					<td></td>
-					<td><input type="text" v-model.number="ba2" v-on:input="computeBuffett(stock_id)"></td>
-				</tr>
-				<tr>
-					<td>3</td>
-					<td>FPE<25</td>
-					<td></td>
-					<td><input type="text" v-model.number="ba3" v-on:input="computeBuffett(stock_id)"></td>
-				</tr>
-				<tr>
-					<td>4</td>
-					<td>Gearing<1.5</td>
-					<td></td>
-					<td><input type="text" v-model.number="ba4" v-on:input="computeBuffett(stock_id)"></td>
-				</tr>
-				<tr>
-					<td>5</td>
-					<td>GP Cashflow>0.8</td>
-					<td></td>
-					<td><input type="text" v-model.number="ba5" v-on:input="computeBuffett(stock_id)"></td>
-				</tr>
-				<tr>
-					<td>6</td>
-					<td>Good Will</td>
-					<td></td>
-					<td><input type="text" v-model.number="ba6" v-on:input="computeBuffett(stock_id)"></td>
-				</tr>
-				<tr>
-					<td>7</td>
-					<td>Customer Loyalty</td>
-					<td></td>
-					<td><input type="text" v-model.number="ba7" v-on:input="computeBuffett(stock_id)"></td>
-				</tr>
-			</table>
+			<h3>Buffett Approach</h3>
+			<b-table bordered small :items="itemBuffett" >
+				<template slot="b4" slot-scope="row">
+					<b-form-input size="sm" v-model="row.item.b4" v-on:input="computeBuffett(stock_id)"></b-form-input>
+				</template>
+				<template slot="b3" slot-scope="row">	
+					<b-form-input size="sm" v-model="row.item.b3" v-on:input="computeFisher(stock_id)"></b-form-input>
+				</template>
+				<template slot="table-caption">
+					Buffett Approach Mark : {{buffettMark}}
+				</template>
+			</b-table>
 		</div>
 		<!-- 
 		*
@@ -106,48 +40,17 @@
 		*
 		-->
 		<div v-if="showFisher">
-			<table>
-				<thead>
-					<th colspan="3">Fisher Approach - {{fisherMark}}/35</th>
-					
-				</thead>
-				<tr>
-					<td>1</td>
-					<td>Future Grow Opportunity</td>
-					<td><input type="text" v-model.number="fa1" v-on:input="computeFisher(stock_id)"></td>
-				</tr>
+			<h3>Fisher Approach</h3>
+			<b-table bordered small :items="itemFisher" >
 				
-				<tr>
-					<td>2</td>
-					<td>Competitiveness(1st/2nd)</td>
-					<td><input type="text" v-model.number="fa2" v-on:input="computeFisher(stock_id)"></td>
-				</tr>
-				<tr>
-					<td>3</td>
-					<td>Net Margin>15</td>
-					<td><input type="text" v-model.number="fa3" v-on:input="computeFisher(stock_id)"></td>
-				</tr>
-				<tr>
-					<td>4</td>
-					<td>GP Cashflow>0.8</td>
-					<td><input type="text" v-model.number="fa4" v-on:input="computeFisher(stock_id)"></td>
-				</tr>
-				<tr>
-					<td>5</td>
-					<td>Marginal Cost (R&D Important)</td>
-					<td><input type="text" v-model.number="fa5" v-on:input="computeFisher(stock_id)"></td>
-				</tr>
-				<tr>
-					<td>6</td>
-					<td>Leadership</td>
-					<td><input type="text" v-model.number="fa6" v-on:input="computeFisher(stock_id)"></td>
-				</tr>
-				<tr>
-					<td>7</td>
-					<td>Talent</td>
-					<td><input type="text" v-model.number="fa7" v-on:input="computeFisher(stock_id)"></td>
-				</tr>
-			</table>
+				<template slot="f3" slot-scope="row">	
+					<b-form-input size="sm" v-model="row.item.f3" v-on:input="computeFisher(stock_id)"></b-form-input>
+				</template>
+				<template slot="table-caption">
+					Fisher Approach Mark : {{fisherMark}}
+				</template>
+			</b-table>
+			
 		</div>
 		<!-- 
 		*
@@ -157,6 +60,9 @@
 		*
 		-->
 		<div>
+			<b-table bordered small :items="itemWatchlist">
+
+			</b-table>
 			<table>
 				<thead>
 					<th>Stock Code</th>
@@ -170,6 +76,7 @@
 						<td><a v-on:click="showApproach(stock.id)">{{stock.name}}</a></td>
 						<td>{{stock.current_price}}</td>
 						<button v-on:click="deleteWatchStock(stock.id)">Delete</button>
+
 					</tr>
 				</tbody>
 			</table>
@@ -188,30 +95,40 @@
 		
 	data() {
 		return {
+			//  bootstrap declare
+			itemBuffett : [
+				{'b1':'1)','b2':'Business Sexiness','b3':'','b4':'0'},
+				{'b1':'1-1)','b2':'Supplier No.','b3':'0','b4':''},
+				{'b1':'1-2)','b2':'Customer Choices','b3':'0','b4':''},
+				{'b1':'1-3)','b2':'Barrier of Entry','b3':'0','b4':''},
+				{'b1':'1-4)','b2':'Substitute','b3':'0','b4':''},
+				{'b1':'1-5)','b2':'Competition No.','b3':'0','b4':''},
+				{'b1':'2)','b2':'Competitiveness (1st/2nd)','b3':'','b4':'0'},
+				{'b1':'3)','b2':'FPE<25','b3':'','b4':'0'},
+				{'b1':'4)','b2':'Gearing<1.5','b3':'','b4':'0'},
+				{'b1':'5)','b2':'GP Cashflow>0.88','b3':'','b4':'0'},
+				{'b1':'6)','b2':'Good Will','b3':'','b4':'0'},
+				{'b1':'7)','b2':'Customer Loyalty','b3':'','b4':'0'},
+			],
+			itemFisher : [
+				{'f1':'1)','f2':'Future Grow Opportunity','f3':'0'},
+				{'f1':'2)','f2':'Competitiveness (1st/2nd)','f3':'0'},
+				{'f1':'3)','f2':'Net Margin>15','f3':'0'},
+				{'f1':'4)','f2':'GP Cashflow>0.88','f3':'0'},
+				{'f1':'5)','f2':'Marginal Cost (R&D Important)','f3':'0'},
+				{'f1':'6)','f2':'Leadership','f3':'0'},
+				{'f1':'7)','f2':'Talent','f3':'0'},
+			],
+			itemWatchlist : [
+				{'stock':'','code':'','name':'','currentPrice':''},
+			],
+
 			//  v-model declare
 			price:'',
 			unit:'',
 			stock_id:'',
 			buySell:'',
-			ba1:'',
-			ba1_1:'',
-			ba1_2:'',
-			ba1_3:'',
-			ba1_4:'',
-			ba1_5:'',
-			ba2:'',
-			ba3:'',
-			ba4:'',
-			ba5:'',
-			ba6:'',
-			ba7:'',
-			fa1:'',
-			fa2:'',
-			fa3:'',
-			fa4:'',
-			fa5:'',
-			fa6:'',
-			fa7:'',
+			
 
 			//  {{ }} declare
 			conclusion:'',
@@ -304,50 +221,51 @@
 			.then((response)=>{
 				console.log('showApproach success');
 				if(response.data){
-					this.ba1 = response.data.ba1 ;
-					this.ba1_1 = response.data.ba1_1 ;
-					this.ba1_2 = response.data.ba1_2 ;
-					this.ba1_3 = response.data.ba1_3 ;
-					this.ba1_4 = response.data.ba1_4 ;
-					this.ba1_5 = response.data.ba1_5 ;
-					this.ba2 = response.data.ba2 ;
-					this.ba3 = response.data.ba3 ;
-					this.ba4 = response.data.ba4 ;
-					this.ba5 = response.data.ba5 ;
-					this.ba6 = response.data.ba6 ;
-					this.ba7 = response.data.ba7 ;
-					this.fa1 = response.data.fa1 ;
-					this.fa2 = response.data.fa2 ;
-					this.fa3 = response.data.fa3 ;
-					this.fa4 = response.data.fa4 ;
-					this.fa5 = response.data.fa5 ;
-					this.fa6 = response.data.fa6 ;
-					this.fa7 = response.data.fa7 ;
+					
 					this.buffettMark = response.data.buffettMark;
 					this.fisherMark = response.data.fisherMark;
+					this.itemBuffett[0]['b4'] = response.data.ba1 ;
+					this.itemBuffett[1]['b3'] = response.data.ba1_1 ;
+					this.itemBuffett[2]['b3'] = response.data.ba1_2 ;
+					this.itemBuffett[3]['b3'] = response.data.ba1_3 ;
+					this.itemBuffett[4]['b3'] = response.data.ba1_4 ;
+					this.itemBuffett[5]['b3'] = response.data.ba1_5 ;
+					this.itemBuffett[6]['b4'] = response.data.ba2 ;
+					this.itemBuffett[7]['b4'] = response.data.ba3 ;
+					this.itemBuffett[8]['b4'] = response.data.ba4 ;
+					this.itemBuffett[9]['b4'] = response.data.ba5 ;
+					this.itemBuffett[10]['b4'] = response.data.ba6 ;
+					this.itemBuffett[11]['b4'] = response.data.ba7 ;
+					this.itemFisher[0]['f3'] = response.data.fa1 ;
+					this.itemFisher[1]['f3'] = response.data.fa2 ;
+					this.itemFisher[2]['f3'] = response.data.fa3 ;
+					this.itemFisher[3]['f3'] = response.data.fa4 ;
+					this.itemFisher[4]['f3'] = response.data.fa5 ;
+					this.itemFisher[5]['f3'] = response.data.fa6 ;
+					this.itemFisher[6]['f3'] = response.data.fa7 ;
 				}else{
-					this.ba1 = 0 ;
-					this.ba1_1 = 0 ;
-					this.ba1_2 = 0 ;
-					this.ba1_3 = 0 ;
-					this.ba1_4 = 0 ;
-					this.ba1_5 = 0 ;
-					this.ba2 = 0 ;
-					this.ba3 = 0 ;
-					this.ba4 = 0 ;
-					this.ba5 = 0 ;
-					this.ba6 = 0 ;
-					this.ba7 = 0 ;
-					this.fa1 = 0 ;
-					this.fa2 = 0 ;
-					this.fa3 = 0 ;
-					this.fa4 = 0 ;
-					this.fa5 = 0 ;
-					this.fa6 = 0 ;
-					this.fa7 = 0 ;
+					
 					this.buffettMark = 0;
 					this.fisherMark = 0;
-					
+					this.itemBuffett[0]['b4'] = 0 ;
+					this.itemBuffett[1]['b3'] = 0 ;
+					this.itemBuffett[2]['b3'] = 0 ;
+					this.itemBuffett[3]['b3'] = 0 ;
+					this.itemBuffett[4]['b3'] = 0 ;
+					this.itemBuffett[5]['b3'] = 0 ;
+					this.itemBuffett[6]['b4'] = 0 ;
+					this.itemBuffett[7]['b4'] = 0 ;
+					this.itemBuffett[8]['b4'] = 0 ;
+					this.itemBuffett[9]['b4'] = 0 ;
+					this.itemBuffett[10]['b4'] = 0 ;
+					this.itemBuffett[11]['b4'] = 0 ;
+					this.itemFisher[0]['f3'] = 0 ;
+					this.itemFisher[1]['f3'] = 0 ;
+					this.itemFisher[2]['f3'] = 0 ;
+					this.itemFisher[3]['f3'] = 0 ;
+					this.itemFisher[4]['f3'] = 0 ;
+					this.itemFisher[5]['f3'] = 0 ;
+					this.itemFisher[6]['f3'] = 0 ;
 				}
 				
 
@@ -362,23 +280,22 @@
 		},
 
 		computeBuffett:function(stock_id){
-			
-			this.ba1 = (this.ba1_1 || 0 )+ (this.ba1_2 || 0 )+ (this.ba1_3 || 0 )+ (this.ba1_4 || 0 )+ (this.ba1_5 || 0 );
-			this.buffettMark = (this.ba1 || 0 ) + (this.ba2 || 0 ) + (this.ba3 || 0 ) + (this.ba4 || 0 ) + (this.ba5 || 0 ) + (this.ba6 || 0 ) + (this.ba7 || 0 );
+			this.itemBuffett[0]['b4'] = (this.itemBuffett[1]['b3'] || 0 )+ (this.itemBuffett[2]['b3'] || 0 )+ (this.itemBuffett[3]['b3'] || 0 )+ (this.itemBuffett[4]['b3'] || 0 )+ (this.itemBuffett[5]['b3'] || 0 );
+			this.buffettMark = (this.itemBuffett[0]['b4'] || 0 ) + (this.itemBuffett[6]['b4'] || 0 ) + (this.itemBuffett[7]['b4'] || 0 ) + (this.itemBuffett[8]['b4'] || 0 ) + (this.itemBuffett[9]['b4'] || 0 ) + (this.itemBuffett[10]['b4'] || 0 ) + (this.itemBuffett[11]['b4'] || 0 );
 			axios.post('/wages/watchlist/api/compute-buffett',{
 				'stock_id':stock_id,
-				'ba1':this.ba1,
-				'ba1_1':this.ba1_1,
-				'ba1_2':this.ba1_2,
-				'ba1_3':this.ba1_3,
-				'ba1_4':this.ba1_4,
-				'ba1_5':this.ba1_5,
-				'ba2':this.ba2,
-				'ba3':this.ba3,
-				'ba4':this.ba4,
-				'ba5':this.ba5,
-				'ba6':this.ba6,
-				'ba7':this.ba7,
+				'ba1':this.itemBuffett[0]['b4'],
+				'ba1_1':this.itemBuffett[1]['b3'],
+				'ba1_2':this.itemBuffett[2]['b3'],
+				'ba1_3':this.itemBuffett[3]['b3'],
+				'ba1_4':this.itemBuffett[4]['b3'],
+				'ba1_5':this.itemBuffett[5]['b3'],
+				'ba2':this.itemBuffett[6]['b4'],
+				'ba3':this.itemBuffett[7]['b4'],
+				'ba4':this.itemBuffett[8]['b4'],
+				'ba5':this.itemBuffett[9]['b4'],
+				'ba6':this.itemBuffett[10]['b4'],
+				'ba7':this.itemBuffett[11]['b4'],
 				'buffettMark': this.buffettMark,
 			})
 			.then(function(response){
@@ -390,16 +307,17 @@
 		},
 
 		computeFisher:function(stock_id){
-			this.fisherMark = (this.fa1 || 0 ) + (this.fa2 || 0 ) + (this.fa3 || 0 ) + (this.fa4 || 0 ) + (this.fa5 || 0 ) + (this.fa6 || 0 ) + (this.fa7 || 0 );
+			this.fisherMark = (this.itemFisher[0]['f3'] || 0 ) + (this.itemFisher[1]['f3'] || 0 ) + (this.itemFisher[2]['f3'] || 0 ) + (this.itemFisher[3]['f3'] || 0 ) + (this.itemFisher[4]['f3'] || 0 ) + (this.itemFisher[5]['f3'] || 0 ) + (this.itemFisher[7]['f3'] || 0 );	
+			
 			axios.post('/wages/watchlist/api/compute-fisher',{
 				'stock_id':stock_id,
-				'fa1':this.fa1,
-				'fa2':this.fa2,
-				'fa3':this.fa3,
-				'fa4':this.fa4,
-				'fa5':this.fa5,
-				'fa6':this.fa6,
-				'fa7':this.fa7,
+				'fa1':this.itemFisher[0]['f3'],
+				'fa2':this.itemFisher[1]['f3'],
+				'fa3':this.itemFisher[2]['f3'],
+				'fa4':this.itemFisher[3]['f3'],
+				'fa5':this.itemFisher[4]['f3'],
+				'fa6':this.itemFisher[5]['f3'],
+				'fa7':this.itemFisher[6]['f3'],
 				'fisherMark': this.fisherMark,
 			})
 			.then(function(response){
@@ -410,6 +328,10 @@
 			});
 		},
 
+		console:function(item){
+			console.log(this.itemBuffett[0]['th4']);
+		},
+
 	},
 
 	created : function () {
@@ -417,10 +339,28 @@
 	  .then((response) => {
 	    console.log('get showWatchlist success');
 	    this.watchlist = response.data;
+	    var a = response.data;
+	    //this.itemWatchlist[0]['stock'] = '0012';
+	    //this.itemWatchlist[0]['code'] = '3A';
+	    //this.itemWatchlist[0]['name'] = '3A Bhd';
+	    //this.itemWatchlist[0]['currentPrice'] = '0.8400';
+	    var b = [{'stock':''}];
+	    for(let i=0;i<a.length;i++){
+	    	var pointer = this.itemWatchlist;
+	    	(function(i,pointer){
+	    		//console.log(a[i].id);
+	    		pointer[i]['stock'] = a[i].id;
+	    	})(i,a);
+	    	
+	    };
+
+	    console.log(this.itemWatchlist);
 	  }
 	  ,(error) => {
 	  	console.log(error);
 	  });
+
+	  
 
 	},
 
@@ -450,5 +390,6 @@ h1.pageTitle span{
     bottom: 40%;
     left:0;
 }
+
 
 </style>

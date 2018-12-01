@@ -4,9 +4,17 @@ namespace App\Http\Controllers\wages;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Repository\wages\TransactionRepo;
 
 class TransactionController extends Controller
 {
+    protected $tr ;
+
+    public function __construct(TransactionRepo $transaction)
+    {
+        $this->tr = $transaction;
+    }
+
     // transaction VUE
     // 
     // 
@@ -22,31 +30,9 @@ class TransactionController extends Controller
     // 
     // 
 
-    public function api_show_transaction()
+    public function api_show_transaction($field, $value)
     {
-        $transactions = Transaction::all();
-
-        foreach($transactions as $transaction)
-        {
-            $records[] = array(
-                'id' => $transaction->id,
-                'stock_id' => $transaction->stock_id,
-                'name' => Stock::select('name')->where('id',$transaction->stock_id)->first(),
-                'type' => $transaction->type,
-                'price' => $transaction->price,
-                'unit' => $transaction->unit,
-                'gross_amount' => $transaction->gross_amount,
-                'brokerage' => $transaction->brokerage,
-                'clearing_fee' => $transaction->clearing_fee,
-                'sst_payable' => $transaction->sst_payable,
-                'stamp_duty' => $transaction->stamp_duty,
-                'total_amount_due' => $transaction->total_amount_due,
-                'payment_due_date' => $transaction->payment_due_date,
-            );
-        }
-
-        return $records;
-        // return Stock::select('name')->where('id','AAPL')->get();
+        return $this->tr->findByField($field,$value);
     }
 
     
@@ -56,24 +42,26 @@ class TransactionController extends Controller
      *
      * @return Response
      */
-    public function post_transaction(Request $request)
+    public function api_post_transaction(Request $request)
     {
-        $transaction = new Transaction;
-        $transaction->id = '2';
-        $transaction->type = $request->type;
-        $transaction->unit = $request->unit;
-        $transaction->price = $request->price;
-        $transaction->stock_id = $request->stock_id;
-        $transaction->user_id = '123';
-        $transaction->gross_amount = $request->gross_amount;
-        $transaction->brokerage = $request->brokerage;
-        $transaction->clearing_fee = $request->clearing_fee;
-        $transaction->sst_payable = $request->sst_payable;
-        $transaction->stamp_duty = $request->stamp_duty;
-        $transaction->total_amount_due = $request->total_amount_due;
-        $transaction->payment_due_date = $request->payment_due_date;
-        $transaction->save();
+        $tx = [];
+        $tx['id'] = '2';
+        $tx['type'] = $request->type;
+        $tx['unit'] = $request->unit;
+        $tx['price'] = $request->price;
+        $tx['stock_id'] = $request->stock_id;
+        $tx['user_id'] = $request->user_id;
+        $tx['gross_amount'] = $request->gross_amount;
+        $tx['brokerage'] = $request->brokerage;
+        $tx['clearing_fee'] = $request->clearing_fee;
+        $tx['sst_payable'] = $request->sst_payable;
+        $tx['stamp_duty'] = $request->stamp_duty;
+        $tx['total_amount_due'] = $request->total_amount_due;
+        $tx['payment_due_date'] = $request->payment_due_date;
 
-        return response($transaction->jsonSerialize(),201);
+        $this->tr->create($tx);
+        // return $tx;
+
+        return response('submit success',201);
     }
 }

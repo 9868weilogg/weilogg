@@ -221,84 +221,104 @@ Route::post('/gateready/admin/filter-tracking-number-ajax', 'gateready\AdminCont
 
 
 /**----------- wages.com homepage ----------------**/
-Route::post('/wages1', 'wages\HomeController@search');
+// Route::post('/wages1', 'wages\HomeController@search');
 
 /**----------- wages.com update price in watchlist ----------------**/
-Route::get('/wages1/update-price', 'wages\HomeController@show_price');
+// Route::get('/wages1/update-price', 'wages\HomeController@show_price');
 
 /**----------- wages.com homepage view ----------------**/
 Route::get('/wages', 'wages\HomeController@show_wages');
+Route::get('/wages/{any}', 'wages\HomeController@show_wages');
 
-/**----------- wages.com home in VUE ----------------**/
-/**----------- wages.com home API ----------------**/
-Route::get('/wages/api/show-eod/{id}', 'wages\HomeController@api_show_eod');
+/**----------- wages.com transaction API ----------------**/
+Route::post('/wages/transaction/api/post-transaction', 'wages\TransactionController@api_post_transaction');
+Route::get('/wages/transaction/api/show-transaction/{field}/{value}', 'wages\TransactionController@api_show_transaction');
 
-/**----------- wages.com valuation with VUE ----------------**/
-Route::get('/wages/valuation', 'wages\ValuationController@show_valuation');
-
-/**----------- wages.com valuation with VUE ----------------**/
-/**----------- wages.com show valuation API ----------------**/
-Route::get('/wages/valuation/api/show/{id}', 'wages\ValuationController@show');
-
-/**----------- wages.com upload fundamental API ----------------**/
-Route::post('/wages/valuation/api/upload-fundamental', 'wages\ValuationController@upload_fundamental');
-
-/**----------- wages.com watchlist with VUE ----------------**/
-/**----------- wages.com index watchlist API ----------------**/
-Route::get('/wages/watchlist/api/index-watchlist', 'wages\WatchlistController@api_index_watchlist');
-
-/**----------- wages.com index watchlist API ----------------**/
-Route::get('/wages/watchlist/api/show-watchlist/{id}', 'wages\WatchlistController@api_show_watchlist');
-
-/**----------- wages.com add watchlist API ----------------**/
-Route::post('/wages/watchlist/api/add-watchlist', 'wages\WatchlistController@api_add_watchlist');
-
-/**----------- wages.com delete watchlist API ----------------**/
-Route::delete('/wages/watchlist/api/delete-watchlist/{id}', 'wages\WatchlistController@api_delete_watchlist');
-
-/**----------- wages.com show gis rank API ----------------**/
-Route::get('/wages/watchlist/api/show-gis-rank/{id}', 'wages\WatchlistController@api_show_gis_rank');
-
-/**----------- wages.com compute buffett API ----------------**/
-Route::post('/wages/watchlist/api/compute-buffett', 'wages\WatchlistController@api_compute_buffett');
-
-/**----------- wages.com compute fisher API ----------------**/
-Route::post('/wages/watchlist/api/compute-fisher', 'wages\WatchlistController@api_compute_fisher');
-
-/**----------- wages.com watchlist with VUE ----------------**/
-Route::get('/wages/watchlist', 'wages\WatchlistController@show_watchlist');
-
-/**----------- wages.com transaction with VUE ----------------**/
-Route::get('/wages/transaction', 'wages\TransactionController@show_transaction');
-
-/**----------- wages.com submit transaction with VUE ----------------**/
-Route::post('/wages/transaction', 'wages\TransactionController@post_transaction');
-
-/**----------- wages.com parse transaction API with VUE ----------------**/
-Route::get('/wages/transaction/api', 'wages\TransactionController@api_show_transaction');
-
-/**----------- wages.com cash with VUE ----------------**/
 /**----------- wages.com cash API ----------------**/
 Route::get('/wages/cash/api/index', 'wages\CashController@index');
 Route::get('/wages/cash/api/show-bank-cash/{field}/{value}', 'wages\CashController@show_bank_cash');
 Route::post('/wages/cash/api/update-cash', 'wages\CashController@update_cash');
 
+/**----------- wages.com watchlist API ----------------**/
+Route::get('/wages/watchlist/api/search-stock/{name}','wages\WatchlistController@api_search_stock');
+Route::get('/wages/watchlist/api/index-watchlist', 'wages\WatchlistController@api_index_watchlist');
+Route::post('/wages/watchlist/api/add-watchlist', 'wages\WatchlistController@api_add_watchlist');
+Route::post('/wages/watchlist/api/update-price', 'wages\WatchlistController@api_update_price');
+Route::delete('/wages/watchlist/api/delete-watchlist/{id}', 'wages\WatchlistController@api_delete_watchlist');
+Route::get('/wages/watchlist/api/show-gis-rank/{id}', 'wages\WatchlistController@api_show_gis_rank');
+Route::post('/wages/watchlist/api/compute-buffett', 'wages\WatchlistController@api_compute_buffett');
+Route::post('/wages/watchlist/api/compute-fisher', 'wages\WatchlistController@api_compute_fisher');
+
+/**----------- wages.com valuation API ----------------**/
+Route::get('/wages/valuation/api/show/{id}', 'wages\ValuationController@show');
+
+
+
+
+/**----------- wages.com home in VUE ----------------**/
+/**----------- wages.com home API ----------------**/
+// Route::get('/wages/api/show-eod/{id}', 'wages\HomeController@api_show_eod');
+
+/**----------- wages.com valuation with VUE ----------------**/
+// Route::get('/wages/valuation', 'wages\ValuationController@show_valuation');
+
+/**----------- wages.com valuation with VUE ----------------**/
+/**----------- wages.com show valuation API ----------------**/
+// 
+
+/**----------- wages.com upload fundamental API ----------------**/
+// Route::post('/wages/valuation/api/upload-fundamental', 'wages\ValuationController@upload_fundamental');
+
+/**----------- wages.com watchlist with VUE ----------------**/
+/**----------- wages.com index watchlist API ----------------**/
+
+
+/**----------- wages.com index watchlist API ----------------**/
+// Route::get('/wages/watchlist/api/show-watchlist/{id}', 'wages\WatchlistController@api_show_watchlist');
+
+/**----------- wages.com add watchlist API ----------------**/
+
+
+/**----------- wages.com delete watchlist API ----------------**/
+
+
+/**----------- wages.com show gis rank API ----------------**/
+
+
+/**----------- wages.com compute buffett API ----------------**/
+
+
+/**----------- wages.com compute fisher API ----------------**/
+// 
+
+/**----------- wages.com watchlist with VUE ----------------**/
+// Route::get('/wages/watchlist', 'wages\WatchlistController@show_watchlist');
+
+/**----------- wages.com transaction with VUE ----------------**/
+// Route::get('/wages/transaction', 'wages\TransactionController@show_transaction');
+
+
+
+/**----------- wages.com parse transaction API with VUE ----------------**/
+// Route::get('/wages/transaction/api', 'wages\TransactionController@api_show_transaction');
+
 /**----------- wages.com cash with VUE ----------------**/
-Route::get('/wages/cash', 'wages\CashController@show_cash');
+/**----------- wages.com cash with VUE ----------------**/
+// Route::get('/wages/cash', 'wages\CashController@show_cash');
 
 /**
 **
 **  run background to insert EOD data
 **
 **/
-Route::get('/wages/eod', 'wages\HomeController@eod_insert');
+// Route::get('/wages/eod', 'wages\HomeController@eod_insert');
 
 /**
 **
 **  crawler testing (tutorial get data in a page)
 **
 **/
-Route::get('/check-quotes','wages\WatchlistController@get_quotes');
+// Route::get('/check-quotes','wages\WatchlistController@get_quotes');
 
 
 
@@ -325,7 +345,7 @@ Route::get('/test',function(){
 **  crawler testing (tutorial get links in a page)
 **
 **/
-Route::get('/crawler','wages\WatchlistController@crawler');
+// Route::get('/crawler','wages\WatchlistController@crawler');
 
 
 /**test**/

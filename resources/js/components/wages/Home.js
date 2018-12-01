@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import {BrowserRouter, Route, Link, Switch} from 'react-router-dom';
 import Cash from './Cash';
 import Transaction from './Transaction';
+import Watchlist from './Watchlist';
+import Valuation from './Valuation';
 
 
 const H = () => {
@@ -16,7 +18,7 @@ const H = () => {
 					<Link to="/wages/transaction"><button className="btn btn-primary">Transaction</button></Link>
 				</div>
 				<div className="col-md-6">
-					<Link to="/wages/watch"><button className="btn btn-primary">Watchlist</button></Link>
+					<Link to="/wages/watchlist"><button className="btn btn-primary">Watchlist</button></Link>
 				</div>
 				<div className="col-md-6">
 					<Link to="/wages/valuation"><button className="btn btn-primary">Valuation</button></Link>
@@ -42,6 +44,8 @@ export default class Home extends Component {
 						<Route exact path="/wages" component={H}/>
 						<Route path="/wages/cash" component={Cash}/>
 						<Route path="/wages/transaction" component={Transaction}/>
+						<Route path="/wages/watchlist" component={Watchlist}/>
+						<Route path="/wages/valuation" component={Valuation}/>
 					</Switch>
 				</div>
 			</div>

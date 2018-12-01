@@ -4,10 +4,17 @@ namespace App\Http\Controllers\wages;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\wages\Fundamental;
+use App\Repository\wages\ValuationRepo;
 
 class ValuationController extends Controller
 {
+    protected $vr;
+
+    public function __construct(ValuationRepo $vr)
+    {
+        $this->vr = $vr;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -57,7 +64,7 @@ class ValuationController extends Controller
     public function show($id)
     {
         
-        return Fundamental::where('stock_id',$id)->orderBy('FYE','desc')->get();
+        return response()->json($this->vr->show($id),200);
     }
 
     /**

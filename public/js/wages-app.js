@@ -70,7 +70,7 @@
 "use strict";
 
 
-var bind = __webpack_require__(10);
+var bind = __webpack_require__(12);
 var isBuffer = __webpack_require__(26);
 
 /*global toString:true*/
@@ -570,10 +570,10 @@ function getDefaultAdapter() {
   var adapter;
   if (typeof XMLHttpRequest !== 'undefined') {
     // For browsers use XHR adapter
-    adapter = __webpack_require__(11);
+    adapter = __webpack_require__(13);
   } else if (typeof process !== 'undefined') {
     // For node use HTTP adapter
-    adapter = __webpack_require__(11);
+    adapter = __webpack_require__(13);
   }
   return adapter;
 }
@@ -652,6 +652,113 @@ module.exports = defaults;
 
 /***/ }),
 /* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function checkDCE() {
+  /* global __REACT_DEVTOOLS_GLOBAL_HOOK__ */
+  if (
+    typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ === 'undefined' ||
+    typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE !== 'function'
+  ) {
+    return;
+  }
+  if (true) {
+    // This branch is unreachable because this function is only called
+    // in production, but the condition is true only in development.
+    // Therefore if the branch is still here, dead code elimination wasn't
+    // properly applied.
+    // Don't change the message. React DevTools relies on it. Also make sure
+    // this message doesn't occur elsewhere in this function, or it will cause
+    // a false positive.
+    throw new Error('^_^');
+  }
+  try {
+    // Verify that the code above has been dead code eliminated (DCE'd).
+    __REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE(checkDCE);
+  } catch (err) {
+    // DevTools shouldn't crash React, no matter what.
+    // We should still report in case we break this code.
+    console.error(err);
+  }
+}
+
+if (false) {
+  // DCE check should happen before ReactDOM bundle executes so that
+  // DevTools can report bad minification during injection.
+  checkDCE();
+  module.exports = require('./cjs/react-dom.production.min.js');
+} else {
+  module.exports = __webpack_require__(63);
+}
+
+
+/***/ }),
+/* 7 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__BrowserRouter__ = __webpack_require__(68);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__BrowserRouter__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__HashRouter__ = __webpack_require__(75);
+/* unused harmony reexport HashRouter */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Link__ = __webpack_require__(52);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_2__Link__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MemoryRouter__ = __webpack_require__(76);
+/* unused harmony reexport MemoryRouter */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__NavLink__ = __webpack_require__(78);
+/* unused harmony reexport NavLink */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Prompt__ = __webpack_require__(80);
+/* unused harmony reexport Prompt */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Redirect__ = __webpack_require__(82);
+/* unused harmony reexport Redirect */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Route__ = __webpack_require__(53);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_7__Route__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Router__ = __webpack_require__(47);
+/* unused harmony reexport Router */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__StaticRouter__ = __webpack_require__(84);
+/* unused harmony reexport StaticRouter */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__Switch__ = __webpack_require__(86);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_10__Switch__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__generatePath__ = __webpack_require__(88);
+/* unused harmony reexport generatePath */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__matchPath__ = __webpack_require__(89);
+/* unused harmony reexport matchPath */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__withRouter__ = __webpack_require__(90);
+/* unused harmony reexport withRouter */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/***/ }),
+/* 8 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -664,7 +771,7 @@ module.exports = defaults;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__LocationUtils__ = __webpack_require__(19);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_3__LocationUtils__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return __WEBPACK_IMPORTED_MODULE_3__LocationUtils__["b"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__PathUtils__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__PathUtils__ = __webpack_require__(17);
 /* unused harmony reexport parsePath */
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_4__PathUtils__["b"]; });
 
@@ -678,7 +785,7 @@ module.exports = defaults;
 
 
 /***/ }),
-/* 7 */
+/* 9 */
 /***/ (function(module, exports) {
 
 var g;
@@ -705,7 +812,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 8 */
+/* 10 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3243,10 +3350,10 @@ Popper.Defaults = Defaults;
 /* harmony default export */ __webpack_exports__["default"] = (Popper);
 //# sourceMappingURL=popper.js.map
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(7)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(9)))
 
 /***/ }),
-/* 9 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -13617,7 +13724,7 @@ return jQuery;
 
 
 /***/ }),
-/* 10 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13635,7 +13742,7 @@ module.exports = function bind(fn, thisArg) {
 
 
 /***/ }),
-/* 11 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13646,7 +13753,7 @@ var settle = __webpack_require__(30);
 var buildURL = __webpack_require__(32);
 var parseHeaders = __webpack_require__(33);
 var isURLSameOrigin = __webpack_require__(34);
-var createError = __webpack_require__(12);
+var createError = __webpack_require__(14);
 var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(35);
 
 module.exports = function xhrAdapter(config) {
@@ -13822,7 +13929,7 @@ module.exports = function xhrAdapter(config) {
 
 
 /***/ }),
-/* 12 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13847,7 +13954,7 @@ module.exports = function createError(message, config, code, request, response) 
 
 
 /***/ }),
-/* 13 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13859,7 +13966,7 @@ module.exports = function isCancel(value) {
 
 
 /***/ }),
-/* 14 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13885,7 +13992,7 @@ module.exports = Cancel;
 
 
 /***/ }),
-/* 15 */
+/* 17 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13954,113 +14061,6 @@ var createPath = function createPath(location) {
 
   return path;
 };
-
-/***/ }),
-/* 16 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-function checkDCE() {
-  /* global __REACT_DEVTOOLS_GLOBAL_HOOK__ */
-  if (
-    typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ === 'undefined' ||
-    typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE !== 'function'
-  ) {
-    return;
-  }
-  if (true) {
-    // This branch is unreachable because this function is only called
-    // in production, but the condition is true only in development.
-    // Therefore if the branch is still here, dead code elimination wasn't
-    // properly applied.
-    // Don't change the message. React DevTools relies on it. Also make sure
-    // this message doesn't occur elsewhere in this function, or it will cause
-    // a false positive.
-    throw new Error('^_^');
-  }
-  try {
-    // Verify that the code above has been dead code eliminated (DCE'd).
-    __REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE(checkDCE);
-  } catch (err) {
-    // DevTools shouldn't crash React, no matter what.
-    // We should still report in case we break this code.
-    console.error(err);
-  }
-}
-
-if (false) {
-  // DCE check should happen before ReactDOM bundle executes so that
-  // DevTools can report bad minification during injection.
-  checkDCE();
-  module.exports = require('./cjs/react-dom.production.min.js');
-} else {
-  module.exports = __webpack_require__(63);
-}
-
-
-/***/ }),
-/* 17 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__BrowserRouter__ = __webpack_require__(68);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__BrowserRouter__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__HashRouter__ = __webpack_require__(75);
-/* unused harmony reexport HashRouter */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Link__ = __webpack_require__(52);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_2__Link__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MemoryRouter__ = __webpack_require__(76);
-/* unused harmony reexport MemoryRouter */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__NavLink__ = __webpack_require__(78);
-/* unused harmony reexport NavLink */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Prompt__ = __webpack_require__(80);
-/* unused harmony reexport Prompt */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Redirect__ = __webpack_require__(82);
-/* unused harmony reexport Redirect */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Route__ = __webpack_require__(53);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_7__Route__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Router__ = __webpack_require__(47);
-/* unused harmony reexport Router */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__StaticRouter__ = __webpack_require__(84);
-/* unused harmony reexport StaticRouter */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__Switch__ = __webpack_require__(86);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_10__Switch__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__generatePath__ = __webpack_require__(88);
-/* unused harmony reexport generatePath */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__matchPath__ = __webpack_require__(89);
-/* unused harmony reexport matchPath */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__withRouter__ = __webpack_require__(90);
-/* unused harmony reexport withRouter */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /***/ }),
 /* 18 */
@@ -14138,7 +14138,7 @@ module.exports = warning;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return locationsAreEqual; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_resolve_pathname__ = __webpack_require__(71);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_value_equal__ = __webpack_require__(72);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__PathUtils__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__PathUtils__ = __webpack_require__(17);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 
@@ -14211,7 +14211,7 @@ var locationsAreEqual = function locationsAreEqual(a, b) {
 
 
 window._ = __webpack_require__(21);
-window.Popper = __webpack_require__(8).default;
+window.Popper = __webpack_require__(10).default;
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -14220,7 +14220,7 @@ window.Popper = __webpack_require__(8).default;
  */
 
 try {
-  window.$ = window.jQuery = __webpack_require__(9);
+  window.$ = window.jQuery = __webpack_require__(11);
 
   __webpack_require__(23);
 } catch (e) {}
@@ -31379,7 +31379,7 @@ if (token) {
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7), __webpack_require__(22)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9), __webpack_require__(22)(module)))
 
 /***/ }),
 /* 22 */
@@ -31419,7 +31419,7 @@ module.exports = function(module) {
   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
   */
 (function (global, factory) {
-   true ? factory(exports, __webpack_require__(9), __webpack_require__(8)) :
+   true ? factory(exports, __webpack_require__(11), __webpack_require__(10)) :
   typeof define === 'function' && define.amd ? define(['exports', 'jquery', 'popper.js'], factory) :
   (factory((global.bootstrap = {}),global.jQuery,global.Popper));
 }(this, (function (exports,$,Popper) { 'use strict';
@@ -35373,7 +35373,7 @@ module.exports = __webpack_require__(25);
 
 
 var utils = __webpack_require__(0);
-var bind = __webpack_require__(10);
+var bind = __webpack_require__(12);
 var Axios = __webpack_require__(27);
 var defaults = __webpack_require__(5);
 
@@ -35408,9 +35408,9 @@ axios.create = function create(instanceConfig) {
 };
 
 // Expose Cancel & CancelToken
-axios.Cancel = __webpack_require__(14);
+axios.Cancel = __webpack_require__(16);
 axios.CancelToken = __webpack_require__(42);
-axios.isCancel = __webpack_require__(13);
+axios.isCancel = __webpack_require__(15);
 
 // Expose all/spread
 axios.all = function all(promises) {
@@ -35753,7 +35753,7 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 "use strict";
 
 
-var createError = __webpack_require__(12);
+var createError = __webpack_require__(14);
 
 /**
  * Resolve or reject a Promise based on response status.
@@ -36186,7 +36186,7 @@ module.exports = InterceptorManager;
 
 var utils = __webpack_require__(0);
 var transformData = __webpack_require__(39);
-var isCancel = __webpack_require__(13);
+var isCancel = __webpack_require__(15);
 var defaults = __webpack_require__(5);
 var isAbsoluteURL = __webpack_require__(40);
 var combineURLs = __webpack_require__(41);
@@ -36346,7 +36346,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 "use strict";
 
 
-var Cancel = __webpack_require__(14);
+var Cancel = __webpack_require__(16);
 
 /**
  * A `CancelToken` is an object that can be used to request cancellation of an operation.
@@ -37023,7 +37023,7 @@ var isExtraneousPopstateEvent = function isExtraneousPopstateEvent(event) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_invariant__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_invariant___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_invariant__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_history__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_history__ = __webpack_require__(8);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
@@ -37789,9 +37789,9 @@ module.exports = __webpack_require__(61);
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_router_dom__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_router_dom__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_wages_Home__ = __webpack_require__(93);
 
 /**
@@ -58720,7 +58720,7 @@ exports.unstable_unsubscribe = unstable_unsubscribe;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_history__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_history__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Router__ = __webpack_require__(47);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -59347,7 +59347,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_invariant__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__LocationUtils__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__PathUtils__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__PathUtils__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__createTransitionManager__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__DOMUtils__ = __webpack_require__(51);
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -59771,7 +59771,7 @@ function valueEqual(a, b) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_invariant__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__LocationUtils__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__PathUtils__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__PathUtils__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__createTransitionManager__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__DOMUtils__ = __webpack_require__(51);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -60089,7 +60089,7 @@ var createHashHistory = function createHashHistory() {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_warning__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__PathUtils__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__PathUtils__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__LocationUtils__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__createTransitionManager__ = __webpack_require__(46);
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -60261,7 +60261,7 @@ var createMemoryHistory = function createMemoryHistory() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_history__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_history__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Router__ = __webpack_require__(47);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -60337,7 +60337,7 @@ HashRouter.propTypes = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_history__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_history__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Router__ = __webpack_require__(48);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -60613,7 +60613,7 @@ Prompt.contextTypes = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_warning___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_warning__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_invariant__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_invariant___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_invariant__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_history__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_history__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__generatePath__ = __webpack_require__(56);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -60753,7 +60753,7 @@ Redirect.contextTypes = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_prop_types__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_history__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_history__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Router__ = __webpack_require__(48);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -61173,11 +61173,13 @@ module.exports = hoistNonReactStatics;
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_router_dom__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_router_dom__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Cash__ = __webpack_require__(94);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Transaction__ = __webpack_require__(95);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Watchlist__ = __webpack_require__(96);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Valuation__ = __webpack_require__(97);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -61185,6 +61187,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
 
 
 
@@ -61230,7 +61234,7 @@ var H = function H() {
 				{ className: 'col-md-6' },
 				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 					__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["b" /* Link */],
-					{ to: '/wages/watch' },
+					{ to: '/wages/watchlist' },
 					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 						'button',
 						{ className: 'btn btn-primary' },
@@ -61278,7 +61282,9 @@ var Home = function (_Component) {
 						null,
 						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { exact: true, path: '/wages', component: H }),
 						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/wages/cash', component: __WEBPACK_IMPORTED_MODULE_3__Cash__["a" /* default */] }),
-						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/wages/transaction', component: __WEBPACK_IMPORTED_MODULE_4__Transaction__["a" /* default */] })
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/wages/transaction', component: __WEBPACK_IMPORTED_MODULE_4__Transaction__["a" /* default */] }),
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/wages/watchlist', component: __WEBPACK_IMPORTED_MODULE_5__Watchlist__["a" /* default */] }),
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/wages/valuation', component: __WEBPACK_IMPORTED_MODULE_6__Valuation__["a" /* default */] })
 					)
 				)
 			);
@@ -61297,9 +61303,9 @@ var Home = function (_Component) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_router_dom__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_router_dom__ = __webpack_require__(7);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -61682,10 +61688,12 @@ var Cash = function (_Component) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_router_dom__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_router_dom__ = __webpack_require__(7);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -61697,6 +61705,27 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
+var FormErrors = function FormErrors(_ref) {
+	var formErrors = _ref.formErrors;
+	return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+		'div',
+		{ className: 'formErrors' },
+		Object.keys(formErrors).map(function (fieldName, i) {
+			if (formErrors[fieldName].length > 0) {
+				return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+					'p',
+					{ key: i, className: 'text-danger border border-danger rounded' },
+					fieldName,
+					': ',
+					formErrors[fieldName]
+				);
+			} else {
+				return '';
+			}
+		})
+	);
+};
+
 var Transaction = function (_Component) {
 	_inherits(Transaction, _Component);
 
@@ -61707,10 +61736,10 @@ var Transaction = function (_Component) {
 
 		_this.state = {
 			//  input
-			buySell: '',
-			stock_id: '',
-			price: '',
-			unit: '',
+			buySell: 'Buy',
+			stock_id: '0012',
+			price: '12.3',
+			unit: '1000',
 
 			//  bind
 			gross_amount: '',
@@ -61719,49 +61748,101 @@ var Transaction = function (_Component) {
 			sst_payable: '',
 			stamp_duty: '',
 			total_amount_due: '',
-			payment_due_date: ''
+			payment_due_date: '',
+			tRecord: [],
+
+			//  validation
+			formErrors: { buySell: '', stock_id: '', price: '', unit: '' },
+			buySellValid: false,
+			stock_idValid: false,
+			priceValid: false,
+			unitValid: false,
+			formValid: false,
+			buySellBtn: false
 		};
 
-		_this.handleChangeMethod = _this.handleChangeMethod.bind(_this);
-		_this.handleChangeStockId = _this.handleChangeStockId.bind(_this);
-		_this.handleChangePrice = _this.handleChangePrice.bind(_this);
-		_this.handleChangeUnit = _this.handleChangeUnit.bind(_this);
+		_this.handleUserInput = _this.handleUserInput.bind(_this);
 		_this.calculateTransaction = _this.calculateTransaction.bind(_this);
+		_this.validateField = _this.validateField.bind(_this);
+		_this.validateForm = _this.validateForm.bind(_this);
+		_this.submitTransaction = _this.submitTransaction.bind(_this);
+		_this.transactionRecord = _this.transactionRecord.bind(_this);
 		return _this;
 	}
 
 	_createClass(Transaction, [{
-		key: 'handleChangeMethod',
-		value: function handleChangeMethod(e) {
-			this.setState({
-				buySell: e.target.value
+		key: 'handleUserInput',
+		value: function handleUserInput(e) {
+			var _this2 = this;
+
+			var name = e.target.name;
+			var value = e.target.value;
+			this.setState(_defineProperty({}, name, value), function () {
+				_this2.validateField(name, value);
 			});
+
+			if (e.target.value === 'Buy' && e.target.name === 'buySell') {
+				document.getElementById('buySellBtn').classList.remove('btn-success');
+				document.getElementById('buySellBtn').classList.add('btn-success');
+			}
+			if (e.target.value === 'Sell' && e.target.name === 'buySell') {
+				document.getElementById('buySellBtn').classList.remove('btn-success');
+				document.getElementById('buySellBtn').classList.add('btn-danger');
+			}
 		}
 	}, {
-		key: 'handleChangeStockId',
-		value: function handleChangeStockId(e) {
+		key: 'validateField',
+		value: function validateField(fieldName, value) {
+			var fieldValidationErrors = this.state.formErrors;
+			var buySellValid = this.state.buySellValid;
+			var stock_idValid = this.state.stock_idValid;
+			var priceValid = this.state.priceValid;
+			var unitValid = this.state.unitValid;
+
+			switch (fieldName) {
+				case 'buySell':
+					buySellValid = value !== null && value !== '';
+					fieldValidationErrors.buySell = buySellValid ? '' : 'Not select method';
+					break;
+
+				case 'stock_id':
+					stock_idValid = value !== null && value !== '';
+					fieldValidationErrors.stock_id = stock_idValid ? '' : 'Please fill in stock code';
+					break;
+
+				case 'price':
+					priceValid = value !== null && value !== '' && !isNaN(value);
+					fieldValidationErrors.price = priceValid ? '' : 'Please fill in stock price (it must be numeric)';
+					break;
+
+				case 'unit':
+					unitValid = value !== null && value !== '' && !isNaN(value);
+					fieldValidationErrors.unit = unitValid ? '' : 'Please fill in unit';
+					break;
+
+				default:
+					break;
+			}
 			this.setState({
-				stock_id: e.target.value
-			});
+				formErrors: fieldValidationErrors,
+				buySellValid: buySellValid,
+				stock_idValid: stock_idValid,
+				priceValid: priceValid,
+				unitValid: unitValid
+			}, this.validateForm);
 		}
 	}, {
-		key: 'handleChangePrice',
-		value: function handleChangePrice(e) {
+		key: 'validateForm',
+		value: function validateForm() {
 			this.setState({
-				price: e.target.value
-			});
-		}
-	}, {
-		key: 'handleChangeUnit',
-		value: function handleChangeUnit(e) {
-			this.setState({
-				unit: e.target.value
+				formValid: this.state.buySellValid && this.state.stock_idValid && this.state.priceValid && this.state.unitValid
 			});
 		}
 	}, {
 		key: 'calculateTransaction',
 		value: function calculateTransaction(e) {
 			e.preventDefault();
+			if (this.state.buySell == null) {}
 			var b = '';
 			var ga = this.state.price * this.state.unit;
 			var cf = 0.0003 * this.state.price * this.state.unit;
@@ -61775,7 +61856,8 @@ var Transaction = function (_Component) {
 			var today = new Date();
 			var payday = new Date();
 			var payment_date = '';
-			// today.setDate(today.getDate()+0);
+			// to test if today is Saturday or Sunday how the flow goes
+			today.setDate(today.getDate() + 2);
 			// console.log(today.getDay());
 			if (today.getDay() == 6) {
 				payment_date = 'Saturday and Sunday cannot trade.';
@@ -61783,7 +61865,7 @@ var Transaction = function (_Component) {
 				payment_date = 'Saturday and Sunday cannot trade.';
 			} else {
 				payday.setDate(today.getDate() + 3);
-				console.log(payday.getDay());
+				// console.log(payday.getDay());
 				if (payday.getDay() == 6) {
 					payday.setDate(today.getDate() + 5);
 				}
@@ -61794,8 +61876,9 @@ var Transaction = function (_Component) {
 					payday.setDate(today.getDate() + 5);
 				}
 				payment_date = payday.toDateString();
+				this.state.buySellBtn = true;
 			}
-			console.log(payment_date);
+			// console.log(payment_date);
 
 			this.setState({
 				gross_amount: ga,
@@ -61808,8 +61891,59 @@ var Transaction = function (_Component) {
 			});
 		}
 	}, {
+		key: 'submitTransaction',
+		value: function submitTransaction(e) {
+			var _this3 = this;
+
+			e.preventDefault();
+			var txs = {
+				id: '3',
+				type: this.state.buySell,
+				unit: this.state.unit,
+				price: this.state.price,
+				stock_id: this.state.stock_id,
+				user_id: '123',
+				gross_amount: this.state.gross_amount,
+				brokerage: this.state.brokerage,
+				clearing_fee: this.state.clearing_fee,
+				sst_payable: this.state.sst_payable,
+				stamp_duty: this.state.stamp_duty,
+				total_amount_due: this.state.total_amount_due,
+				payment_due_date: this.state.payment_due_date
+
+			};
+			console.log(txs);
+
+			axios.post("/wages/transaction/api/post-transaction", txs).then(function (response) {
+				console.log(response);
+				_this3.transactionRecord();
+			}).catch(function (error) {
+				console.log(error.response);
+			});
+		}
+	}, {
+		key: 'transactionRecord',
+		value: function transactionRecord() {
+			var _this4 = this;
+
+			axios.get("/wages/transaction/api/show-transaction/user_id/123").then(function (response) {
+				_this4.setState({
+					tRecord: response.data
+				});
+			}).catch(function (error) {
+				console.log(error.response);
+			});
+		}
+	}, {
+		key: 'componentDidMount',
+		value: function componentDidMount() {
+			this.transactionRecord();
+		}
+	}, {
 		key: 'render',
 		value: function render() {
+			var _this5 = this;
+
 			return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 				'div',
 				{ className: 'container' },
@@ -61839,6 +61973,16 @@ var Transaction = function (_Component) {
 						'div',
 						{ className: 'col-md-6' },
 						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+							'h3',
+							null,
+							'Buy / Sell'
+						),
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+							'div',
+							{ className: 'panel panel-default' },
+							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(FormErrors, { formErrors: this.state.formErrors })
+						),
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 							'div',
 							{ className: 'form-group' },
 							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -61848,7 +61992,14 @@ var Transaction = function (_Component) {
 							),
 							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 								'select',
-								{ className: 'form-control', name: 'buySell', onChange: this.handleChangeMethod },
+								{ className: 'form-control',
+									name: 'buySell',
+									onChange: function onChange(e) {
+										return _this5.handleUserInput(e);
+									},
+									value: this.state.buySell,
+									required: true },
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null),
 								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 									'option',
 									{ value: 'Buy' },
@@ -61869,7 +62020,13 @@ var Transaction = function (_Component) {
 								null,
 								'Stock Code'
 							),
-							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { className: 'form-control', type: 'text', name: 'stock_id', onChange: this.handleChangeStockId })
+							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { className: 'form-control', type: 'text',
+								name: 'stock_id',
+								onChange: function onChange(e) {
+									return _this5.handleUserInput(e);
+								},
+								value: this.state.stock_id,
+								required: true })
 						),
 						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 							'div',
@@ -61879,7 +62036,13 @@ var Transaction = function (_Component) {
 								null,
 								'Buy / Sell Price'
 							),
-							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { className: 'form-control', type: 'text', name: 'price', onChange: this.handleChangePrice })
+							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { className: 'form-control',
+								type: 'text', name: 'price',
+								onChange: function onChange(e) {
+									return _this5.handleUserInput(e);
+								},
+								value: this.state.price,
+								required: true })
 						),
 						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 							'div',
@@ -61889,12 +62052,22 @@ var Transaction = function (_Component) {
 								null,
 								'Buy / Sell Unit'
 							),
-							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { className: 'form-control', type: 'text', name: 'unit', onChange: this.handleChangeUnit })
+							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { className: 'form-control', type: 'text',
+								name: 'unit', onChange: function onChange(e) {
+									return _this5.handleUserInput(e);
+								},
+								value: this.state.unit,
+								required: true })
 						),
 						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 							'div',
 							{ className: 'form-group' },
-							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { className: 'form-control', type: 'submit', onClick: this.calculateTransaction })
+							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+								'button',
+								{ className: 'btn btn-primary',
+									type: 'submit', onClick: this.calculateTransaction },
+								'Calculate'
+							)
 						)
 					),
 					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -61906,7 +62079,11 @@ var Transaction = function (_Component) {
 							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 								'h3',
 								null,
-								'Result'
+								'Cost for ',
+								this.state.buySell,
+								'ing ',
+								this.state.stock_id,
+								' : '
 							),
 							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 								'p',
@@ -61952,8 +62129,97 @@ var Transaction = function (_Component) {
 							),
 							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 								'button',
+								{ id: 'buySellBtn', className: 'btn btn-success',
+									disabled: !this.state.buySellBtn,
+									onClick: this.submitTransaction },
+								this.state.buySell
+							)
+						)
+					),
+					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+						'div',
+						{ className: 'col-md-12' },
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+							'h3',
+							null,
+							'Transaction Record'
+						),
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+							'table',
+							{ className: 'table bordered' },
+							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+								'thead',
 								null,
-								'Buy'
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'th',
+									null,
+									'Date'
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'th',
+									null,
+									'Type'
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'th',
+									null,
+									'Unit'
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'th',
+									null,
+									'Price'
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'th',
+									null,
+									'Stock ID'
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'th',
+									null,
+									'Total Cost'
+								)
+							),
+							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+								'tbody',
+								null,
+								this.state.tRecord.map(function (value, i) {
+									return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+										'tr',
+										{ key: i },
+										__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+											'td',
+											null,
+											value.created_at
+										),
+										__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+											'td',
+											null,
+											value.type
+										),
+										__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+											'td',
+											null,
+											value.unit
+										),
+										__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+											'td',
+											null,
+											value.price
+										),
+										__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+											'td',
+											null,
+											value.stock_id
+										),
+										__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+											'td',
+											null,
+											value.total_amount_due
+										)
+									);
+								})
 							)
 						)
 					)
@@ -61966,6 +62232,1627 @@ var Transaction = function (_Component) {
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
 
 /* harmony default export */ __webpack_exports__["a"] = (Transaction);
+
+/***/ }),
+/* 96 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_router_dom__ = __webpack_require__(7);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+var style = {
+	'h3color': {
+		color: 'red'
+	},
+	'h4color': {
+		color: 'green'
+	},
+	'input': {
+		width: '50px',
+		border: 'solid 1px black',
+		margin: '0px'
+	}
+};
+
+var Watchlist = function (_Component) {
+	_inherits(Watchlist, _Component);
+
+	function Watchlist(props) {
+		_classCallCheck(this, Watchlist);
+
+		var _this = _possibleConstructorReturn(this, (Watchlist.__proto__ || Object.getPrototypeOf(Watchlist)).call(this, props));
+
+		_this.state = {
+			stock_id: '',
+			stock_list: [],
+			watchlist: [],
+			searchStock: '',
+			ba1_1: '',
+			ba1_2: '',
+			ba1_3: '',
+			ba1_4: '',
+			ba1_5: '',
+			ba1: '',
+			ba2: '',
+			ba3: '',
+			ba4: '',
+			ba5: '',
+			ba6: '',
+			ba7: '',
+			fa1: '',
+			fa2: '',
+			fa3: '',
+			fa4: '',
+			fa5: '',
+			fa6: '',
+			fa7: '',
+			buffettMark: '',
+			fisherMark: ''
+		};
+
+		_this.handleUserInput = _this.handleUserInput.bind(_this);
+		_this.indexWatchlist = _this.indexWatchlist.bind(_this);
+		_this.addWatchlist = _this.addWatchlist.bind(_this);
+		_this.updatePrice = _this.updatePrice.bind(_this);
+		_this.deleteWatchlist = _this.deleteWatchlist.bind(_this);
+		_this.notify = _this.notify.bind(_this);
+		_this.showGisRank = _this.showGisRank.bind(_this);
+		return _this;
+	}
+
+	_createClass(Watchlist, [{
+		key: 'indexWatchlist',
+		value: function indexWatchlist() {
+			var _this2 = this;
+
+			axios.get("/wages/watchlist/api/index-watchlist").then(function (response) {
+				_this2.setState({
+					watchlist: response.data
+
+				});
+			}).catch(function (error) {
+				console.log(error.response);
+			});
+		}
+	}, {
+		key: 'handleUserInput',
+		value: function handleUserInput(e) {
+			var _this3 = this;
+
+			var name = e.target.name;
+			var value = e.target.value;
+			this.setState(_defineProperty({}, name, value));
+			if (name === 'searchStock') {
+				axios.get("/wages/watchlist/api/search-stock/" + value).then(function (response) {
+					_this3.setState({
+						stock_list: response.data
+					});
+					console.log(response.data);
+				}).catch(function (error) {
+					console.log(error.response);
+				});
+			}
+			if (name === 'ba1_1' || name === 'ba1_2' || name === 'ba1_3' || name === 'ba1_4' || name === 'ba1_5' || name === 'ba1' || name === 'ba2' || name === 'ba3' || name === 'ba4' || name === 'ba5' || name === 'ba6' || name === 'ba7') {
+				var thisIn = this;
+				setTimeout(function () {
+					var sum = Number(thisIn.state.ba1_1 || 0) + Number(thisIn.state.ba1_2 || 0) + Number(thisIn.state.ba1_3 || 0) + Number(thisIn.state.ba1_4 || 0) + Number(thisIn.state.ba1_5 || 0);
+					var mark = sum + Number(thisIn.state.ba2 || 0) + Number(thisIn.state.ba3 || 0) + Number(thisIn.state.ba4 || 0) + Number(thisIn.state.ba5 || 0) + Number(thisIn.state.ba6 || 0) + Number(thisIn.state.ba7 || 0);
+					thisIn.setState({
+						ba1: sum,
+						buffettMark: mark
+					});
+					var computeBuffett = {
+						ba1_1: thisIn.state.ba1_1,
+						ba1_2: thisIn.state.ba1_2,
+						ba1_3: thisIn.state.ba1_3,
+						ba1_4: thisIn.state.ba1_4,
+						ba1_5: thisIn.state.ba1_5,
+						ba1: thisIn.state.ba1,
+						ba2: thisIn.state.ba2,
+						ba3: thisIn.state.ba3,
+						ba4: thisIn.state.ba4,
+						ba5: thisIn.state.ba5,
+						ba6: thisIn.state.ba6,
+						ba7: thisIn.state.ba7,
+						buffettMark: thisIn.state.buffettMark,
+						stock_id: thisIn.state.stock_id
+					};
+					axios.post("/wages/watchlist/api/compute-buffett", computeBuffett).then(function (response) {
+						console.log(response);
+					}).catch(function (error) {
+						console.log(error.response);
+					});
+				}, 500);
+			}
+			if (name === 'fa1' || name === 'fa2' || name === 'fa3' || name === 'fa4' || name === 'fa5' || name === 'fa6' || name === 'fa7') {
+				var _thisIn = this;
+				setTimeout(function () {
+
+					var mark = Number(_thisIn.state.fa1 || 0) + Number(_thisIn.state.fa2 || 0) + Number(_thisIn.state.fa3 || 0) + Number(_thisIn.state.fa4 || 0) + Number(_thisIn.state.fa5 || 0) + Number(_thisIn.state.fa6 || 0) + Number(_thisIn.state.fa7 || 0);
+					_thisIn.setState({
+						fisherMark: mark
+					});
+					var computeFisher = {
+						fa1: _thisIn.state.fa1,
+						fa2: _thisIn.state.fa2,
+						fa3: _thisIn.state.fa3,
+						fa4: _thisIn.state.fa4,
+						fa5: _thisIn.state.fa5,
+						fa6: _thisIn.state.fa6,
+						fa7: _thisIn.state.fa7,
+						fisherMark: _thisIn.state.fisherMark,
+						stock_id: _thisIn.state.stock_id
+					};
+					axios.post("/wages/watchlist/api/compute-fisher", computeFisher).then(function (response) {
+						console.log(response);
+					}).catch(function (error) {
+						console.log(error.response);
+					});
+				}, 500);
+			}
+		}
+	}, {
+		key: 'addWatchlist',
+		value: function addWatchlist(e, id) {
+			var _this4 = this;
+
+			var wl = {
+				id: id
+
+			};
+			this.setState({
+				stock_list: []
+			});
+			this.refs.searchInput.value = "";
+			axios.post('/wages/watchlist/api/add-watchlist', wl).then(function (response) {
+				console.log(response);
+				_this4.notify("Stock added to watchlist", 3000);
+				_this4.indexWatchlist();
+			}).catch(function (error) {
+				console.log(error.response);
+			});
+		}
+	}, {
+		key: 'updatePrice',
+		value: function updatePrice() {
+			var _this5 = this;
+
+			axios.post('/wages/watchlist/api/update-price').then(function (response) {
+				_this5.indexWatchlist();
+			}).catch(function (error) {
+				console.log(error.response);
+			});
+		}
+	}, {
+		key: 'deleteWatchlist',
+		value: function deleteWatchlist(id) {
+			var _this6 = this;
+
+			axios.delete('/wages/watchlist/api/delete-watchlist/' + id).then(function (response) {
+				console.log(response);
+				_this6.notify("Stock deleted from watchlist", 3000);
+				_this6.indexWatchlist();
+			}).catch(function (error) {
+				console.log(error.response);
+			});
+		}
+	}, {
+		key: 'notify',
+		value: function notify(msg, duration) {
+			var thisIn = this;
+			this.refs.notification.innerHTML = msg;
+			setTimeout(function () {
+				thisIn.refs.notification.innerHTML = "";
+			}, duration);
+		}
+	}, {
+		key: 'showGisRank',
+		value: function showGisRank(e, id) {
+			var _this7 = this;
+
+			e.preventDefault();
+			this.setState({
+				stock_id: id
+			});
+			console.log(id);
+			axios.get('/wages/watchlist/api/show-gis-rank/' + id).then(function (response) {
+				console.log(response.data);
+				if (response.data) {
+					_this7.setState({
+						ba1_1: response.data.ba1_1,
+						ba1_2: response.data.ba1_2,
+						ba1_3: response.data.ba1_3,
+						ba1_4: response.data.ba1_4,
+						ba1_5: response.data.ba1_5,
+						ba1: response.data.ba1,
+						ba2: response.data.ba2,
+						ba3: response.data.ba3,
+						ba4: response.data.ba4,
+						ba5: response.data.ba5,
+						ba6: response.data.ba6,
+						ba7: response.data.ba7,
+						fa1: response.data.fa1,
+						fa2: response.data.fa2,
+						fa3: response.data.fa3,
+						fa4: response.data.fa4,
+						fa5: response.data.fa5,
+						fa6: response.data.fa6,
+						fa7: response.data.fa7,
+						buffettMark: response.data.buffettMark,
+						fisherMark: response.data.fisherMark
+					});
+				}
+
+				if (Object.keys(response.data).length === 0) {
+					_this7.setState({
+						ba1_1: '',
+						ba1_2: '',
+						ba1_3: '',
+						ba1_4: '',
+						ba1_5: '',
+						ba1: '',
+						ba2: "",
+						ba3: "",
+						ba4: "",
+						ba5: "",
+						ba6: "",
+						ba7: "",
+						fa1: "",
+						fa2: "",
+						fa3: "",
+						fa4: "",
+						fa5: "",
+						fa6: "",
+						fa7: "",
+						buffettMark: '',
+						fisherMark: ''
+					});
+				}
+			}).catch(function (error) {
+				console.log(error.response);
+			});
+		}
+	}, {
+		key: 'componentWillMount',
+		value: function componentWillMount() {
+			this.indexWatchlist();
+		}
+	}, {
+		key: 'componentDidMount',
+		value: function componentDidMount() {
+			// this.updatePrice();
+		}
+	}, {
+		key: 'render',
+		value: function render() {
+			var _this8 = this;
+
+			return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+				'div',
+				{ className: 'container' },
+				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+					'div',
+					{ className: 'row' },
+					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+						'div',
+						{ className: 'col-md-12' },
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+							'h1',
+							{ className: 'pageTitle' },
+							'Watchlist',
+							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+								'span',
+								null,
+								'WATCHLIST'
+							)
+						),
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+							__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["b" /* Link */],
+							{ to: '/wages' },
+							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-home', 'aria-hidden': 'true' })
+						)
+					),
+					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+						'div',
+						{ className: 'col-md-8' },
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+							'div',
+							{ className: 'form-group' },
+							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+								'label',
+								null,
+								'Stock Code'
+							),
+							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { className: 'form-control', type: 'text',
+								name: 'searchStock',
+								ref: 'searchInput',
+								onChange: function onChange(e) {
+									return _this8.handleUserInput(e);
+								} }),
+							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+								'div',
+								{ ref: 'searchResult' },
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'ul',
+									{ className: 'list-group' },
+									this.state.stock_list.map(function (value, i) {
+										return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+											'a',
+											null,
+											__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+												'li',
+												{ className: 'list-group-item', name: 'selectedStock', onClick: function onClick(e) {
+														return _this8.addWatchlist(e, value.id);
+													}
+												},
+												value.name,
+												' - ',
+												value.code,
+												'(',
+												value.id,
+												')'
+											)
+										);
+									})
+								)
+							)
+						)
+					),
+					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+						'div',
+						{ className: 'col-md-6' },
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+							'h3',
+							{ style: style.h3color },
+							'Buffett Approach (',
+							this.state.buffettMark,
+							')'
+						),
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+							'table',
+							{ className: 'table table-bordered' },
+							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+								'tr',
+								null,
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									'Business Sexiness'
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('td', null),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', name: 'ba1', className: 'form-control',
+										style: style.input, value: this.state.ba1, disabled: true,
+										onChange: function onChange(e) {
+											return _this8.handleUserInput(e);
+										} })
+								)
+							),
+							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+								'tr',
+								null,
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									'Supplier No.'
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', name: 'ba1_1', className: 'form-control',
+										style: style.input, value: this.state.ba1_1,
+										onChange: function onChange(e) {
+											return _this8.handleUserInput(e);
+										} })
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('td', null)
+							),
+							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+								'tr',
+								null,
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									'Customer Choices'
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', name: 'ba1_2', className: 'form-control',
+										style: style.input, value: this.state.ba1_2,
+										onChange: function onChange(e) {
+											return _this8.handleUserInput(e);
+										} })
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('td', null)
+							),
+							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+								'tr',
+								null,
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									'Barrier of Entry'
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', name: 'ba1_3', className: 'form-control',
+										style: style.input, value: this.state.ba1_3,
+										onChange: function onChange(e) {
+											return _this8.handleUserInput(e);
+										} })
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('td', null)
+							),
+							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+								'tr',
+								null,
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									'Substitute'
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', name: 'ba1_4', className: 'form-control',
+										style: style.input, value: this.state.ba1_4,
+										onChange: function onChange(e) {
+											return _this8.handleUserInput(e);
+										} })
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('td', null)
+							),
+							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+								'tr',
+								null,
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									'Competition No.'
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', name: 'ba1_5', className: 'form-control',
+										style: style.input, value: this.state.ba1_5,
+										onChange: function onChange(e) {
+											return _this8.handleUserInput(e);
+										} })
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('td', null)
+							),
+							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+								'tr',
+								null,
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									'Competitiveness (1st/2nd)'
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('td', null),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', name: 'ba2', className: 'form-control',
+										style: style.input, value: this.state.ba2,
+										onChange: function onChange(e) {
+											return _this8.handleUserInput(e);
+										} })
+								)
+							),
+							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+								'tr',
+								null,
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									'FPE<25'
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('td', null),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', name: 'ba3', className: 'form-control',
+										style: style.input, value: this.state.ba3,
+										onChange: function onChange(e) {
+											return _this8.handleUserInput(e);
+										} })
+								)
+							),
+							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+								'tr',
+								null,
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									'Gearing<1.5'
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('td', null),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', name: 'ba4', className: 'form-control',
+										style: style.input, value: this.state.ba4,
+										onChange: function onChange(e) {
+											return _this8.handleUserInput(e);
+										} })
+								)
+							),
+							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+								'tr',
+								null,
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									'GP Cashflow>0.88'
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('td', null),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', name: 'ba5', className: 'form-control',
+										style: style.input, value: this.state.ba5,
+										onChange: function onChange(e) {
+											return _this8.handleUserInput(e);
+										} })
+								)
+							),
+							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+								'tr',
+								null,
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									'Good Will'
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('td', null),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', name: 'ba6', className: 'form-control',
+										style: style.input, value: this.state.ba6,
+										onChange: function onChange(e) {
+											return _this8.handleUserInput(e);
+										} })
+								)
+							),
+							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+								'tr',
+								null,
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									'Customer Loyalty'
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('td', null),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', name: 'ba7', className: 'form-control',
+										style: style.input, value: this.state.ba7,
+										onChange: function onChange(e) {
+											return _this8.handleUserInput(e);
+										} })
+								)
+							)
+						)
+					),
+					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+						'div',
+						{ className: 'col-md-6' },
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+							'h3',
+							{ style: style.h4color },
+							'Fisher Approach (',
+							this.state.fisherMark,
+							')'
+						),
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+							'table',
+							{ className: 'table table-bordered' },
+							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+								'tr',
+								null,
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									'Future Grow Opportunity'
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', name: 'fa1', className: 'form-control',
+										style: style.input, value: this.state.fa1,
+										onChange: function onChange(e) {
+											return _this8.handleUserInput(e);
+										} })
+								)
+							),
+							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+								'tr',
+								null,
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									'Competitiveness (1st/2nd)'
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', name: 'fa2', className: 'form-control',
+										style: style.input, value: this.state.fa2,
+										onChange: function onChange(e) {
+											return _this8.handleUserInput(e);
+										} })
+								)
+							),
+							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+								'tr',
+								null,
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									'Net Margin>15'
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', name: 'fa3', className: 'form-control',
+										style: style.input, value: this.state.fa3,
+										onChange: function onChange(e) {
+											return _this8.handleUserInput(e);
+										} })
+								)
+							),
+							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+								'tr',
+								null,
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									'GP Cashflow>0.88'
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', name: 'fa4', className: 'form-control',
+										style: style.input, value: this.state.fa4,
+										onChange: function onChange(e) {
+											return _this8.handleUserInput(e);
+										} })
+								)
+							),
+							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+								'tr',
+								null,
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									'Marginal Cost (R&D Important)'
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', name: 'fa5', className: 'form-control',
+										style: style.input, value: this.state.fa5,
+										onChange: function onChange(e) {
+											return _this8.handleUserInput(e);
+										} })
+								)
+							),
+							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+								'tr',
+								null,
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									'Leadership'
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', name: 'fa6', className: 'form-control',
+										style: style.input, value: this.state.fa6,
+										onChange: function onChange(e) {
+											return _this8.handleUserInput(e);
+										} })
+								)
+							),
+							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+								'tr',
+								null,
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									'Talent'
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', name: 'fa7', className: 'form-control',
+										style: style.input, value: this.state.fa7,
+										onChange: function onChange(e) {
+											return _this8.handleUserInput(e);
+										} })
+								)
+							)
+						)
+					),
+					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+						'div',
+						{ className: 'col-md-12' },
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('h4', { ref: 'notification' }),
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+							'table',
+							{ className: 'table table-striped' },
+							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+								'thead',
+								null,
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'th',
+									null,
+									'Stock Code'
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'th',
+									null,
+									'Stock Name'
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'th',
+									null,
+									'Current Price'
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'th',
+									null,
+									'Last Update'
+								)
+							),
+							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+								'tbody',
+								null,
+								this.state.watchlist.map(function (value, i) {
+									return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+										'tr',
+										{ key: i },
+										__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+											'td',
+											null,
+											__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+												'button',
+												{ className: 'btn btn-danger',
+													onClick: function onClick() {
+														return _this8.deleteWatchlist(value.id);
+													} },
+												__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { 'class': 'fa fa-trash', 'aria-hidden': 'true' })
+											),
+											value.code
+										),
+										__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+											'td',
+											null,
+											__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+												'a',
+												{ href: '#', onClick: function onClick(e) {
+														return _this8.showGisRank(e, value.id);
+													} },
+												value.name
+											)
+										),
+										__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+											'td',
+											null,
+											value.current_price
+										),
+										__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+											'td',
+											null,
+											value.updated_at
+										)
+									);
+								})
+							)
+						)
+					)
+				)
+			);
+		}
+	}]);
+
+	return Watchlist;
+}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
+
+/* harmony default export */ __webpack_exports__["a"] = (Watchlist);
+
+/***/ }),
+/* 97 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_router_dom__ = __webpack_require__(7);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+var style = {};
+
+var Watchlist = function (_Component) {
+	_inherits(Watchlist, _Component);
+
+	function Watchlist(props) {
+		_classCallCheck(this, Watchlist);
+
+		var _this = _possibleConstructorReturn(this, (Watchlist.__proto__ || Object.getPrototypeOf(Watchlist)).call(this, props));
+
+		_this.state = {
+			stock_id: '',
+			stock_list: [],
+			stock_fundamental: [],
+			searchStock: ''
+		};
+
+		_this.handleUserInput = _this.handleUserInput.bind(_this);
+		return _this;
+	}
+
+	_createClass(Watchlist, [{
+		key: 'handleUserInput',
+		value: function handleUserInput(e) {
+			var _this2 = this;
+
+			var name = e.target.name;
+			var value = e.target.value;
+			this.setState(_defineProperty({}, name, value));
+			if (name === 'searchStock') {
+				axios.get("/wages/watchlist/api/search-stock/" + value).then(function (response) {
+					_this2.setState({
+						stock_list: response.data
+					});
+					console.log(response.data);
+				}).catch(function (error) {
+					console.log(error.response);
+				});
+			}
+		}
+	}, {
+		key: 'getFundamental',
+		value: function getFundamental(e, id) {
+			var _this3 = this;
+
+			e.preventDefault();
+			axios.get("/wages/valuation/api/show/" + id).then(function (response) {
+				_this3.setState({
+					stock_fundamental: response.data
+				});
+				console.log(response.data);
+			}).catch(function (error) {
+				console.log(error.response);
+			});
+		}
+	}, {
+		key: 'render',
+		value: function render() {
+			var _this4 = this;
+
+			return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+				'div',
+				{ className: 'container' },
+				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+					'div',
+					{ className: 'row' },
+					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+						'div',
+						{ className: 'col-md-12' },
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+							'h1',
+							{ className: 'pageTitle' },
+							'Valuation',
+							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+								'span',
+								null,
+								'VALUATION'
+							)
+						),
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+							__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["b" /* Link */],
+							{ to: '/wages' },
+							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-home', 'aria-hidden': 'true' })
+						)
+					),
+					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+						'div',
+						{ className: 'col-md-8' },
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+							'div',
+							{ className: 'form-group' },
+							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+								'label',
+								null,
+								'Stock Code'
+							),
+							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { className: 'form-control', type: 'text',
+								name: 'searchStock',
+								ref: 'searchInput',
+								onChange: function onChange(e) {
+									return _this4.handleUserInput(e);
+								} }),
+							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+								'div',
+								{ ref: 'searchResult' },
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'ul',
+									{ className: 'list-group' },
+									this.state.stock_list.map(function (value, i) {
+										return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+											'a',
+											null,
+											__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+												'li',
+												{ className: 'list-group-item', name: 'selectedStock', onClick: function onClick(e) {
+														return _this4.getFundamental(e, value.id);
+													}
+												},
+												value.name,
+												' - ',
+												value.code,
+												'(',
+												value.id,
+												')'
+											)
+										);
+									})
+								)
+							)
+						)
+					),
+					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+						'div',
+						{ id: 'uploadFundamental', className: 'col-md-12' },
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+							'h2',
+							null,
+							'Upload Fundamental Data for Analyse'
+						),
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+							'table',
+							{ className: 'table table-bordered' },
+							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+								'tr',
+								null,
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+										'label',
+										null,
+										'Stock'
+									)
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', name: 'stock_id' })
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+										'label',
+										null,
+										'Financial Year End'
+									)
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', name: 'fye' })
+								)
+							),
+							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+								'tr',
+								null,
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+										'label',
+										null,
+										'PE ratio'
+									)
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', name: 'pe' })
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+										'label',
+										null,
+										'Net Margin'
+									)
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', name: 'net_margin' })
+								)
+							),
+							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+								'tr',
+								null,
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+										'label',
+										null,
+										'ROE'
+									)
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', name: 'roe' })
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+										'label',
+										null,
+										'Gearing Ratio'
+									)
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', name: 'gearing' })
+								)
+							),
+							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+								'tr',
+								null,
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+										'label',
+										null,
+										'Grandpine Cash Flow'
+									)
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', name: 'gp_cashflow' })
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+										'label',
+										null,
+										'Dividend Yield'
+									)
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', name: 'dy' })
+								)
+							),
+							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+								'tr',
+								null,
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+										'label',
+										null,
+										'Revenue'
+									)
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', name: 'revenue' })
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+										'label',
+										null,
+										'Earning Per Share'
+									)
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', name: 'eps' })
+								)
+							),
+							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+								'tr',
+								null,
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+										'label',
+										null,
+										'Dividend Per Share'
+									)
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', name: 'dps' })
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+										'label',
+										null,
+										'Cash & Equivalent'
+									)
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', name: 'cash_eq' })
+								)
+							),
+							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+								'tr',
+								null,
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+										'label',
+										null,
+										'Short Term Loan'
+									)
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', name: 'stl' })
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+										'label',
+										null,
+										'Long Term Loan'
+									)
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', name: 'ltl' })
+								)
+							),
+							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+								'tr',
+								null,
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+										'label',
+										null,
+										'Debt-Equity Ratio'
+									)
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', name: 'debt_equity' })
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+										'label',
+										null,
+										'Book Value'
+									)
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', name: 'bv' })
+								)
+							),
+							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+								'tr',
+								null,
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+										'label',
+										null,
+										'Free Cash Flow'
+									)
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', name: 'fcf' })
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+										'label',
+										null,
+										'ROA'
+									)
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', name: 'roa' })
+								)
+							),
+							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+								'tr',
+								null,
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+										'label',
+										null,
+										'Asset Turnover'
+									)
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', name: 'asset_turnover' })
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+										'label',
+										null,
+										'Net Profit Growth Rate'
+									)
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'td',
+									null,
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', name: 'np_gr' })
+								)
+							)
+						),
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+							'button',
+							{ className: 'btn btn-primary', onClick: 'uploadForm' },
+							'Upload'
+						)
+					),
+					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+						'div',
+						{ id: 'stockFundamental', className: 'col-md-12' },
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+							'h2',
+							null,
+							'Fundamental Data'
+						),
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+							'button',
+							{ className: 'btn btn-primary' },
+							'Update Data'
+						),
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+							'button',
+							{ className: 'btn btn-primary' },
+							'Valuation'
+						),
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+							'table',
+							{ className: 'table table-striped table-responsive' },
+							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+								'thead',
+								null,
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'th',
+									null,
+									'FYE'
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'th',
+									null,
+									'Stock'
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'th',
+									null,
+									'PE'
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'th',
+									null,
+									'DY'
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'th',
+									null,
+									'EPS'
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'th',
+									null,
+									'DPS'
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'th',
+									null,
+									'Net Profit GR'
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'th',
+									null,
+									'Revenue'
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'th',
+									null,
+									'Cash & Equivalent'
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'th',
+									null,
+									'Short Term Loan'
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'th',
+									null,
+									'Long Term Loan'
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'th',
+									null,
+									'Book Value'
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'th',
+									null,
+									'Gearing'
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'th',
+									null,
+									'Debt/Equity'
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'th',
+									null,
+									'FCF'
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'th',
+									null,
+									'GP Cashflow'
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'th',
+									null,
+									'Net Margin'
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'th',
+									null,
+									'ROE'
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'th',
+									null,
+									'ROA'
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'th',
+									null,
+									'Asset Turnover'
+								)
+							),
+							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('tbody', null)
+						)
+					),
+					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+						'div',
+						{ id: 'valuationResult', className: 'col-md-12' },
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+							'h2',
+							null,
+							'Valuation'
+						)
+					),
+					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+						'div',
+						{ className: 'col-md-6' },
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', name: 'earning_growth_rate' }),
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+							'table',
+							null,
+							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+								'thead',
+								null,
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'th',
+									null,
+									'FYE'
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'th',
+									null,
+									'EPS (E)'
+								)
+							),
+							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('tbody', null)
+						),
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+							'h4',
+							null,
+							'Intrinsic Value'
+						),
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+							'p',
+							null,
+							'5 yrs average EPS: '
+						),
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+							'p',
+							null,
+							'5 yrs average PE: '
+						),
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+							'p',
+							null,
+							'5 yrs average DY: '
+						),
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+							'p',
+							null,
+							'Total 5Y Projected Dividend: '
+						),
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+							'p',
+							null,
+							'Total 5Y Projected Return: '
+						),
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+							'p',
+							null,
+							'Estimate Price: '
+						),
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+							'p',
+							null,
+							'Current Intrinsic Value: '
+						)
+					),
+					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+						'div',
+						{ className: 'col-md-6' },
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+							'h4',
+							null,
+							'Fair Value'
+						),
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+							'p',
+							null,
+							'52 week High: ',
+							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', name: 'w52h' })
+						),
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+							'p',
+							null,
+							'52 week Low: ',
+							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', name: 'w52l' })
+						),
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+							'p',
+							null,
+							'Current Price: '
+						),
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+							'p',
+							null,
+							'Fair Value: '
+						),
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+							'h4',
+							null,
+							'Fundamental Analysis'
+						),
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+							'p',
+							null,
+							'ROE(>15%): Avg -  | Current - '
+						),
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+							'p',
+							null,
+							'EPS Growth Rate(>15%): %'
+						),
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+							'p',
+							null,
+							'Debt/Equity Ratio(<0.5): Avg -  | Current - '
+						),
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+							'p',
+							null,
+							'Net Margin(>15%): Avg -  | Current - '
+						),
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+							'p',
+							null,
+							'GP Cashflow(>0.88): Avg -  | Current - '
+						),
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+							'p',
+							null,
+							'Gearing(<1.5): Avg -  | Current - '
+						)
+					)
+				)
+			);
+		}
+	}]);
+
+	return Watchlist;
+}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
+
+/* harmony default export */ __webpack_exports__["a"] = (Watchlist);
 
 /***/ })
 /******/ ]);

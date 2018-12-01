@@ -1,4 +1,5 @@
-<?php namespace App\Repository\wages;
+<?php 
+namespace App\Repository\wages;
 
 use Illuminate\Database\Eloquent\Model;
 use App\wages\BankAccount;
