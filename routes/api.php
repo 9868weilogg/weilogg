@@ -23,7 +23,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 **
 **/
 
-Route::apiResource('records','RecordController');
+// Route::apiResource('records','RecordController');
 
 /**
 **

@@ -90,7 +90,7 @@ class LoginController extends Controller
             {
                 //  testing is the page run
                 //  echo "success";
-                return Redirect::to('/dishmotion/admin');
+                return Redirect::to('/dishmotion/admins');
             }
             else
             {
