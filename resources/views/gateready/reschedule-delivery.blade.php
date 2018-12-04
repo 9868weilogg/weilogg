@@ -71,9 +71,9 @@ button.submit_button:hover{
 			{{ $error }}
 			@endforeach
 		</div>
-		<form method="post" action="/gateready/record/{{ Auth::user()->id }}/reschedule-delivery/{{$record_reference_number}}">
+		<form method="post" action="/gateready/records/{{$record_reference_number}}?reschedule_delivery=1">
 			@csrf
-			
+			@method('put')
 			<div class="form-group row">
 				<label class="col-form-label col-md-4 text-md-left" for="schedule_date">Schedule Your Available Date</label>
 				<div class="col-md-8">

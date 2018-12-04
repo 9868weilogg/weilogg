@@ -11,7 +11,6 @@ class AdminController extends Controller
 {
   
   public function index(Request $request) {
-    dd('a');
     if($request->filter_order == "1") {
       $data = $this->filter_order($request);
       $orders = $data['orders'];

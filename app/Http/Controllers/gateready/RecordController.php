@@ -3,18 +3,22 @@
 namespace App\Http\Controllers\gateready;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Input;
+
 use App\Http\Controllers\Controller;
+use App\Http\Traits\CodeGenerator;
+use App\Http\Resources\RecordResource;
+
 use App\gateready\Record;
 use App\gateready\Package;
 use App\gateready\Courier;
 use App\gateready\TimeRange;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Input;
-use App\Http\Traits\CodeGenerator;
 use App\User;
+
+use Auth;
 use PDF;
-use App\Http\Resources\RecordResource;
 
 
 
@@ -23,177 +27,147 @@ class RecordController extends Controller
     //  insert traits code that reusable (Code Generator)
     use CodeGenerator;
 
-    //  show record page
-    public function show_record($user_id)
-    {
-
-    	//retrieve record data
-    	$records = Record::all()->where('gateready_user_id',$user_id);
-    	
-    	if($records->isEmpty())
-    	{
-    		return view('gateready/record',[
-    			'records' => $records,
-    		]);
-    	}else
-    	{
-    		foreach ($records as $record)
-		    {
-		    	$status[$record->reference_number] = Record::find($record->reference_number)->status;
-		    	$time_range[$record->reference_number] = Record::find($record->reference_number)->time_range;
-				$package[$record->package_id] = Package::find($record->package_id);
-				$user[$record->gateready_user_id] = User::find($record->gateready_user_id);
-				$payment = $user[$record->gateready_user_id]->credit - $package[$record->package_id]->price ;
-		    }
-
-		    return view('gateready/record',[
-				'records' => $records,
-			  	'status' => $status,
-		    	'time_range' => $time_range,
-		    	'package' => $package,
-		    	'user' => $user,
-		    	'payment' => $payment,
-		   ]);
-    	}
-    	
-    	
-    	
+    public function index(Request $request) {
+      
+      $data = Record::show_record(Auth::user()->id);
+      $records = $data['records'];
+      $status = $data['status'];
+      $time_range = $data['time_range'];
+      $package = $data['package'];
+      $user = $data['user'];
+      $payment = $data['payment'];
+      
+      return view('gateready/record',compact('records','time_range','package','user','payment','status'));
+    
+    
     }
 
-    //  show schedule delivery page
-    public function show_schedule_delivery($user_id)
-    {
-    	$couriers = Courier::all();
+    public function create(Request $request) {
+      if($request->schedule_delivery) {
+        $data = Record::show_schedule_delivery(Auth::user()->id);
+        $couriers = $data['couriers'];
+        $time_ranges = $data['time_ranges'];
+
+        return view('gateready/schedule-delivery',compact('couriers','time_ranges'));
+      }
+    }
+
+    public function store(Request $request) {
+      if($request->schedule_delivery) {
+        $validator = Record::post_schedule_delivery($request);
+        //  if validation fail
+        if($validator->fails())
+        {
+          return Redirect::to('gateready/records/create/?schedule-delivery=1')->withErrors($validator)->withInput();
+        }
+        else
+        {
+          $record = new Record;
+          $record->gateready_user_id = Auth::user()->id;
+          $record->tracking_number = $request->tracking_number;
+          $record->courier_id = $request->courier_id;
+          $record->package_id = $request->package_id;
+          $record->schedule_date = $request->schedule_date;
+          $record->time_range_id = $request->time_range_id;
+          $record->reference_number = $this->generate_code('reference_number');
+          // hard code for testing - database set to be not null
+          
+          $record->status_id = 2;
+          $record->message = 'nil';
+          $record->save();
+
+          return Redirect::to('/gateready/records');
+        }
+      }
+    }
+
+    public function edit($id, Request $request) {
+      if($request->reschedule_delivery) {
         $time_ranges = TimeRange::all();
-        return view('gateready/schedule-delivery',[
-    		'user_id' => $user_id,
-            'couriers' => $couriers,
-            'time_ranges' => $time_ranges,
-    	]);
+          return view('gateready/reschedule-delivery',[
+          'record_reference_number' => $id,
+          'time_ranges' => $time_ranges,
+        ]);
+      } elseif ($request->feedback) {
+        return view('gateready/feedback',[
+          'user_id' => Auth::user()->id,
+          'record_reference_number' => $id,
+        ]);
+      }
+      
     }
 
-    //  post schedule delivery 
-    public function post_schedule_delivery(Request $request,$user_id)
-    {
-    	// validate input
-    	$validator = Validator::make($request->all(),[
-    		'user_id' => 'required',
-    		'schedule_date' => 'required',
-    		'package_id' => 'required',
-    		'tracking_number' => 'required',
-    		'courier_id' => 'required',
-    		'time_range_id' => 'required',
-    	]);
+    public function update($id, Request $request) {
+      if($request->reschedule_delivery) {
+        $validator = Record::post_reschedule_delivery($request);
+        //  if validation fail
+        if($validator->fails())
+        {
+          return Redirect::to('/gateready/records/'. $id .'/edit?reschedule_delivery=1')->withErrors($validator)->withInput();
+        }
+        else
+        {
+          // echo Input::get('schedule_date');
+          // echo $record_reference_number;
+          // echo $user_id;
+          Record::where([
+            'reference_number' => $id,
+            'gateready_user_id' => Auth::user()->id,
+          ])->update([
+            'schedule_date' => $request->schedule_date,
+            'time_range_id' => $request->time_range_id,
+          ]);
 
-    	//  if validation fail
-    	if($validator->fails())
-    	{
-    		return Redirect::to('gateready/record/'. $user_id . '/schedule-delivery')->withErrors($validator)->withInput();
-    	}
-    	else
-    	{
-    		$record = new Record;
-    		$record->gateready_user_id = Input::get('user_id');
-    		$record->tracking_number = Input::get('tracking_number');
-    		$record->courier_id = Input::get('courier_id');
-    		$record->package_id = Input::get('package_id');
-    		$record->schedule_date = Input::get('schedule_date');
-    		$record->time_range_id = Input::get('time_range_id');
-    		$record->reference_number = $this->generate_code('reference_number');
-    		// hard code for testing - database set to be not null
-    		
-    		$record->status_id = 2;
-    		$record->message = 'nil';
-    		$record->save();
+          return Redirect::to('gateready/records');
+        }
+      } elseif($request->feedback) {
+        // echo "$record_reference_number";
+        //  validate the input
+        $validator = Validator::make(Input::all(),[
+          'msg' => 'required',
+        ]);
 
-    		
+        //  if validator fail
+        if($validator->fails())
+        {
+          return Redirect::to('gateready/records/' .$id .'/edit?feedback=1')->withErrors($validator);
+          // echo "$record_reference_number";
 
-
-    		return Redirect::to('/gateready/record/'. $user_id );
-    	}
+        }
+        else
+        {
+          Record::where([
+            'gateready_user_id' => Auth::user()->id,
+            'reference_number' => $id,
+          ])->update([
+            
+            'message' => $request->msg,
+          ]);
+          return Redirect::to('gateready/records');
+        }
+      }
+      
     }
 
-    //  show schedule delivery page
-    public function show_reschedule_delivery(Request $request, $user_id, $record_reference_number)
-    {
-    	$time_ranges = TimeRange::all();
-        return view('gateready/reschedule-delivery',[
-    		'record_reference_number' => $record_reference_number,
-            'time_ranges' => $time_ranges,
-    	]);
-    }
+    
 
-    //  reschedule the date and time of delivery
-    public function post_reschedule_delivery(Request $request, $user_id, $record_reference_number)
-    {
-    	// echo "$record_reference_number";
-    	//  validate
-    	$validator = Validator::make(Input::all(),[
-    		'schedule_date' => 'required',
-    		'time_range_id' => 'required',
-    	]);
+    
 
-    	//  if validation fail
-    	if($validator->fails())
-    	{
-    		return Redirect::to('/gateready/record/'. $user_id .'/reschedule-delivery/'.$record_reference_number)->withErrors($validator)->withInput();
-    	}
-    	else
-    	{
-    		// echo Input::get('schedule_date');
-    		// echo $record_reference_number;
-    		// echo $user_id;
-    		Record::where([
-    			'reference_number' => $record_reference_number,
-    			'gateready_user_id' => $user_id,
-    		])->update([
-    			'schedule_date' => Input::get('schedule_date'),
-    			'time_range_id' => Input::get('time_range_id'),
-    		]);
+    
 
-    		return Redirect::to('gateready/record/'.$user_id);
-    	}
-    }
+    // //  show schedule delivery page
+    // public function show_reschedule_delivery(Request $request, $user_id, $record_reference_number)
+    // {
+    // 	$time_ranges = TimeRange::all();
+    //     return view('gateready/reschedule-delivery',[
+    // 		'record_reference_number' => $record_reference_number,
+    //         'time_ranges' => $time_ranges,
+    // 	]);
+    // }
 
-    //  show feedback page
-    public function show_feedback(Request $request, $user_id, $record_reference_number)
-    {
-    	return view('gateready/feedback',[
-    		'user_id' => $user_id,
-    		'record_reference_number' => $record_reference_number,
+    
 
-    	]);
-    	// echo "$record_reference_number";
-    }
-
-    //  post feedback
-    public function post_feedback(Request $request, $user_id, $record_reference_number)
-    {
-    	// echo "$record_reference_number";
-    	//  validate the input
-    	$validator = Validator::make(Input::all(),[
-    		'msg' => 'required',
-    	]);
-
-    	//  if validator fail
-    	if($validator->fails())
-    	{
-    		return Redirect::to('gateready/record/' .$user_id .'/feedback/'. $record_reference_number)->withErrors($validator);
-    		// echo "$record_reference_number";
-
-    	}
-    	else
-    	{
-    		Record::where([
-    			'gateready_user_id' => $user_id,
-    			'reference_number' => $record_reference_number,
-    		])->update([
-    			
-    			'message' => Input::get('msg'),
-    		]);
-    		return Redirect::to('gateready/record/'.$user_id);
-    	}
-    }
+    
 
     /****
     ***
@@ -238,14 +212,4 @@ class RecordController extends Controller
     }
 
 
-    /***  
-    ***
-    ***  REST API testing
-    ***
-    ***/
-    public function index()
-    {
-        // return RecordResource::collection(Record::all());
-        return Record::all();
-    }
 }

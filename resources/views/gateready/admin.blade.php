@@ -13,7 +13,7 @@ Admin
     $(document).ready(function(){
         $('body').on('click','#showAllRecordsAjaxBtn',function(){
             $.ajax({
-                url:'/gateready/admin/show-all-records-ajax',
+                url:'/gateready/admins?show_all_records_ajax=1',
                 type:'GET',
                 beforeSend:function(){
                     $('#ajaxResult').html('');
@@ -34,7 +34,7 @@ Admin
     $(document).ready(function(){
         $('body').on('click','#showTodayRecordsAjaxBtn',function(){
             $.ajax({
-                url:'/gateready/admin/show-today-records-ajax',
+                url:'/gateready/admins?show_today_records_ajax=1',
                 type:'GET',
                 beforeSend:function(){
                     $('#ajaxResult').html('');
@@ -55,7 +55,7 @@ Admin
     $(document).ready(function(){
         $('body').on('click','#showTodayDeliveryAjaxBtn',function(){
             $.ajax({
-                url:'/gateready/admin/show-today-delivery-ajax',
+                url:'/gateready/admins?show_today_delivery_ajax=1',
                 type:'GET',
                 beforeSend:function(){
                     $('#ajaxResult').html('');
@@ -76,7 +76,7 @@ Admin
     $(document).ready(function(){
         $('body').on('click','#showTodayRemainingDeliveryAjaxBtn',function(){
             $.ajax({
-                url:'/gateready/admin/show-today-remaining-delivery-ajax',
+                url:'/gateready/admins?show_today_remaining_delivery_ajax=1',
                 type:'GET',
                 beforeSend:function(){
                     $('#ajaxResult').html('');
@@ -181,11 +181,11 @@ Admin
     <!-- all record button -->
     <div class="filter_btn">
         
-        <a href="/gateready/admin/show-all-records">
+        {{-- <a href="/gateready/admin/show-all-records">
             <button class="btn btn-default">
                 All records
             </button>
-        </a>
+        </a> --}}
         <!-- <a href="/gateready/admin/show-all-records-ajax"> -->
             <button id="showAllRecordsAjaxBtn" class="btn btn-default">
                 All records (AJAX)
@@ -196,11 +196,11 @@ Admin
     <!-- created today fitler client record button -->
     <div class="filter_btn">
         
-        <a href="/gateready/admin/show-today-records">
+        {{-- <a href="/gateready/admin/show-today-records">
             <button class="btn btn-default">
                 Created today records
             </button>
-        </a>
+        </a> --}}
         <button class="btn btn-default" id="showTodayRecordsAjaxBtn">
             Created today records (AJAX)
         </button>
@@ -209,11 +209,11 @@ Admin
     <!-- today delivery record button -->
     <div class="filter_btn">
         
-        <a href="/gateready/admin/show-today-delivery">
+        {{-- <a href="/gateready/admin/show-today-delivery">
             <button class="btn btn-default">
                 Today delivery
             </button>
-        </a>
+        </a> --}}
         <button class="btn btn-default" id="showTodayDeliveryAjaxBtn">
             Today delivery (AJAX)
         </button>
@@ -222,11 +222,11 @@ Admin
     <!-- today remaining delivery record button -->
     <div class="filter_btn">
         
-        <a href="/gateready/admin/show-today-remaining-delivery">
+        {{-- <a href="/gateready/admin/show-today-remaining-delivery">
             <button class="btn btn-default">
                 Today remaining delivery
             </button>
-        </a>
+        </a> --}}
         <button class="btn btn-default" id="showTodayRemainingDeliveryAjaxBtn">
             Today remaining delivery (AJAX)
         </button>
@@ -234,7 +234,7 @@ Admin
     </div>
     
     <!-- search client record using tracking_number -->
-    <form class="search_tracking_number_form" method="get" action="/gateready/admin/filter-tracking-number">
+    {{-- <form class="search_tracking_number_form" method="get" action="/gateready/admin/filter-tracking-number">
         @csrf
         <input type="text" name="tracking_number" placeholder="Tracking Number" required>
 
@@ -243,10 +243,10 @@ Admin
         </button>
 
         
-    </form>
+    </form> --}}
 
     <!-- search client record using tracking_number (for AJAX)-->
-    <form class="search_tracking_number_form" method="post" action="{{action('gateready\AdminController@filter_tracking_number_ajax',[])}}">
+    <form class="search_tracking_number_form" method="post" action="{{-- {{action('gateready\AdminController@filter_tracking_number_ajax',[])}} --}}">
         @csrf
         <input id="trackingNumberInput" type="text" name="tracking_number" placeholder="Tracking Number" required>
 
