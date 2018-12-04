@@ -43,7 +43,7 @@ p.record {
 	</div>
 	<div class="col-md-12">
 		<p class="record">Checkout your online purchases with the address above, as shipment address. <br>
-		Then inform GateReady <a href="/gateready/record/{{ Auth::user()->id }}/schedule-delivery" title="Schedule Delivery">here</a>.</p>
+		Then inform GateReady <a href="/gateready/records/create?schedule_delivery=1" title="Schedule Delivery">here</a>.</p>
 	</div>
 	<table class="table table-striped">
 		<thead class="thead-dark">
@@ -74,7 +74,7 @@ p.record {
 				<!-- to allow customer to reschedule and give feedback -->
 				<!-- reschedule link -->
 				@if($status[$record->reference_number]->name == 'reschedule')
-				<td><a href="/gateready/record/{{ Auth::user()->id }}/reschedule-delivery/{{$record->reference_number}}" title="Reschedule Delivery">{{ $status[$record->reference_number]->name }}</a> | <a href="/gateready/record/{{ Auth::user()->id }}/invoice/{{$record->reference_number}}" title="Print Delivery Invoice">Print Invoice</a></td>
+				<td><a href="/gateready/records/{{$record->reference_number}}/edit?reschedule_delivery=1" title="Reschedule Delivery">{{ $status[$record->reference_number]->name }}</a> | <a href="/gateready/record/{{ Auth::user()->id }}/invoice/{{$record->reference_number}}" title="Print Delivery Invoice">Print Invoice</a></td>
 				
 				<!-- "departed status" -->
 				@elseif($status[$record->reference_number]->name == 'departed')
@@ -93,8 +93,8 @@ p.record {
 				<td>
 					<select name="forma" onchange="location = this.value;">
 						<option selected>{{ $status[$record->reference_number]->name }}</option>
-						<option value="/gateready/record/{{ Auth::user()->id }}/feedback/{{$record->reference_number}}">Rate Our Service</option>
-						<option value="/gateready/record/{{ Auth::user()->id }}/receipt/{{$record->reference_number}}">Print Your Receipt</option>
+						<option value="/gateready/records/{{$record->reference_number}}/edit?feedback=1">Rate Our Service</option>
+						<option value="/gateready/records/{{$record->reference_number}}/edit?receipt=1">Print Your Receipt</option>
 					</select>
 				</td>
 				@endif

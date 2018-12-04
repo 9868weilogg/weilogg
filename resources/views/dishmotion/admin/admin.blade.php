@@ -47,7 +47,7 @@ Admin
 		<h2>
 			Choose Order Time
 		</h2>
-		<form method="get" action="/dishmotion/filter_order">
+		<form method="get" action="/dishmotion/admins">
 			<div class="form-group">
 				<label for="start_date">Start Date:</label>
 				<input name="start_date" type="date" class="form-control">
@@ -56,6 +56,7 @@ Admin
 				<label for="end_date">End Date:</label>
 				<input name="end_date" type="date" class="form-control">
 			</div>
+      <input name="filter_order" type="hidden" value="1">
 			<button type="submit" value="Filter" class="btn btn-primary">Filter</button>
 		</form>
 	</div>

@@ -54,7 +54,7 @@
 	  <!-- Copyright -->
 	  <div class="footer-copyright text-center py-3">
 	    @if(Auth::check())
-		<a href="/dishmotion/admin">Admin</a>
+		<a href="/dishmotion/admins">Admin</a>
 		<a href="/dishmotion/logout">Logout</a>
 		@else
 		<a href="/dishmotion/login-admin">Login</a>

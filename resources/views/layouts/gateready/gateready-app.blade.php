@@ -114,7 +114,7 @@ div.form-group{
         <nav class="navbar navbar-expand-md navbar-dark bg-dark navbar-laravel">
             <div class="container">
                 
-                <a class="navbar-brand" href="{{ url('/gateready') }}" style="font-family:'LithosPro-Regular'; "><img src="{{ asset('image/gateready/gateready_logo.jpg') }}" alt="gateready-logo" style="width:50px; height:30px; padding:0px; margin:0px;">GATEREADY
+                <a class="navbar-brand" href="{{ url('/gateready/home') }}" style="font-family:'LithosPro-Regular'; "><img src="{{ asset('image/gateready/gateready_logo.jpg') }}" alt="gateready-logo" style="width:50px; height:30px; padding:0px; margin:0px;">GATEREADY
                 </a>
                 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -137,14 +137,14 @@ div.form-group{
                             </li>
                             
                             <li class="nav-item">
-                                <a class="nav-link" href="/gateready/faq">FAQ</a>
+                                <a class="nav-link" href="/gateready/home?faq=1">FAQ</a>
                             </li>
                         @else
                             <li class="nav-item">
-                                <a class="nav-link" href="/gateready/record/{{ Auth::user()->id }}/schedule-delivery">Experience It</a>
+                                <a class="nav-link" href="/gateready/records/create?schedule_delivery=1">Experience It</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/gateready/record/{{ Auth::user()->id }}">Record</a>
+                                <a class="nav-link" href="/gateready/records">Record</a>
                             </li>
                         @endguest
                     </ul>
@@ -168,10 +168,10 @@ div.form-group{
         <h3 class="links" ><a href="/gateready/admin" style="font-family:'LithosPro-Regular'; ">GATEREADY</a></h3>
         @endguest
         <ul>
-            <li><a href="/gateready/about"  class="links" >About</a></li>
-            <li><a href="/gateready/about#howItWorks" class="links" >How It Works?</a></li>
-            <li><a href="/gateready/pricing"  class="links" >Pricing and Reward</a></li>
-            <li><a href="/gateready/faq"  class="links" >FAQ</a></li>
+            <li><a href="/gateready/home?about=1"  class="links" >About</a></li>
+            <li><a href="/gateready/home?about=1#howItWorks" class="links" >How It Works?</a></li>
+            <li><a href="/gateready/home?pricing=1"  class="links" >Pricing and Reward</a></li>
+            <li><a href="/gateready/home?faq=1"  class="links" >FAQ</a></li>
         </ul>
         
         

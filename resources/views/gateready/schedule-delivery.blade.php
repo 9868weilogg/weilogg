@@ -72,7 +72,7 @@ button.submit_button:hover{
 			{{ $error }}
 			@endforeach
 		</div>
-		<form method="post" action="/gateready/record/{{ Auth::user()->id }}/schedule-delivery">
+		<form method="post" action="/gateready/records?schedule_delivery=1">
 			@csrf
 			<div class="form-group">
 				<input name="user_id" type="hidden" class="" value="{{ Auth::user()->id }}" >

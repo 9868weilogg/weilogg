@@ -172,7 +172,7 @@ i.fa-edit,i.fa-calendar,i.fa-truck{
     @guest
     <button class="jumbo" data-toggle="modal" data-target="#regModal">Experience GateReady now</button>
     @else
-    <button class="jumbo" onclick="window.location.href='/gateready/record/{{ Auth::user()->id }}/schedule-delivery'">Experience GateReady now</button>
+    <button class="jumbo" onclick="window.location.href='/gateready/records/create?schedule_delivery=1'">Experience GateReady now</button>
     @endguest
     
 </div>
@@ -193,7 +193,7 @@ i.fa-edit,i.fa-calendar,i.fa-truck{
         
     </div>
     <div class="center-block col-md-12">
-        <a class="button" role="button" href="/gateready/about">More About GateReady</a>
+        <a class="button" role="button" href="/gateready/home?about=1">More About GateReady</a>
     </div>
 </div>
 <div class="how-it-works row">
@@ -235,7 +235,7 @@ i.fa-edit,i.fa-calendar,i.fa-truck{
         </p>
     </div>
     <div class="center-block col-md-12">
-        <a class="button" role="button" href="/gateready/about#howItWorks">Entire Process</a>
+        <a class="button" role="button" href="/gateready/home?about=1#howItWorks">Entire Process</a>
     </div>
 </div>
 <div class="what-does-gateready-help row">
@@ -284,7 +284,7 @@ i.fa-edit,i.fa-calendar,i.fa-truck{
         @guest
         <a class="button" data-toggle="modal" data-target="#regModal">Experience GateReady now</a>
         @else
-        <a class="button" role="button" href="/gateready/record/{{ Auth::user()->id }}/schedule-delivery">Experience GateReady now</a>
+        <a class="button" role="button" href="/gateready/records/create?schedule_delivery=1">Experience GateReady now</a>
         @endguest
     </div>
 </div>
@@ -304,7 +304,7 @@ i.fa-edit,i.fa-calendar,i.fa-truck{
             RM 3.50 for each delivery (total weight less than 5kg)
         </p>
         <div class="center-block">
-            <a class="button-pricing-and-rewards" href="gateready/pricing">More about Pricing</a>
+            <a class="button-pricing-and-rewards" href="/gateready/home?pricing=1">More about Pricing</a>
             
         </div>
         <div class="tnc center-block">

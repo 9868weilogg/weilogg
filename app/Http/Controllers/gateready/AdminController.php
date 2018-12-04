@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\gateready\Record;
 use App\User;
+use App\gateready\Admin;
 use App\gateready\Status;
 use App\gateready\Location;
 use Illuminate\Support\Facades\Redirect;
@@ -14,46 +15,31 @@ use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
 {
-    //  show admin page
-    public function show_admin()
-    {
-    	$records = Record::all();
-    	//  parse all status for <select> in change status feature
-    	$status_all = Status::all();
-        //  parse all location for <select> in filter location feature
-        $location_all = Location::all();
+  public function index(Request $request) {
+    if($request->show_all_records_ajax) {
+      return $this->show_all_records_ajax();
+    } elseif($request->show_today_records_ajax) {
+      return $this->show_today_records_ajax();
+    } elseif($request->show_today_delivery_ajax) {
+      return $this->show_today_delivery_ajax();
+    } elseif($request->show_today_remaining_delivery_ajax) {
+      return $this->show_today_remaining_delivery_ajax();
+    } else {
+      $data = Admin::show_admin();
+      $records = $data['records'];
+      $courier = $data['courier'];
+      $time_range = $data['time_range'];
+      $status = $data['status'];
+      $location = $data['location'];
+      $address = $data['address'];
+      $customer = $data['customer'];
+      $status_all = $data['status_all'];
+      $location_all = $data['location_all'];
 
-    	if($records->isEmpty())
-    	{
-    		echo "no record";
-    	}
-    	else{
-    		foreach($records as $record)
-    		{
-    			$time_range[$record->reference_number] = Record::find($record->reference_number)->time_range;
-    			$courier[$record->reference_number] = Record::find($record->reference_number)->courier;
-    			$status[$record->reference_number] = Record::find($record->reference_number)->status;
-    			$location[$record->gateready_user_id] = User::find($record->gateready_user_id)->location;
-    			$address[$record->gateready_user_id] = User::find($record->gateready_user_id)->address;
-    			$customer[$record->gateready_user_id] = User::find($record->gateready_user_id);
-    		}
-
-    		return view('gateready/admin',[
-	    		'records' => $records,
-	    		'courier' => $courier,
-	    		'time_range' => $time_range,
-	    		'status' => $status,
-	    		'location' => $location,
-	    		'address' => $address,
-	    		'customer' => $customer,
-	    		'status_all' => $status_all,
-                'location_all' => $location_all,
-	    	]);
-            // print_r($status);
-            // echo $status[$record->reference_number]->name;
-    	}
-    	
+      return view('gateready/admin',compact('records','courier','time_range','status','location','address','customer','status_all','location_all'));
     }
+    
+  }
 
 
     /*****

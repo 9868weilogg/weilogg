@@ -107,7 +107,7 @@ h3.h3{
   <h3 class="h3">dishmotion</h3>
 </div>
 <div  class="center-block col-md-12" >
-    <a href="/gateready">
+    <a href="/gateready/home">
     <video preload="auto" autoplay="autoplay" loop id="gatereadyHomepage" >
      <source src="{{asset('film/gateready-homepage.mov')}}" type="video/mov"/>
      <source src="{{asset('film/gateready-homepage.mp4')}}" type="video/mp4" />

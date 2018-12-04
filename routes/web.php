@@ -73,31 +73,14 @@ Route::get('/blog', 'weilogg\BlogController@show_blog');
 -------------------------------------**/
 
 
-/**----------- dishmotion.com homepage ----------------**/
-Route::get('/dishmotion', function () {
-    return view('/dishmotion/dishmotion-home');
-});
-
-/**----------- dishmotion.com soup page ----------------**/
-Route::get('/dishmotion/soup', function () {
-    return view('/dishmotion/soup');
-});
-
-/**----------- dishmotion.com order pages ----------------**/
+/**----------- dishmotion.com ----------------**/
+Route::resource('/dishmotion/home','dishmotion\HomeController');
 Route::resource('/dishmotion/orders','dishmotion\OrderController');
+Route::resource('/dishmotion/admins','dishmotion\AdminController');
 
-/**----------- dishmotion.com admin pages ----------------**/
-Route::get('/dishmotion/admin','dishmotion\AdminController@get_order_summary');
-
-/**----------- dishmotion.com admin page sort order based on range of date ----------------**/
-Route::get('/dishmotion/filter_order','dishmotion\AdminController@filter_order');
-
-/**----------- dishmotion.com login pages ----------------**/
 
 Route::get('/dishmotion/login-admin','Auth\LoginController@show_dishmotion_admin_login');
-
 Route::post('/dishmotion/login-admin','Auth\LoginController@post_dishmotion_admin_login');
-
 Route::get('/dishmotion/logout','Auth\LoginController@dishmotion_logout');
 
 
@@ -109,24 +92,15 @@ Route::get('/dishmotion/logout','Auth\LoginController@dishmotion_logout');
 -------------------------------------**/
 
 /**----------- gateready.com homepage ----------------**/
-Route::get('/gateready', function () {
-    return view('/gateready/gateready-home');
-});
+Route::resource('/gateready/home','gateready\HomeController');
+Route::resource('/gateready/records','gateready\RecordController');
+Route::resource('/gateready/admins','gateready\AdminController');
 
-/**----------- gateready.com about page ----------------**/
-Route::get('/gateready/about', function () {
-    return view('/gateready/about');
-});
+/**----------- gateready.com admin page edit status feature (for AJAX)----------------**/
+Route::post('/gateready/admin/edit-status-ajax/{record_reference_number}', 'gateready\AdminController@edit_status_ajax');
 
-/**----------- gateready.com pricing page ----------------**/
-Route::get('/gateready/pricing', function () {
-    return view('/gateready/pricing');
-});
-
-/**----------- gateready.com faq page ----------------**/
-Route::get('/gateready/faq', function () {
-    return view('/gateready/faq');
-});
+/**----------- gateready.com admin page filter tracking number feature (for AJAX)----------------**/
+Route::post('/gateready/admin/filter-tracking-number-ajax', 'gateready\AdminController@filter_tracking_number_ajax');
 
 //     1 website cannot have login twice 
 // /**----------- gateready.com login page ----------------**/
@@ -142,73 +116,68 @@ Route::get('/gateready/faq', function () {
 // Route::post('/gateready/register', 'Auth\RegisterController@gateready_register');
 
 /**----------- gateready.com record page ----------------**/
-Route::get('/gateready/record/{user_id}', 'gateready\RecordController@show_record');
+// Route::get('/gateready/record/{user_id}', 'gateready\RecordController@show_record');
 
 // /**----------- gateready.com testing code generator page ----------------**/
 // Route::get('/gateready/code-generator', 'gateready\RecordController@insert_gateready_user_id');
 
 
 /**----------- gateready.com schedule delivery page ----------------**/
-Route::get('/gateready/record/{user_id}/schedule-delivery', 'gateready\RecordController@show_schedule_delivery');
+// Route::get('/gateready/record/{user_id}/schedule-delivery', 'gateready\RecordController@show_schedule_delivery');
 
-Route::post('/gateready/record/{user_id}/schedule-delivery', 'gateready\RecordController@post_schedule_delivery');
+// Route::post('/gateready/record/{user_id}/schedule-delivery', 'gateready\RecordController@post_schedule_delivery');
 
 /**----------- gateready.com print invoice page ----------------**/
-Route::get('/gateready/record/{user_id}/invoice/{record_reference_number}', 'gateready\RecordController@print_invoice');
+// Route::get('/gateready/record/{user_id}/invoice/{record_reference_number}', 'gateready\RecordController@print_invoice');
 
 /**----------- gateready.com print receipt page ----------------**/
-Route::get('/gateready/record/{user_id}/receipt/{record_reference_number}', 'gateready\RecordController@print_receipt');
+// Route::get('/gateready/record/{user_id}/receipt/{record_reference_number}', 'gateready\RecordController@print_receipt');
 
 /**----------- gateready.com reschedule delivery page ----------------**/
-Route::get('/gateready/record/{user_id}/reschedule-delivery/{record_reference_number}', 'gateready\RecordController@show_reschedule_delivery');
+// Route::get('/gateready/record/{user_id}/reschedule-delivery/{record_reference_number}', 'gateready\RecordController@show_reschedule_delivery');
 
-Route::post('/gateready/record/{user_id}/reschedule-delivery/{record_reference_number}', 'gateready\RecordController@post_reschedule_delivery');
+// Route::post('/gateready/record/{user_id}/reschedule-delivery/{record_reference_number}', 'gateready\RecordController@post_reschedule_delivery');
 
 /**----------- gateready.com feedback delivery page ----------------**/
-Route::get('/gateready/record/{user_id}/feedback/{record_reference_number}', 'gateready\RecordController@show_feedback');
+// Route::get('/gateready/record/{user_id}/feedback/{record_reference_number}', 'gateready\RecordController@show_feedback');
 
-Route::post('/gateready/record/{user_id}/feedback/{record_reference_number}', 'gateready\RecordController@post_feedback');
+// Route::post('/gateready/record/{user_id}/feedback/{record_reference_number}', 'gateready\RecordController@post_feedback');
 
-/**----------- gateready.com admin page ----------------**/
-Route::get('/gateready/admin', 'gateready\AdminController@show_admin');
+// /**----------- gateready.com admin page ----------------**/
+// Route::get('/gateready/admin', 'gateready\AdminController@show_admin');
 
-/**----------- gateready.com admin page edit status feature ----------------**/
-Route::post('/gateready/admin/edit-status/{record_reference_number}', 'gateready\AdminController@edit_status');
+// /**----------- gateready.com admin page edit status feature ----------------**/
+// Route::post('/gateready/admin/edit-status/{record_reference_number}', 'gateready\AdminController@edit_status');
 
-/**----------- gateready.com admin page edit status feature (for AJAX)----------------**/
-Route::post('/gateready/admin/edit-status-ajax/{record_reference_number}', 'gateready\AdminController@edit_status_ajax');
+// /**----------- gateready.com admin page show all record feature ----------------**/
+// Route::get('/gateready/admin/show-all-records', 'gateready\AdminController@show_all_records');
 
+// /**----------- gateready.com admin page show all record feature (for AJAX) ----------------**/
+// Route::get('/gateready/admin/show-all-records-ajax', 'gateready\AdminController@show_all_records_ajax');
 
-/**----------- gateready.com admin page show all record feature ----------------**/
-Route::get('/gateready/admin/show-all-records', 'gateready\AdminController@show_all_records');
+// /**----------- gateready.com admin page filter today record feature ----------------**/
+// Route::get('/gateready/admin/show-today-records', 'gateready\AdminController@show_today_records');
 
-/**----------- gateready.com admin page show all record feature (for AJAX) ----------------**/
-Route::get('/gateready/admin/show-all-records-ajax', 'gateready\AdminController@show_all_records_ajax');
+// /**----------- gateready.com admin page filter today record feature (for AJAX) ----------------**/
+// Route::get('/gateready/admin/show-today-records-ajax', 'gateready\AdminController@show_today_records_ajax');
 
-/**----------- gateready.com admin page filter today record feature ----------------**/
-Route::get('/gateready/admin/show-today-records', 'gateready\AdminController@show_today_records');
+// /**----------- gateready.com admin page filter today delivery feature ----------------**/
+// Route::get('/gateready/admin/show-today-delivery', 'gateready\AdminController@show_today_delivery');
 
-/**----------- gateready.com admin page filter today record feature (for AJAX) ----------------**/
-Route::get('/gateready/admin/show-today-records-ajax', 'gateready\AdminController@show_today_records_ajax');
+// /**----------- gateready.com admin page filter today delivery feature (for AJAX)----------------**/
+// Route::get('/gateready/admin/show-today-delivery-ajax', 'gateready\AdminController@show_today_delivery_ajax');
 
-/**----------- gateready.com admin page filter today delivery feature ----------------**/
-Route::get('/gateready/admin/show-today-delivery', 'gateready\AdminController@show_today_delivery');
+// /**----------- gateready.com admin page filter today remaining delivery feature ----------------**/
+// Route::get('/gateready/admin/show-today-remaining-delivery', 'gateready\AdminController@show_today_remaining_delivery');
 
-/**----------- gateready.com admin page filter today delivery feature (for AJAX)----------------**/
-Route::get('/gateready/admin/show-today-delivery-ajax', 'gateready\AdminController@show_today_delivery_ajax');
-
-/**----------- gateready.com admin page filter today remaining delivery feature ----------------**/
-Route::get('/gateready/admin/show-today-remaining-delivery', 'gateready\AdminController@show_today_remaining_delivery');
-
-/**----------- gateready.com admin page filter today remaining delivery feature (for AJAX) ----------------**/
-Route::get('/gateready/admin/show-today-remaining-delivery-ajax', 'gateready\AdminController@show_today_remaining_delivery_ajax');
+// /**----------- gateready.com admin page filter today remaining delivery feature (for AJAX) ----------------**/
+// Route::get('/gateready/admin/show-today-remaining-delivery-ajax', 'gateready\AdminController@show_today_remaining_delivery_ajax');
 
 
-/**----------- gateready.com admin page filter tracking number feature ----------------**/
-Route::get('/gateready/admin/filter-tracking-number', 'gateready\AdminController@filter_tracking_number');
+// /**----------- gateready.com admin page filter tracking number feature ----------------**/
+// Route::get('/gateready/admin/filter-tracking-number', 'gateready\AdminController@filter_tracking_number');
 
-/**----------- gateready.com admin page filter tracking number feature (for AJAX)----------------**/
-Route::post('/gateready/admin/filter-tracking-number-ajax', 'gateready\AdminController@filter_tracking_number_ajax');
+
 
 
 /**-----------------------------------

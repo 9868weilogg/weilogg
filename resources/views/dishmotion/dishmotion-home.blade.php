@@ -46,7 +46,7 @@ Home
                     Products
                 </h4>
                 <p>
-                    (17th November 2015) - peanut-lotusroot-soup <a href="/dishmotion/soup">+more soup</a>
+                    (17th November 2015) - peanut-lotusroot-soup <a href="/dishmotion?soup=1">+more soup</a>
                 </p>
             </div>
         </div>
