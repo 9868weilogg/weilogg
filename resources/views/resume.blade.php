@@ -203,6 +203,17 @@ div.box{
 
 	        <h1 class="topic">Experience</h1>
 	        <div class="timeline">
+            <div class="box right">
+              <div class="content">
+                <h1 class="date">Oct, 2018</h1>
+                <h2>Web Developer</h2>
+                <p class="content">Beacon Systems Sdn Bhd</p>
+                <ul>
+                  <li>Involved in building project management website from scratch.</li>
+                  <li>Involved in <a href="https://hub.beaconsbay.com">Beacon Accounting Software</a> development.</li>
+                </ul>
+              </div>
+            </div>
 	        	<div class="box left">
 	        		<div class="content">
 	        			<h1 class="date">Jun, 2018</h1>
