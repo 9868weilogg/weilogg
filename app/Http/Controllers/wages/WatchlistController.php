@@ -297,7 +297,8 @@ class WatchlistController extends Controller
 
     public function get_quotes() {
         set_time_limit(5000);
-        $stocks = Stock::where('id','1155')->get();
+        // $stocks = Stock::where('id','1155')->get();
+        $stocks = Stock::all();
         // dd($stocks);
         foreach($stocks as $stock) {
 
