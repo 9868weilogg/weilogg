@@ -222,7 +222,13 @@ Route::post('/wages/watchlist/api/compute-fisher', 'wages\WatchlistController@ap
 Route::get('/wages/valuation/api/show/{id}', 'wages\ValuationController@show');
 
 
+/**----------- cron link testing for hosting server ----------------**/
+Route::get('/cron',function(){
+  Artisan::call('cron:tests');
+});
 
+/**----------- get quotes crawl ----------------**/
+Route::get('/get-klse-prices','wages\WatchlistController@get_quotes');
 
 /**----------- wages.com home in VUE ----------------**/
 /**----------- wages.com home API ----------------**/

@@ -7,6 +7,10 @@ use App\Http\Controllers\Controller;
 use App\Repository\wages\WatchlistRepo;
 use PHPHtmlParser\Dom;
 
+use App\wages\EndOfDayData;
+use App\wages\Stock;
+
+
 class WatchlistController extends Controller
 {
     protected $wr;
@@ -291,48 +295,80 @@ class WatchlistController extends Controller
     // 
 
 
-    public function get_quotes($stock_id) {
+    public function get_quotes() {
+        set_time_limit(5000);
+        $stocks = Stock::where('id','1155')->get();
+        // dd($stocks);
+        foreach($stocks as $stock) {
 
-        $u = 'http://www.klsescreener.com/v2/stocks/view/'.$stock_id;
+          $stock_id = $stock->id;
+          $u = 'http://www.klsescreener.com/v2/stocks/view/'.$stock_id;
+          
+          $dom    = new Dom;
+          $dom->load($u);
+          $html = $dom->outerHtml;
+
+          foreach ($dom->find('span') as  $span) {
+              if($span->getAttribute('id') == 'price'){
+                  $cp = filter_var($span,FILTER_SANITIZE_NUMBER_FLOAT,FILTER_FLAG_ALLOW_FRACTION);
+                  $current_price = (double) $cp;
+              }
+              if($span->getAttribute('id') == 'priceDiff'){
+                  $diff = explode("(",$span);
+                  $pd = filter_var($diff[0],FILTER_SANITIZE_NUMBER_FLOAT,FILTER_FLAG_ALLOW_FRACTION);
+                  $price_diff = (double) $pd;
+              }
+              
+          }
+
+          foreach ($dom->find('td') as  $td) {
+              if($td->getAttribute('id') == 'priceHigh'){
+                  $ph = filter_var($td,FILTER_SANITIZE_NUMBER_FLOAT,FILTER_FLAG_ALLOW_FRACTION);
+                  $price_high = (double) $ph;
+              }
+              if($td->getAttribute('id') == 'priceLow'){
+                  $pl = filter_var($td,FILTER_SANITIZE_NUMBER_FLOAT,FILTER_FLAG_ALLOW_FRACTION);
+                  $price_low = (double) $pl;
+              }
+              if($td->getAttribute('id') == 'volume'){
+                  $v = filter_var($td,FILTER_SANITIZE_NUMBER_INT);
+                  $volume = (double) $v;
+                  
+              }
+          }
+          if($dom->find('td',12)->innerHtml == "52w") $week52_range = explode('-', $dom->find('td',13)->innerHtml);
+          if($week52_range) $low_52week = trim($week52_range[0]," ");
+          if($week52_range) $high_52week = trim($week52_range[1]," ");
+          if($dom->find('td',14)->innerHtml == "ROE") $roe = $dom->find('td',15)->innerHtml;
+          if($dom->find('td',16)->innerHtml == "P/E") $pe = $dom->find('td',17)->innerHtml;
+          if($dom->find('td',18)->innerHtml == "EPS") $eps = $dom->find('td',19)->innerHtml;
+          if($dom->find('td',20)->innerHtml == "DPS") $dps = $dom->find('td',21)->innerHtml;
+          if($dom->find('td',22)->innerHtml == "DY") $dy = trim($dom->find('td',23)->innerHtml,"%");
+          if($dom->find('td',32)->innerHtml == "Market Cap") $mc = trim($dom->find('td',33)->innerHtml,"M");
+          if($mc) $market_cap = str_replace(",","",$mc);
+  // dd($market_cap);
+          $open_price = $current_price + $price_diff;
+
+          EndOfDayData::create([
+            'stock_id' => $stock_id,
+            'high' => $price_high,
+            'low' => $price_low,
+            'close' => $current_price,
+            'open' => $open_price,
+            'volume' => $volume,
+            'high_52week' => $high_52week,
+            'low_52week' => $low_52week,
+            'roe' => $roe,
+            'pe' => $pe,
+            'eps' => $eps,
+            'dps' => $dps,
+            'dy' => $dy,
+            'market_cap' => $market_cap,
+          ]);
+        }
         
-        $dom    = new Dom;
-        $dom->load($u);
-        $html = $dom->outerHtml;
-        foreach ($dom->find('span') as  $span) {
-            if($span->getAttribute('id') == 'price'){
-                $cp = filter_var($span,FILTER_SANITIZE_NUMBER_FLOAT,FILTER_FLAG_ALLOW_FRACTION);
-                $current_price = (double) $cp;
-            }
-            if($span->getAttribute('id') == 'priceDiff'){
-                $diff = explode("(",$span);
-                $pd = filter_var($diff[0],FILTER_SANITIZE_NUMBER_FLOAT,FILTER_FLAG_ALLOW_FRACTION);
-                $price_diff = (double) $pd;
-            }
-            
-        }
-        foreach ($dom->find('td') as  $td) {
-            if($td->getAttribute('id') == 'priceHigh'){
-                $ph = filter_var($td,FILTER_SANITIZE_NUMBER_FLOAT,FILTER_FLAG_ALLOW_FRACTION);
-                $price_high = (double) $ph;
-            }
-            if($td->getAttribute('id') == 'priceLow'){
-                $pl = filter_var($td,FILTER_SANITIZE_NUMBER_FLOAT,FILTER_FLAG_ALLOW_FRACTION);
-                $price_low = (double) $pl;
-            }
-            if($td->getAttribute('id') == 'volume'){
-                $v = filter_var($td,FILTER_SANITIZE_NUMBER_INT);
-                $volume = (double) $v;
-                
-            }
-        }
-        $open_price = $current_price + $price_diff;
-        echo "<p>Open: RM " . $open_price . "</p>";
-        echo "<p>Low: RM " . $price_low . "</p>";
-        echo "<p>High: RM " . $price_high . "</p>";
-        echo "<p>Current Price: RM " . $current_price . "</p>";
-        echo "<p>Changes: RM " . $price_diff . "</p>";
-        echo "<p>Volume: " . $volume . "</p>";
+        set_time_limit(30);
 
-        return $current_price;
+        return response()->json('get quote success');
     }
 }
