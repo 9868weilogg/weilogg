@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/weiloggc/public_html/
+    - cp /home/weiloggc/public_html/weilogg1/public/index.php $DEPLOYPATH
