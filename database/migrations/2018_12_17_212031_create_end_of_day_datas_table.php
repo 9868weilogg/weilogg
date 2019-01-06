@@ -22,7 +22,7 @@ class CreateEndOfDayDatasTable extends Migration
             $table->decimal('open',8,4)->default('0.00');
             $table->decimal('high_52week',8,4)->default('0.00');
             $table->decimal('low_52week',8,4)->default('0.00');
-            $table->decimal('roe',8,3)->default('0.00');
+            $table->decimal('roe',10,3)->default('0.0');
             $table->decimal('pe',8,3)->default('0.00');
             $table->decimal('eps',8,4)->default('0.00');
             $table->decimal('dps',8,4)->default('0.00');

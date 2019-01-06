@@ -5,7 +5,6 @@ namespace App\Http\Controllers\wages;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repository\wages\WatchlistRepo;
-use PHPHtmlParser\Dom;
 
 use App\wages\EndOfDayData;
 use App\wages\Stock;
@@ -296,80 +295,96 @@ class WatchlistController extends Controller
 
 
     public function get_quotes() {
-        set_time_limit(5000);
-        // $stocks = Stock::where('id','1155')->get();
-        $stocks = Stock::all();
-        // dd($stocks);
-        foreach($stocks as $stock) {
 
-          $stock_id = $stock->id;
-          $u = 'http://www.klsescreener.com/v2/stocks/view/'.$stock_id;
-          
-          $dom    = new Dom;
-          $dom->load($u);
-          $html = $dom->outerHtml;
+      $path = public_path('asset/simplehtmldom_1_7/simple_html_dom.php');
+      include($path);
 
-          foreach ($dom->find('span') as  $span) {
-              if($span->getAttribute('id') == 'price'){
-                  $cp = filter_var($span,FILTER_SANITIZE_NUMBER_FLOAT,FILTER_FLAG_ALLOW_FRACTION);
-                  $current_price = (double) $cp;
-              }
-              if($span->getAttribute('id') == 'priceDiff'){
-                  $diff = explode("(",$span);
-                  $pd = filter_var($diff[0],FILTER_SANITIZE_NUMBER_FLOAT,FILTER_FLAG_ALLOW_FRACTION);
-                  $price_diff = (double) $pd;
-              }
-              
+      $stocks = Stock::all();
+      // $stocks = Stock::where('id','7002')->get();
+
+      foreach($stocks as $stock) {
+        $stock_id = $stock->id;
+        $url = 'http://www.klsescreener.com/v2/stocks/view/'.$stock_id;
+        $html = file_get_html($url);
+        foreach ($html->find('span') as  $span) {
+          if($span->getAttribute('id') == 'price'){
+              $cp = filter_var($span,FILTER_SANITIZE_NUMBER_FLOAT,FILTER_FLAG_ALLOW_FRACTION);
+              $current_price = (double) $cp;
           }
-
-          foreach ($dom->find('td') as  $td) {
-              if($td->getAttribute('id') == 'priceHigh'){
-                  $ph = filter_var($td,FILTER_SANITIZE_NUMBER_FLOAT,FILTER_FLAG_ALLOW_FRACTION);
-                  $price_high = (double) $ph;
-              }
-              if($td->getAttribute('id') == 'priceLow'){
-                  $pl = filter_var($td,FILTER_SANITIZE_NUMBER_FLOAT,FILTER_FLAG_ALLOW_FRACTION);
-                  $price_low = (double) $pl;
-              }
-              if($td->getAttribute('id') == 'volume'){
-                  $v = filter_var($td,FILTER_SANITIZE_NUMBER_INT);
-                  $volume = (double) $v;
-                  
-              }
+          if($span->getAttribute('id') == 'priceDiff'){
+              $diff = explode("(",$span);
+              $pd = filter_var($diff[0],FILTER_SANITIZE_NUMBER_FLOAT,FILTER_FLAG_ALLOW_FRACTION);
+              $price_diff = (double) $pd;
           }
-          if($dom->find('td',12)->innerHtml == "52w") $week52_range = explode('-', $dom->find('td',13)->innerHtml);
-          if($week52_range) $low_52week = trim($week52_range[0]," ");
-          if($week52_range) $high_52week = trim($week52_range[1]," ");
-          if($dom->find('td',14)->innerHtml == "ROE") $roe = $dom->find('td',15)->innerHtml;
-          if($dom->find('td',16)->innerHtml == "P/E") $pe = $dom->find('td',17)->innerHtml;
-          if($dom->find('td',18)->innerHtml == "EPS") $eps = $dom->find('td',19)->innerHtml;
-          if($dom->find('td',20)->innerHtml == "DPS") $dps = $dom->find('td',21)->innerHtml;
-          if($dom->find('td',22)->innerHtml == "DY") $dy = trim($dom->find('td',23)->innerHtml,"%");
-          if($dom->find('td',32)->innerHtml == "Market Cap") $mc = trim($dom->find('td',33)->innerHtml,"M");
-          if($mc) $market_cap = str_replace(",","",$mc);
-  // dd($market_cap);
-          $open_price = $current_price + $price_diff;
-
-          EndOfDayData::create([
-            'stock_id' => $stock_id,
-            'high' => $price_high,
-            'low' => $price_low,
-            'close' => $current_price,
-            'open' => $open_price,
-            'volume' => $volume,
-            'high_52week' => $high_52week,
-            'low_52week' => $low_52week,
-            'roe' => $roe,
-            'pe' => $pe,
-            'eps' => $eps,
-            'dps' => $dps,
-            'dy' => $dy,
-            'market_cap' => $market_cap,
-          ]);
+            
         }
-        
-        set_time_limit(30);
 
-        return response()->json('get quote success');
+        foreach ($html->find('td') as  $td) {
+            if($td->getAttribute('id') == 'priceHigh'){
+                $ph = filter_var($td,FILTER_SANITIZE_NUMBER_FLOAT,FILTER_FLAG_ALLOW_FRACTION);
+                $price_high = (double) $ph;
+            }
+            if($td->getAttribute('id') == 'priceLow'){
+                $pl = filter_var($td,FILTER_SANITIZE_NUMBER_FLOAT,FILTER_FLAG_ALLOW_FRACTION);
+                $price_low = (double) $pl;
+            }
+            if($td->getAttribute('id') == 'volume'){
+                $v = filter_var($td,FILTER_SANITIZE_NUMBER_INT);
+                $volume = (double) $v;
+                
+            }
+        }
+        if($html->find('td',12)->innertext == "52w") $week52_range = explode('-', $html->find('td',13)->innertext);
+        if($week52_range) $low_52week = trim($week52_range[0]," ");
+        if($week52_range) $high_52week = trim($week52_range[1]," ");
+        if($html->find('td',14)->innertext == "ROE") {
+          $roe = $html->find('td',15)->innertext;
+          $roe = str_replace(",","",$roe);
+          if(!$roe) $roe = 0;
+        }
+        if($html->find('td',16)->innertext == "P/E") {
+          $pe = $html->find('td',17)->innertext;
+          $pe = str_replace(",","",$pe);
+          if(!$pe) $pe = 0;
+        }
+        if($html->find('td',18)->innertext == "EPS") {
+          $eps = $html->find('td',19)->innertext;
+          $eps = str_replace(",","",$eps);
+          if(!$eps) $eps = 0;
+        }
+        if($html->find('td',20)->innertext == "DPS") {
+          $dps = $html->find('td',21)->innertext;
+          $dps = str_replace(",","",$dps);
+          if(!$dps) $dps = 0;
+        }
+        if($html->find('td',22)->innertext == "DY") {
+          $dy = trim($html->find('td',23)->innertext,"%");
+          $dy = str_replace(",","",$dy);
+          if(!$dy) $dy = 0;
+        }
+        if($html->find('td',32)->innertext == "Market Cap") $mc = trim($html->find('td',33)->innertext,"M");
+        if($mc) $market_cap = str_replace(",","",$mc);
+        $open_price = $current_price + $price_diff;
+
+        EndOfDayData::create([
+          'stock_id' => $stock_id,
+          'high' => $price_high,
+          'low' => $price_low,
+          'close' => $current_price,
+          'open' => $open_price,
+          'volume' => $volume,
+          'high_52week' => $high_52week,
+          'low_52week' => $low_52week,
+          'roe' => $roe,
+          'pe' => $pe,
+          'eps' => $eps,
+          'dps' => $dps,
+          'dy' => $dy,
+          'market_cap' => $market_cap,
+        ]);
+        $html->clear();
+      }
+      return response()->json('get quote success');
+      
     }
 }

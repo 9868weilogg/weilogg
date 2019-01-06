@@ -195,6 +195,8 @@ Route::post('/gateready/admin/filter-tracking-number-ajax', 'gateready\AdminCont
 /**----------- wages.com update price in watchlist ----------------**/
 // Route::get('/wages1/update-price', 'wages\HomeController@show_price');
 
+Route::resource('/fundamentals','wages\FundamentalsController');
+
 /**----------- wages.com homepage view ----------------**/
 Route::get('/wages', 'wages\HomeController@show_wages');
 Route::get('/wages/{any}', 'wages\HomeController@show_wages');
