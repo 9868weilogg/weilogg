@@ -13,7 +13,7 @@ Home
                 <h2>
                     Upcoming Menu (17th November 2015)
                 </h2>
-                <img src="image/dishmotion/peanut lotus soup.jpg">
+                <img src="{{ asset('image/dishmotion/peanut lotus soup.jpg') }}">
                 <caption>花生莲藕汤 + 火腿豆角焖饭</caption>
             </div>
             <div class="col-md-4">
@@ -46,7 +46,7 @@ Home
                     Products
                 </h4>
                 <p>
-                    (17th November 2015) - peanut-lotusroot-soup <a href="/dishmotion?soup=1">+more soup</a>
+                    (17th November 2015) - peanut-lotusroot-soup <a href="/dishmotion/home?soup=1">+more soup</a>
                 </p>
             </div>
         </div>

@@ -34,7 +34,7 @@
 	
 		<div class="row header">
 			<h1 id="logo" class="header">
-				<a href="/dishmotion">Dishmotion</a> <span class="header">
+				<a href="/dishmotion/home">Dishmotion</a> <span class="header">
 				soup-rice delivery service around Universiti Putra Malaysia,Serdang.
 			</span>
 		</div>
@@ -53,12 +53,12 @@
 	  <!-- Copyright -->
 	  <!-- Copyright -->
 	  <div class="footer-copyright text-center py-3">
-	    @if(Auth::check())
+	    {{-- @if(Auth::check()) --}}
 		<a href="/dishmotion/admins">Admin</a>
-		<a href="/dishmotion/logout">Logout</a>
-		@else
-		<a href="/dishmotion/login-admin">Login</a>
-		@endif
+		{{-- <a href="/dishmotion/logout">Logout</a> --}}
+		{{-- @else --}}
+		{{-- <a href="/dishmotion/login-admin">Login</a> --}}
+		{{-- @endif --}}
 	  </div>
 	  <!-- Copyright -->
 
