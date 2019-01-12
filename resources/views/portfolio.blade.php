@@ -93,7 +93,7 @@ h3.h3{
 
 
 <div class="center-block col-md-12" >
-    <a href="/dishmotion">
+    <a href="/dishmotion/home">
     <video preload="auto" autoplay="autoplay" loop  id="dishmotionHomepage">
      <source src="{{asset('film/dishmotion-homepage.mov')}}" type="video/mov"/>
      <source src="{{asset('film/dishmotion-homepage.mp4')}}" type="video/mp4" />
