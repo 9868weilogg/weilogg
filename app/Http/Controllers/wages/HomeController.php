@@ -17,10 +17,11 @@ class HomeController extends Controller
      *
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        
-        return Stock::all();
+        // dd($request->route()->getName());
+        return view('wages.wages_home',compact('request'));
+        // return Stock::all();
     }
 
     /**

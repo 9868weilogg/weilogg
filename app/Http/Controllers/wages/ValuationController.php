@@ -20,9 +20,9 @@ class ValuationController extends Controller
      *
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        
+        return view('wages.valuations.index',compact('request'));
     }
 
     /**
