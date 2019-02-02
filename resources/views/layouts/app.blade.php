@@ -194,6 +194,7 @@
               <button class="nav-link" onclick="window.location.href='/about'">About</button>
               <button class="nav-link" onclick="window.location.href='/portfolio'">Portfolio</button>
               <button class="nav-link" onclick="window.location.href='/resume'">Resume</button>
+              {{-- <button class="nav-link" onclick="window.location.href='/blogs'">Blog</button> --}}
               <button class="nav-link" onclick="scrollToBottom()">Contact</button>
               
             </nav>
@@ -514,6 +515,7 @@
   </div>
 </div>
 <!-- end of Register modal -->
+@stack('scripts')
 </body>
 
 </html>
