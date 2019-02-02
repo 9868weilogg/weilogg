@@ -49,6 +49,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/logout', 'Auth\LoginController@logout');
 
+Route::resource('/blogs', 'weilogg\BlogsController');
+
+// deprecated, replaced by /blogs , BlogsController
 Route::get('/blog', 'weilogg\BlogController@show_blog');
 
 
