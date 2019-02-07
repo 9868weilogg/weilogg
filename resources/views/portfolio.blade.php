@@ -93,7 +93,7 @@ h3.h3{
 
 
 <div class="center-block col-md-12" >
-    <a href="/dishmotion/home">
+    <a href="http://dishmotion.weilogg.com">
     <video preload="auto" autoplay="autoplay" loop  id="dishmotionHomepage">
      <source src="{{asset('film/dishmotion-homepage.mov')}}" type="video/mov"/>
      <source src="{{asset('film/dishmotion-homepage.mp4')}}" type="video/mp4" />
@@ -107,7 +107,7 @@ h3.h3{
   <h3 class="h3">dishmotion</h3>
 </div>
 <div  class="center-block col-md-12" >
-    <a href="/gateready/home">
+    <a href="http://gateready.weilogg.com">
     <video preload="auto" autoplay="autoplay" loop id="gatereadyHomepage" >
      <source src="{{asset('film/gateready-homepage.mov')}}" type="video/mov"/>
      <source src="{{asset('film/gateready-homepage.mp4')}}" type="video/mp4" />
