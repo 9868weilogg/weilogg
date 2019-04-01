@@ -21,7 +21,7 @@ class UsersTableSeeder extends Seeder
         //  and let's hash it before the loop, or else our seeder
         //  will be too slow.
         $password = Hash::make('Logg5843');
-        $id = '1234';
+        // $id = '1234';
         $facebook_id = '1234';
         $first_time = '1';
         $transaction_quantity = '0';
@@ -35,7 +35,7 @@ class UsersTableSeeder extends Seeder
         	'name' => 'weilogg',
         	'email' => 'weilogg@gmail.com',
         	'password' => $password,
-        	'id' => $id,
+        	// 'id' => $id,
         	'facebook_id' => $facebook_id,
         	'first_time' => $first_time,
         	'transaction_quantity' => $transaction_quantity,
@@ -53,7 +53,7 @@ class UsersTableSeeder extends Seeder
         		'name' => $faker->name,
         		'email' => $faker->email,
         		'password' => $password,
-	        	'id' => $id+$i+1,
+	        	// 'id' => $id+$i+1,
 	        	'facebook_id' => $facebook_id,
 	        	'first_time' => $first_time,
 	        	'transaction_quantity' => $transaction_quantity,

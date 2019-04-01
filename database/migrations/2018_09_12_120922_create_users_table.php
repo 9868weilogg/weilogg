@@ -15,21 +15,20 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             
-            $table->string('id',6);
-            $table->primary('id');
+            $table->increments('id');
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
             $table->string('avatar')->nullable();
-            $table->string('facebook_id');
-            $table->tinyinteger('first_time')->unsigned();
-            $table->integer('transaction_quantity')->unsigned();
-            $table->string('invite_code',8)->unique();
+            $table->string('facebook_id')->nullable();
+            $table->boolean('first_time')->default(1);
+            $table->integer('transaction_quantity')->default(0);
+            $table->string('invite_code',8)->unique()->nullable();
             $table->decimal('credit',5,2)->unsigned()->nullable();
             $table->string('profile_picture',100)->nullable();
-            $table->integer('location_id')->unsigned()->index();
-            $table->string('contact_number',13);
-            $table->integer('gender_id')->unsigned()->index();
+            $table->integer('location_id')->unsigned()->nullable();
+            $table->string('contact_number',13)->nullable();
+            $table->integer('gender_id')->unsigned()->nullable();
             
             
             

@@ -148,7 +148,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         //  create PDF package
         Barryvdh\DomPDF\ServiceProvider::class,
-
+        Barryvdh\Cors\ServiceProvider::class,
         /*
          * Package Service Providers...
          */
