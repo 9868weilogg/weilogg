@@ -15,7 +15,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-      $blogs = Blog::get();
+      $blogs = Blog::orderBy('created_at','desc')->get();
       return response()->json($blogs);
     }
 
@@ -37,7 +37,17 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $blog = Blog::create([
+        'blog_post'  => $request->blog_post,
+        'blog_title' => $request->blog_title,
+      ]);
+
+      $data = [
+        'data'    => $blog,
+        'status'  => (bool) $blog,
+        'message' => $blog ? 'Blog posted!' : 'Error Posting Blog',
+      ];
+      return response()->json($data);
     }
 
     /**
