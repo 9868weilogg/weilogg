@@ -13,9 +13,9 @@ class BlogController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-      $blogs = Blog::orderBy('created_at','desc')->get();
+      $blogs = Blog::where('user_id', $request->user_id)->orderBy('created_at','desc')->get();
       return response()->json($blogs);
     }
 
@@ -40,6 +40,7 @@ class BlogController extends Controller
       $blog = Blog::create([
         'blog_post'  => $request->blog_post,
         'blog_title' => $request->blog_title,
+        'user_id'    => $request->user_id,
       ]);
 
       $data = [
