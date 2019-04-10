@@ -20,7 +20,10 @@ class UserController extends Controller
         if (Auth::attempt($credentials)) {
             $success['token'] = Auth::user()->createToken('weilogg')->accessToken;
 
-            return response()->json(['success' => $success]);
+            return response()->json([
+              'success' => $success,
+              'user'    => Auth::user(),
+            ]);
         }
 
         return response()->json(['error' => 'Unauthorised'], 401);

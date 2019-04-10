@@ -9,5 +9,6 @@ class Blog extends Model
   protected $fillable = [
     'blog_post',
     'blog_title',
+    'user_id',
   ];
 }
