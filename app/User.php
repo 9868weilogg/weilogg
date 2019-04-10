@@ -9,18 +9,19 @@ use Illuminate\Database\Eloquent\Model;
 use App\gateready\Gender;
 use App\gateready\Location;
 use App\gateready\Address;
+use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use Notifiable;
-    public $incrementing = false;
+    use HasApiTokens, Notifiable;
+    // public $incrementing = false;
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'id', 'name', 'email', 'password','avatar', 'facebook_id','first_time','transaction_quantity',
+        'name', 'email', 'password','avatar', 'facebook_id','first_time','transaction_quantity',
         'invite_code', 'credit','profile_picture','location_id','contact_number','gender_id',
     ];
 
