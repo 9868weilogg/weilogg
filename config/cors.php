@@ -16,7 +16,7 @@ return [
     'allowedOrigins' => ['*'],
     'allowedOriginsPatterns' => ['http://weilogg.com/api/*'],
     'allowedHeaders' => ['*'],
-    'allowedMethods' => ['*'],
+    'allowedMethods' => ['GET, POST, PUT, DELETE, OPTIONS'],
     'exposedHeaders' => [],
     'maxAge' => 0,
 
