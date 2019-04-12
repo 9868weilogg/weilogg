@@ -17,15 +17,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['midleware' => ['cors']], function() {
+// Route::group(['midleware' => ['cors']], function() {
   Route::post('login', 'api\UserController@login');
   Route::post('register', 'api\UserController@register');
-});
+// });
 
-// Route::middleware('auth:api')->resource('blogs','api\BlogController');
-Route::group(['midleware' => ['api', 'cors']], function() {
-  Route::resource('blogs','api\BlogController');
-});
+Route::middleware('auth:api')->resource('blogs','api\BlogController');
+// Route::group(['midleware' => ['api', 'cors']], function() {
+//   Route::resource('blogs','api\BlogController');
+// });
 
 /**
 **
