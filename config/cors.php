@@ -14,7 +14,7 @@ return [
    
     'supportsCredentials' => false,
     'allowedOrigins' => ['*'],
-    'allowedOriginsPatterns' => ['http://weilogg.com/api/*'],
+    'allowedOriginsPatterns' => ['*'],
     'allowedHeaders' => ['*'],
     'allowedMethods' => ['*'],
     'exposedHeaders' => [],
